@@ -61,7 +61,7 @@
 
  <div class="container">
   <h2>Log In </h2>
-  <form class="form-inline"  method="post" name="LoginForm" action="LoginController" onSubmit="return false;">
+  <form class="form-inline"  method="post" name="LoginForm" action="LoginRst.jsp" onSubmit="return false;">
     <div class="form-group">
       <label for="focusedInput">Email : </label><br>
       <input class="form-control" type="email" id="email" size="50" placeholder="Enter email" name="email">
