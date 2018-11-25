@@ -84,17 +84,23 @@ public class LoginController extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		String userType = request.getParameter("userType");
 		
+		String customerId = "";
+		String firstName = "";
+		String lastName = "";
+		
 		try {
 			
 			// create sql according to login type ( customer or CRS )
 			String sql = "";
 			
-	        if(userType.equals("crs")) {
+	        if(userType.equals("user")) {
 	        	sql = "select * from Customers where customerId=? and userpwd=? ";
 	        	
-	        }else if(userType.equals("user")) {
+	        }else if(userType.equals("CSR")) {
 	        	sql = "select * from CSR where employeeId=? and userpwd=? ";
 	        }
+	           
+	        
 	        
 	        // DB connection
 	        Class.forName("com.mysql.jdbc.Driver").newInstance();     
@@ -105,35 +111,44 @@ public class LoginController extends HttpServlet {
 			pst.setString(1,email);
 			pst.setString(2,pwd);
 			rs = pst.executeQuery();
-	           
+			    
 	         // get result
 	         while(rs.next())
 	  		 {
 	        	 
+	        	 System.out.println(email + pwd);
+	        	 
 	        	// get information
-	  		    customer.setCustomerId(rs.getString("customerId"));
+	  		   
+	        	 customerId = rs.getString("customerId");
+	        
+	        	 customer.setCustomerId(customerId);
+	        //	 customer.setCustomerId(rs.getString("customerId"));
 	  		    customer.setFirstName(rs.getString("firstName"));
 	  		    customer.setLastName(rs.getString("lastName"));
+	  		    
+	  		//    System.out.print(rs.getString("customerId"));
 	  		    
 	  		    // set session 
 				  HttpSession session = request.getSession();
 								   
-				  synchronized(session) {
+				//  synchronized(session) {
 					 
 					// session.setAttribute("customerId", customer.getCustomerId());
 					// session.setAttribute("firstName", customer.getFirstName());
 					// session.setAttribute("lastName", customer.getLastName());
-					 
+		 
 					 session.setAttribute("customer", customer);
-				  }
-	  		    
+					 
+					 System.out.println("final : " + customer.getFirstName() + customer.getLastName() + customer.getCustomerId());
+					
+			//	  }
+				  
 	  		 }
+	  		 
+	  		 
 			
 		}catch(SQLException e)
-	    {
-		   e.printStackTrace(); 
-	    }
-	    catch(ClassCastException e)
 	    {
 		   e.printStackTrace(); 
 	    }

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,31 +37,14 @@
 
 <div class="container">
  
- <!--  TOP MENU  -->
-	 <nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">BEST SHOES</a>
-	    </div>
-	    <ul class="nav navbar-nav">
-	      <li class="active"><a href="#">Home</a></li>
-	      <li><a href="#">Page 1</a></li>
-	      <li><a href="#">Page 2</a></li>
-	      <li><a href="#">Page 3</a></li>
-	    </ul>
-	      <button type="Submit" class="btn btn-default">Log In</button>
-	      <button type="Submit" class="btn btn-default">Sign up</button>
-	  <button class="btn btn-danger navbar-btn">My Page</button>
-	  </div>
-	</nav>
-             
-
-
+ <!--  INCLUDE : TOP MENU NAVIGATION  -->
+ <jsp:include page="/TopNavLogin.jsp" />
+ 
 <!--  Login Form  -->
 
  <div class="container">
   <h2>Log In </h2>
-  <form class="form-inline"  method="post" name="LoginForm" action="LoginRst.jsp" onSubmit="return false;">
+  <form class="form-inline"  method="post" name="LoginForm" action="LoginController" onSubmit="return false;">
     <div class="form-group">
       <label for="focusedInput">Email : </label><br>
       <input class="form-control" type="email" id="email" size="50" placeholder="Enter email" name="email">
