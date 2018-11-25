@@ -4,11 +4,10 @@
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">BEST SHOES</a>
 	    </div>
-	    
-	    <div align="right">
-	      <button type="Button" class="btn btn-default">Log In</button>
-	      <button type="Submit" class="btn btn-default">Sign up</button>
-	  	</div>
-	  
+ 
+		<ul class="nav navbar-nav navbar-right">
+	      <li><a href="/Register.jsp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	      <li><a href="/Login.jsp"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> 
+	    </ul>
 	  </div>
 	</nav>

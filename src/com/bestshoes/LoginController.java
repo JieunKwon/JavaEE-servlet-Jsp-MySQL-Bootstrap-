@@ -72,6 +72,8 @@ public class LoginController extends HttpServlet {
 		
 		// customer
 		Customer customer = new Customer();
+		// forward page 
+		String nextPage = "";	 
 		
 		// variables
 		 response.setContentType("text/html");
@@ -84,10 +86,6 @@ public class LoginController extends HttpServlet {
 		String pwd = request.getParameter("pwd");
 		String userType = request.getParameter("userType");
 		
-		String customerId = "";
-		String firstName = "";
-		String lastName = "";
-		
 		try {
 			
 			// create sql according to login type ( customer or CRS )
@@ -99,9 +97,7 @@ public class LoginController extends HttpServlet {
 	        }else if(userType.equals("CSR")) {
 	        	sql = "select * from CSR where employeeId=? and userpwd=? ";
 	        }
-	           
-	        
-	        
+	            
 	        // DB connection
 	        Class.forName("com.mysql.jdbc.Driver").newInstance();     
 			con = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
@@ -111,42 +107,54 @@ public class LoginController extends HttpServlet {
 			pst.setString(1,email);
 			pst.setString(2,pwd);
 			rs = pst.executeQuery();
-			    
-	         // get result
-	         while(rs.next())
-	  		 {
+			
+			// move to last row to count rows	          
+	         rs.last();
+	         
+			if(rs.getRow() == 0) {
+	        	
+				// fail to login
+	        	request.setAttribute("loginMsg", "fail");
+				nextPage = "/Login.jsp";
+	        	
+	         }else { 
 	        	 
-	        	 System.out.println(email + pwd);
+	        	// move to first row
+	        	 rs.beforeFirst();	
 	        	 
-	        	// get information
-	  		   
-	        	 customerId = rs.getString("customerId");
-	        
-	        	 customer.setCustomerId(customerId);
-	        //	 customer.setCustomerId(rs.getString("customerId"));
-	  		    customer.setFirstName(rs.getString("firstName"));
-	  		    customer.setLastName(rs.getString("lastName"));
-	  		    
-	  		//    System.out.print(rs.getString("customerId"));
-	  		    
-	  		    // set session 
-				  HttpSession session = request.getSession();
-								   
-				//  synchronized(session) {
-					 
-					// session.setAttribute("customerId", customer.getCustomerId());
-					// session.setAttribute("firstName", customer.getFirstName());
-					// session.setAttribute("lastName", customer.getLastName());
-		 
-					 session.setAttribute("customer", customer);
-					 
-					 System.out.println("final : " + customer.getFirstName() + customer.getLastName() + customer.getCustomerId());
-					
-			//	  }
-				  
-	  		 }
+		         // get result
+		         while(rs.next())
+		  		 {
+		        	
+		        	// get information	  		   
+		        	// customerId = rs.getString("customerId");
+		        
+		        	// customer.setCustomerId(customerId);
+		         	 customer.setCustomerId(rs.getString("customerId"));
+		  		    customer.setFirstName(rs.getString("firstName"));
+		  		    customer.setLastName(rs.getString("lastName"));
+		  		    
+		  		//    System.out.print(rs.getString("customerId"));
+		  		    
+		  		    // set session 
+					  HttpSession session = request.getSession();
+									   
+					//  synchronized(session) {
+						 
+						// session.setAttribute("customerId", customer.getCustomerId());
+						// session.setAttribute("firstName", customer.getFirstName());
+						// session.setAttribute("lastName", customer.getLastName());
+			 
+						 session.setAttribute("customer", customer);
+						 
+						 System.out.println("final : " + customer.getFirstName() + customer.getLastName() + customer.getCustomerId());
+						
+						 nextPage = "/LoginRst.jsp";
+				//	  }
+					  
+		  		 }
 	  		 
-	  		 
+	         }
 			
 		}catch(SQLException e)
 	    {
@@ -179,7 +187,7 @@ public class LoginController extends HttpServlet {
 		
 		
 		// forward to result page
-		RequestDispatcher view = request.getRequestDispatcher("/LoginRst.jsp");
+		RequestDispatcher view = request.getRequestDispatcher(nextPage);
 		view.forward(request, response);
 	}
 

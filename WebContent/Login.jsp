@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title> BEST SHOES </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,7 +25,6 @@
 			document.LoginForm.submit();
 		}
 		  
-	  
   }
   
   $('#myModal').on('shown.bs.modal', function () {
@@ -35,15 +35,39 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container-fluid">
  
  <!--  INCLUDE : TOP MENU NAVIGATION  -->
  <jsp:include page="/TopNavLogin.jsp" />
  
-<!--  Login Form  -->
+ <div class="container"> 
+ 
 
- <div class="container">
+<!--  Login Form  --> 
   <h2>Log In </h2>
+
+<%
+// Fail to login
+ try{
+	 String getMsg = (String)request.getAttribute("loginMsg");
+	 
+	 if(getMsg.equals("fail"))
+	 {
+%>
+		<div class='col-sm-3 col-md-6 col-lg-4' style='color:red;'>
+				 The email or password you entered is incorrect.<br>
+		</div>
+ 
+<%
+	 }
+ }
+ catch(Exception e){
+	 
+	 
+ }
+ %>
+   
+<br>
   <form class="form-inline"  method="post" name="LoginForm" action="LoginController" onSubmit="return false;">
     <div class="form-group">
       <label for="focusedInput">Email : </label><br>
@@ -62,10 +86,7 @@
     <br>  <br>
     <button type="submit" class="btn btn-primary active" onclick="javascript:MsgLoginValid();">LOG IN</button>
   </form>
- 
-</div>
-
-
+ </div> 
 <!-- the modal for Login Msg--> 
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -84,6 +105,6 @@
     </div>
   </div>
   
-</div>  
+</div> 
 </body>
 </html>
