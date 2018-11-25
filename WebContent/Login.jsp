@@ -45,7 +45,7 @@
 
 <!--  Login Form  --> 
   <h2>Log In </h2>
-
+ 
 <%
 // Fail to login
  try{
@@ -64,8 +64,7 @@
  catch(Exception e){
 	  
  }
- %>
-   
+ %>   
 <br>
   <form class="form-inline"  method="post" name="LoginForm" action="LoginController" onSubmit="return false;">
     <div class="form-group">
@@ -79,10 +78,10 @@
    </div>  
    <br>  <br>
     <div class="checkbox">
-      <label><input type="checkbox" name="userType" id="userType" value="crs"> CRS </label>
-      <label><input type="checkbox" name="userType" id="userType" checked value="user"> User</label>
+      <label><input type="radio" name="userType" id="userType" value="csr"> CSR </label>
+      <label><input type="radio" name="userType" id="userType" checked value="user"> User</label>
     </div>
-    <br>  <br>
+    <br><br>
     <button type="submit" class="btn btn-primary active" onclick="javascript:MsgLoginValid();">LOG IN</button>
   </form>
  </div> 
