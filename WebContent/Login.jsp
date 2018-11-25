@@ -22,7 +22,19 @@
 		}
 		else
 		{
-			document.LoginForm.submit();
+			 
+			var form = document.LoginForm;
+			 
+			if(form.userType[0].checked){
+				 
+				form.action = "LoginCSRController";
+			}else
+			{
+				 
+				form.action = "LoginController";
+			}
+		
+			form.submit();
 		}
 		  
   }
@@ -66,7 +78,7 @@
  }
  %>   
 <br>
-  <form class="form-inline"  method="post" name="LoginForm" action="LoginController" onSubmit="return false;">
+  <form class="form-inline"  method="post" name="LoginForm" action="" onSubmit="return false;">
     <div class="form-group">
       <label for="focusedInput">Email : </label><br>
       <input class="form-control" type="email" id="email" size="50" placeholder="Enter email" name="email">

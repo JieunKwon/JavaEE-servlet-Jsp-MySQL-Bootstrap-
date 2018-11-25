@@ -1,20 +1,5 @@
 package com.bestshoes;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 /**
  * Servlet implementation class LoginController
  */
@@ -29,36 +14,44 @@ import javax.servlet.http.HttpSession;
  * modified Date : Nov 22, 2018
  * --------------------------------------------- 
  *
- * Page : Customer.java (bean)
- * Task	: Login for customer and CRS  
+ * Task	: Login for CRS  
  *
- Customers  
-	customerNo	int NOT NULL auto_increment primary key,
-	customerId	varchar(50) NOT NULL,
-    username varchar(30) NOT NULL,
-    userpwd	int NOT NULL,
-    firstname varchar(30) NOT NULL,
-    lastname varchar(30) NOT NULL,
-    address varchar(100) NULL,
-    city varchar(30) NULL,
-    postalCode varchar(10) NULL
- 
  *
  */ 
 
-@WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class LoginCSRController
+ */
+@WebServlet("/LoginCSRController")
+public class LoginCSRController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+	
 	Connection con;
 	PreparedStatement pst; 
 	ResultSet rs;
 	
 	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginController() {
+	
+    public LoginCSRController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -69,34 +62,28 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		
-		// forward page 
-		String nextPage = "";	 
+
 		
 		// variables
 		 response.setContentType("text/html");
 		 String connectionUrl = "jdbc:mysql://localhost:3306/MVCDB";
 		 String connectionUser = "root";
 		 String connectionPassword = "mydb1234";
-				 
+		 
+		// forward page 
+			String nextPage = "";
+			
 		// get params
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
-		String userType = request.getParameter("userType");
+		 
 		
 		try {
 			
 			// create sql according to login type ( customer or CRS )
 			String sql = "";
-			
-	        if(userType.equals("user")) {
-	        	sql = "select * from Customers where customerId=? and userpwd=? ";
-	        	
-	        }else if(userType.equals("csr")) {
-	        	sql = "select * from CSR where employeeId=? and userpwd=? ";
-	        }
-	            
+			sql = "select * from CSR where employeeId=? and userpwd=? ";
+	     
 	        // DB connection
 	        Class.forName("com.mysql.jdbc.Driver").newInstance();     
 			con = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
@@ -123,24 +110,26 @@ public class LoginController extends HttpServlet {
 	        	 
 		         // get result
 		         while(rs.next())
-		  		 { 
-	        		// customer
-	        		Customer customer = new Customer();
-	        			
-	        		// get information	  		   		        	  
-		         	customer.setCustomerId(rs.getString("customerId"));
-		  		    customer.setFirstName(rs.getString("firstName"));
-		  		    customer.setLastName(rs.getString("lastName")); 
-		  		    
-		  		    // set session 
-					HttpSession session = request.getSession();	
-					session.setAttribute("userType", "customer");  
-					session.setAttribute("customer", customer);
-						  
+		  		 {
 		        	
-					 nextPage = "/LoginRst.jsp";
-				 
-					  
+		        	 	System.out.println(email);
+		        	 
+			 	        // CSR
+		 	        	CSR csr = new CSR();
+		 	   		
+			 	        // get information	  		   		        	  
+		 	        	csr.setEmployeeId(rs.getString("employeeId"));
+		 	        	csr.setFirstName(rs.getString("firstName"));
+		 	        	csr.setLastName(rs.getString("lastName")); 
+			  		    
+			  		    // set session 
+						HttpSession session = request.getSession();	
+						session.setAttribute("userType", "csr"); 
+						session.setAttribute("csr", csr);
+						   
+						nextPage = "/LoginCSRRst.jsp";
+						 
+				  
 		  		 }
 	  		 
 	         }
@@ -176,8 +165,9 @@ public class LoginController extends HttpServlet {
 		
 		
 		// forward to result page
-		RequestDispatcher view = request.getRequestDispatcher(nextPage);
-		view.forward(request, response);
+		//RequestDispatcher view = request.getRequestDispatcher(nextPage);
+		//view.forward(request, response);
+		
 	}
 
 	/**
