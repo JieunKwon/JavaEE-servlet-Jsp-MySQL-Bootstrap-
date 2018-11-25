@@ -1,5 +1,37 @@
 package com.bestshoes;
 
+/**
+ * Servlet implementation class LoginController
+ */
+/**
+ * --------------------------------------------- 
+ * @author JIEUN KWON (991447941)
+ *	
+ * TASK : Assignment 3 
+ * MVC Modeling - Shoe Product Ordering System
+ * 
+ * created Date : Nov 25, 2018 
+ * modified Date : Nov 25, 2018
+ * --------------------------------------------- 
+ *
+ * reference page : Customer.java (bean)
+ * Task	: Register for customer  
+ *
+ * reference db structure:
+ * Customers  
+	customerNo	int NOT NULL auto_increment primary key,
+	customerId	varchar(50) NOT NULL,
+    username varchar(30) NOT NULL,
+    userpwd	int NOT NULL,
+    firstname varchar(30) NOT NULL,
+    lastname varchar(30) NOT NULL,
+    address varchar(100) NULL,
+    city varchar(30) NULL,
+    postalCode varchar(10) NULL
+ 
+ *
+ */ 
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,48 +48,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class RegisterController
  */
-/**
- * --------------------------------------------- 
- * @author JIEUN KWON (991447941)
- *	
- * TASK : Assignment 3 
- * MVC Modeling - Shoe Product Ordering System
- * 
- * created Date : Nov 20, 2018 
- * modified Date : Nov 22, 2018
- * --------------------------------------------- 
- *
- * Page Task	: Login for customer 
- *
- Customers  
-	customerNo	int NOT NULL auto_increment primary key,
-	customerId	varchar(50) NOT NULL,
-    username varchar(30) NOT NULL,
-    userpwd	int NOT NULL,
-    firstname varchar(30) NOT NULL,
-    lastname varchar(30) NOT NULL,
-    address varchar(100) NULL,
-    city varchar(30) NULL,
-    postalCode varchar(10) NULL
- 
- *
- */ 
-
-@WebServlet("/LoginController")
-public class LoginController extends HttpServlet {
+@WebServlet("/RegisterController")
+public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
 	Connection con;
 	PreparedStatement pst; 
 	ResultSet rs;
 	
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginController() {
+    public RegisterController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -66,6 +70,9 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+	
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		
@@ -82,66 +89,90 @@ public class LoginController extends HttpServlet {
 		// get params
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
-		String userType = request.getParameter("userType");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String postalCode = request.getParameter("postalCode");
 		
 		try {
 			
-			// create sql according to login type ( customer or CRS )
-			String sql = "";
-			
-	        if(userType.equals("user")) {
-	        	sql = "select * from Customers where customerId=? and userpwd=? ";
-	        	
-	        }else if(userType.equals("csr")) {
-	        	sql = "select * from CSR where employeeId=? and userpwd=? ";
-	        }
-	            
+			// 1. validate email address 
+			String sql = "";			
+	  
+	        sql = "select * from Customers where customerId=?";
+	         
 	        // DB connection
 	        Class.forName("com.mysql.jdbc.Driver").newInstance();     
 			con = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
 			
 	        // resultSet
 			pst = con.prepareStatement(sql);
-			pst.setString(1,email);
-			pst.setString(2,pwd);
+			pst.setString(1,email); 
 			rs = pst.executeQuery();
 			
 			// move to last row to count rows	          
 	         rs.last();
-	         
+	        
+	         // 2. register
 			if(rs.getRow() == 0) {
 	        	
-				// fail to login
-	        	request.setAttribute("loginMsg", "fail");
-				nextPage = "/Login.jsp";
-	        	
-	         }else { 
+				
+				// insert query
+	        	String insertQuery = "insert into customers "
+ 					+ " (customerId, username, userpwd, firstname, lastname, address, city, postalCode) values (?,?,?,?,?,?,?,?)";
 	        	 
-	        	// move to first row
-	        	 rs.beforeFirst();	
-	        	 
-		         // get result
-		         while(rs.next())
-		  		 { 
-	        		// customer
+	         
+		 		pst=con.prepareStatement(insertQuery);
+		 		
+		 		// set
+		 		pst.setString(1,email);
+		 		pst.setString(2,firstName + " " + lastName);
+		 		pst.setString(3,pwd);		 		 
+		 		pst.setString(4,firstName);
+		 		pst.setString(5,lastName);
+		 		pst.setString(6,address);
+		 		pst.setString(7,city);
+		 		pst.setString(8,postalCode);
+		 		
+		 		int chk = pst.executeUpdate();
+		 		
+		 		// print result
+		         if(chk == 0) {
+		        	 
+		        	 request.setAttribute("Msg", "fail");
+		        	 nextPage = "/Register.jsp";
+		        	 
+		         }else {				         
+		        	 
+	        	 	
+	        	 	
+	        	 	// customer
 	        		Customer customer = new Customer();
 	        			
 	        		// get information	  		   		        	  
-		         	customer.setCustomerId(rs.getString("customerId"));
-		  		    customer.setFirstName(rs.getString("firstName"));
-		  		    customer.setLastName(rs.getString("lastName")); 
+		         	customer.setCustomerId(email);
+		  		    customer.setFirstName(firstName);
+		  		    customer.setLastName(lastName); 
 		  		    
-		  		    // set session 
-					HttpSession session = request.getSession();	
+		  		    // session 
+	        	 	HttpSession session = request.getSession();	
 					session.setAttribute("userType", "customer");  
 					session.setAttribute("customer", customer);
-						  
-		        	
-					 nextPage = "/LoginRst.jsp";
-				 
-					  
-		  		 }
-	  		 
+					
+					// forward page
+					nextPage = "/RegisterRst.jsp";
+		         }
+		         
+		 		
+			
+			// 2.2 fail to register
+	         }else 
+	         { 
+	        	 
+	        	request.setAttribute("Msg", "email");
+				nextPage = "/Register.jsp";
+					 
 	         }
 			
 		}catch(SQLException e)
@@ -177,6 +208,7 @@ public class LoginController extends HttpServlet {
 		// forward to result page
 		RequestDispatcher view = request.getRequestDispatcher(nextPage);
 		view.forward(request, response);
+		
 	}
 
 	/**

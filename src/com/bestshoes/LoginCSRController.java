@@ -27,6 +27,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -165,8 +166,8 @@ public class LoginCSRController extends HttpServlet {
 		
 		
 		// forward to result page
-		//RequestDispatcher view = request.getRequestDispatcher(nextPage);
-		//view.forward(request, response);
+		RequestDispatcher view = request.getRequestDispatcher(nextPage);
+		view.forward(request, response);
 		
 	}
 
