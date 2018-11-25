@@ -28,10 +28,15 @@
 		 
 	 	Customer customer = (Customer)sessionCustomer.getAttribute("customer"); 
 	 %>
-	  
-	    <p>  
-	  		Welcome, <b><%=customer.getFirstName() %></b>
-	  	</p>
+	   	
+	  		 
+    		 
+    		<h2>Welcome,  <%=customer.getFirstName() %>!</h2>
+    		
+		      <button type="button" class="btn btn-default" onClick="location.href='ShoeList.jsp';">Go to shop</button>
+		      <button type="button" class="btn btn-default">Go to My Page</button> 
+		   
+	   
 	  
 	 <%
 	 	
