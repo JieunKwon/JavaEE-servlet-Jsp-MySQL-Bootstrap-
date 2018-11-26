@@ -14,7 +14,7 @@ package com.bestshoes;
  * modified Date : Nov 22, 2018
  * --------------------------------------------- 
  *
- * Task	: Login for CRS  
+ * Task	: Controller - Login for CRS  
  *
  *
  */ 
@@ -65,14 +65,13 @@ public class LoginCSRController extends HttpServlet {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		
-		// variables
-		 response.setContentType("text/html");
+		// variables 
 		 String connectionUrl = "jdbc:mysql://localhost:3306/MVCDB";
 		 String connectionUser = "root";
 		 String connectionPassword = "mydb1234";
 		 
 		// forward page 
-			String nextPage = "";
+		String nextPage = "";
 			
 		// get params
 		String email = request.getParameter("email");
@@ -112,10 +111,8 @@ public class LoginCSRController extends HttpServlet {
 		         // get result
 		         while(rs.next())
 		  		 {
-		        	
-		        	 	System.out.println(email);
 		        	 
-			 	        // CSR
+			 	        // CSR obj
 		 	        	CSR csr = new CSR();
 		 	   		
 			 	        // get information	  		   		        	  
