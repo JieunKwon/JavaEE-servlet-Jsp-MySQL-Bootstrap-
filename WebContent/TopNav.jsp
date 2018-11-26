@@ -1,9 +1,9 @@
  
-	 <!--  TOP MENU : After Login-->
-	 <nav class="navbar navbar-default">
+	 <!--  TOP MENU : After Login -->
+	 <nav class="navbar navbar-default navbar-fixed-top"> 
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">BEST SHOES</a>
+	      <a class="navbar-brand" href="index.jsp">BEST SHOES</a>
 	    </div>
  		<ul class="nav navbar-nav">
 	       

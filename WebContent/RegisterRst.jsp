@@ -33,8 +33,10 @@
     		 
     		<h2>Welcome,  <%=customer.getFirstName() %>!</h2>
     		
-		      <button type="button" class="btn btn-default" onClick="location.href='ShoeList.jsp';">Go to shop</button>
-		      <button type="button" class="btn btn-default">Go to My Page</button> 
+    		Thanks for signing up to BEST SHOES. 
+		      
+		      <button type="button" class="btn btn-default" onClick="location.href='ShoeList.jsp';">Go shopping</button>
+		      <button type="button" class="btn btn-default" onClick="location.href='MyPage.jsp';">Go to My Page</button> 
 		   
 	   
 	  

@@ -48,7 +48,7 @@
  
 
 <!--  Login Form  --> 
-  <h2>Sing up </h2>
+  <h2>Sign up </h2>
  
 <%
 // Msg from Controller : Fail to Register
@@ -60,7 +60,7 @@
 %>
 		<div class='col-sm-3 col-md-6 col-lg-4' style='color:red;'>
 		  The email address you entered is already exist.<br>
-          Please enter others.<br>
+          Please enter a different email.<br>
 		</div>
  
 <%
