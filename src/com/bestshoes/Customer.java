@@ -30,7 +30,6 @@ package com.bestshoes;
  */ 
 
 public class Customer {
-
 	
 	// variables
 	private String customerId; 

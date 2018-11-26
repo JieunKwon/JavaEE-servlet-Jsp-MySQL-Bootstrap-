@@ -1,5 +1,24 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+
+<%--
+ * --------------------------------------------- 
+ * @author JIEUN KWON (991447941)
+ *	
+ * TASK : Assignment 3 
+ * MVC Modeling - Shoe Product Ordering System
+ * 
+ * created Date : Nov 25, 2018 
+ * modified Date : Nov 25, 2018
+ * --------------------------------------------- 
+ *
+ * Page Task :  Customer Register Form  
+ * 
+ * Reference :  TABLE Customers  
+ * 
+ *
+ --%>
+     
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,29 +30,29 @@
   
   <script>
   
-  function MsgLoginValid()
-  {
-		var form = document.RegistForm;
-		
-	  	// validate null value 
-		if(document.getElementById("email").value == "" || document.getElementById("pwd").value == "" || document.getElementById("firstName").value == "" || document.getElementById("lastName").value == "")
-		{
-			$('#myModal').modal('show'); 
-			return;
-		}
-		else
-		{
-			 
-			form.action = "RegisterController";
-			 
-			form.submit();
-		}
-		  
-  }
-  
-  $('#myModal').on('shown.bs.modal', function () {
-	  $('#myInput').trigger('focus')
-	})
+	  function MsgLoginValid()
+	  {
+			var form = document.RegistForm;
+			
+		  	// validate null value 
+			if(document.getElementById("email").value == "" || document.getElementById("pwd").value == "" || document.getElementById("firstName").value == "" || document.getElementById("lastName").value == "")
+			{
+				$('#myModal').modal('show'); 
+				return;
+			}
+			else
+			{
+				 
+				form.action = "RegisterController";
+				 
+				form.submit();
+			}
+			  
+	  }
+	  
+	  $('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').trigger('focus')
+		})
 	
   </script>
 </head>
@@ -46,7 +65,6 @@
  
  <div class="container"> 
  
-
 <!--  Login Form  --> 
   <h2>Sign up </h2>
  
@@ -78,8 +96,7 @@
 	  
  }
  %>   
-<br>
- 
+<br> 
     
   <form class="form-inline"  method="post" name="RegistForm" action="" onSubmit="return false;">
     <div class="form-group">

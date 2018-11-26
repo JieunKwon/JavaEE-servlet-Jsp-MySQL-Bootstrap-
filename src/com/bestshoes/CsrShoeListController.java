@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * --------------------------------------------- 
  *
  * Page Task	: CSR page - Show Shoes' list 
- *				  select data -> set attribute -> forward to CrsShoeList.jsp
+ *				  select data -> set attribute for shoes Arraylist -> forward to CrsShoeList.jsp
  *
  * references db structure : 
  Shoes 

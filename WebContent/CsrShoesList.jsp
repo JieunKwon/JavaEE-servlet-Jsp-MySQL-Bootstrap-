@@ -1,6 +1,24 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%--
+ * --------------------------------------------- 
+ * @author JIEUN KWON (991447941)
+ *	
+ * TASK : Assignment 3 
+ * MVC Modeling - Shoe Product Ordering System
+ * 
+ * created Date : Nov 25, 2018 
+ * modified Date : Nov 25, 2018
+ * --------------------------------------------- 
+ *
+ * Page Task :  CSR - Shoes List   
+ * 
+ * Reference DB :  Shoes 
+ * 
+ *
+ --%>
 <!DOCTYPE html>
 <html>
 <head>
