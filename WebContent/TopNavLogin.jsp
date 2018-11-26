@@ -1,6 +1,20 @@
- <!--  TOP MENU  -->
+  <%--
+ * --------------------------------------------- 
+ * @author JIEUN KWON (991447941)
+ *	
+ * TASK : Assignment 3 
+ * MVC Modeling - Shoe Product Ordering System
+ * 
+ * created Date : Nov 25, 2018 
+ * modified Date : Nov 25, 2018
+ * --------------------------------------------- 
+ *
+ * Page Task :  Top navigation before login  
+ *  
+ * 
+ --%>
  
-
+ <!--  TOP MENU  -->
 	 <nav  class="navbar navbar-default navbar-fixed-top">
 	  <div class="container-fluid">
 	    <div class="navbar-header">

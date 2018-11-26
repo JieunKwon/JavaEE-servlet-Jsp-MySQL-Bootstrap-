@@ -7,7 +7,7 @@ package com.bestshoes;
  * TASK : Assignment 3 
  * MVC Modeling - Shoe Product Ordering System
  * 
- * created Date : Nov 20, 2018 
+ * created Date : Nov 22, 2018 
  * modified Date : Nov 22, 2018
  * --------------------------------------------- 
  *
@@ -90,10 +90,5 @@ public class Customer {
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
-	
-	
-	
-	
-	
-	
+	 
 }

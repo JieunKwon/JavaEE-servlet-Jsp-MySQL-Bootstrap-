@@ -1,4 +1,19 @@
- 
+ <%--
+ * --------------------------------------------- 
+ * @author JIEUN KWON (991447941)
+ *	
+ * TASK : Assignment 3 
+ * MVC Modeling - Shoe Product Ordering System
+ * 
+ * created Date : Nov 25, 2018 
+ * modified Date : Nov 25, 2018
+ * --------------------------------------------- 
+ *
+ * Page Task :  Top navigation for CSR  
+ *  
+ * 
+ --%>
+  
 	 <!--  TOP MENU : After CRS Login-->
 	 <nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container-fluid">
