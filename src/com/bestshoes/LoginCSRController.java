@@ -124,7 +124,8 @@ public class LoginCSRController extends HttpServlet {
 						HttpSession session = request.getSession();	
 						session.setAttribute("userType", "csr"); 
 						session.setAttribute("csr", csr);
-						   
+						session.setMaxInactiveInterval(600*60); // for customer give 600 minutes 
+						    
 						nextPage = "/LoginCSRRst.jsp";
 						 
 				  

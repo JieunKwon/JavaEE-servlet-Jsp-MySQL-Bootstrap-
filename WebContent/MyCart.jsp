@@ -35,14 +35,14 @@ body { padding-top: 70px; }
   
   function delCart(itemId)
   {
-		 
-	  document.cartForm.itemId.value = itemId;
+ 
+	  document.cartForm.itemId.value = itemId; 
 	  document.cartForm.submit(); 
  
 		  
   }
  
-  funtion checkOut()
+  function checkOut()
   {
 	   
 	  document.cartForm.submit();  
@@ -88,38 +88,47 @@ body { padding-top: 70px; }
 	  	Your cart is empty
 	  	</c:if>
 	 
-	  	<table>
+	 	<table border=0>
 	  		<tr>
-	  			<td width="20px">${status.count} </td>
-	  			<td width="70px"><img src="images/shoe${cart.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre"></td>
-	  			<td width="400px" class="itemTitle"><h3>${cart.itemName}</h3></td> 
+	  			<td width="100px">${status.count} &nbsp;
+	  				<img src="images/shoe${cart.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre">&nbsp;&nbsp;
+	  		 
+	  			 </td> 
+	  			<td width="800px" class="itemTitle"><h3>${cart.itemName}</h3></td>
 	  			<td align="right" width="50px"> * ${cart.quantity}</td>
 	  			<td align="right" width="100px"> <b>$${cart.price}</b></td>
 	  			<td align="right" width="50px"><a href="javascript:delCart('${cart.itemId}');"><img src="images/delete.jpg" width="30px"></a></td>
 	  		</tr>
 	  	</table>
-	  	  
-	  	  
+ 
 	  </li> 
 		 
 	</c:forEach>
 	
 	<li class="list-group-item">
-		Total Items : <span class="badge">$${total}</span>
+		<table border=0>
+	  		<tr>
+	  			 
+	  			<td align="right" width="800px" align="right">  <h3> Total Items : $${total}</h3> </td> 
+	  			<td align="right" width="200px"><button type="submit" class="btn btn-primary active" onclick="javascript:location.href='CheckoutController'">Check out</button></td>
+	  		</tr>
+	  	</table>
+	   
+		
 	</li>
 <!-- /////////////   End  : forEach  /////////////// -->	
  </ul> 
 
 	<div>
 	 
-	<button type="submit" class="btn btn-primary active" onclick="javascript:checkOut();">Check out</button>
+	
 	</div>
    </div> 
  </div>
  
  
          <!-- form for cart --> 
-		<form action="MyCartController" method="post" name="cartForm"> 
+		<form action="DelCartController" method="post" name="cartForm"> 
 		 	<input type="hidden" value="" name="itemId">
 		 	<input type="hidden" value="delete" name="mode">
 		 	<input type="hidden" value="${sessionScope.customer.customerId}" name="customerId">

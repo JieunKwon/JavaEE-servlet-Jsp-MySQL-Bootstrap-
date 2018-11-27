@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MyCartController
+ * Servlet implementation class CheckoutController
  */
+
 /**
  * --------------------------------------------- 
  * @author JIEUN KWON (991447941)
@@ -24,22 +25,20 @@ import javax.servlet.http.HttpSession;
  * modified Date : Nov 27, 2018
  * --------------------------------------------- 
  *
- * Page Task	: Show cart list to place order
- *				  select data from cart 
- *				-> set attribute for cart Arraylist 
- *				-> forward to MyCart.jsp
- *   
- *
+ * Page Task	: check out from cart
+ *				  1. move to order db
+ *				  2. make cart empty
+ *				  3. forward to result of order
  */ 
 
-@WebServlet("/MyCartController")
-public class MyCartController extends HttpServlet {
+@WebServlet("/CheckoutController")
+public class CheckoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyCartController() {
+    public CheckoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,7 +48,9 @@ public class MyCartController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		System.out.println("ok - checkout");
 		
 		HttpSession sessionCustomer = request.getSession();
 		Customer customer = (Customer)sessionCustomer.getAttribute("customer"); 
@@ -59,52 +60,63 @@ public class MyCartController extends HttpServlet {
 			getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
 		}
 		
-	
-	//	if(editType != null && !editType.isEmpty()){
-		    //processing here
-	//	}
+		//////////////////////////
+		// 1. move to order 
 		
-		
-		String customerId = customer.getCustomerId();
-		String mode = request.getParameter("mode");
-		
-		// objcustomerId
-		CartDAO cartDao = new CartDAO();
-		
-		// result
-		ArrayList<Cart> cartList = new ArrayList<Cart>();
-		
-		System.out.println(mode + "---------");
-		// delete item from cart
-		if(mode!=null && !mode.isEmpty()){
-		 
-			if(mode.equals("delete")) {
-				
-				int itemId = Integer.parseInt(request.getParameter("itemId"));
-				System.out.println(itemId + "-----------");
-				try {
-					cartDao.delRow(itemId, customer.getCustomerId());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		// search Cart
+		OrdersDAO ordersDao = new OrdersDAO();	//obj
 		try {
-			cartList = cartDao.listCart(customer.getCustomerId());
-		
-	        request.setAttribute("cartList", cartList);
-					
+			ordersDao.oderAllItems(customer.getCustomerId());
+			
+			System.out.println("ok - dbo");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//////////////////////////
+		// 2. make cart empty 
+		
+		CartDAO cartDao = new CartDAO();	//obj
+		try {
+			cartDao.delAllRows(customer.getCustomerId());
+			
+			System.out.println("ok - delete cart");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//////////////////////////
+		// 3. personal information 
+	//	CustomersDAO cuts = new CustomersDAO();	//obj
+	//	Customer customerIn = cuts.searchCustomer(customerId);
+		
+		
+		//////////////////////////
+		// 4. orders Arraylist information 
+		 OrdersDAO order= new OrdersDAO();	//obj
+		 ArrayList<Orders> ordersList = new  ArrayList<Orders>();
 		 
-		// Dispatcher - forward to result page
-		getServletContext().getRequestDispatcher("/MyCart.jsp").forward(request, response);
-		 
+		try {
+			ordersList = order.listOrders(customer.getCustomerId());
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		//////////////////////////
+		// 5. set attribute  
+        request.setAttribute("ordersList", ordersList);
+		
+		
+		//////////////////////////
+		// 6. Dispatcher - forward to result page
+		getServletContext().getRequestDispatcher("/OrderRst.jsp").forward(request, response);
+		
 	}
 
 	/**

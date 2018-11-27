@@ -128,16 +128,20 @@ public class LoginController extends HttpServlet {
 	        			
 	        		// get information	  		   		        	  
 		         	customer.setCustomerId(rs.getString("customerId"));
+		         	customer.setUserName(rs.getString("userName"));
 		  		    customer.setFirstName(rs.getString("firstName"));
 		  		    customer.setLastName(rs.getString("lastName")); 
-		  		    
+		  		    customer.setAddress(rs.getString("address"));
+		  		    customer.setCity(rs.getString("city"));
+		  		    customer.setPostalCode(rs.getString("postalCode"));
+		  		
 		  		    // set session 
 					HttpSession session = request.getSession();	
 					session.setAttribute("userType", "customer");  
 					session.setAttribute("customer", customer);
-						  
-		        	
-					 nextPage = "/LoginRst.jsp";
+					session.setMaxInactiveInterval(120*60); // for customer give 120 minutes 
+					 
+					nextPage = "/LoginRst.jsp";
 				 
 					  
 		  		 }

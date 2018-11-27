@@ -32,14 +32,14 @@ import javax.servlet.http.HttpSession;
  *
  */ 
 
-@WebServlet("/MyCartController")
-public class MyCartController extends HttpServlet {
+@WebServlet("/DelCartController")
+public class DelCartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyCartController() {
+    public DelCartController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,52 +58,24 @@ public class MyCartController extends HttpServlet {
 			// Dispatcher - forward to result page
 			getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
 		}
-		
-	
-	//	if(editType != null && !editType.isEmpty()){
-		    //processing here
-	//	}
-		
-		
-		String customerId = customer.getCustomerId();
-		String mode = request.getParameter("mode");
+
 		
 		// objcustomerId
 		CartDAO cartDao = new CartDAO();
 		
-		// result
-		ArrayList<Cart> cartList = new ArrayList<Cart>();
+		int itemId = Integer.parseInt(request.getParameter("itemId"));
+		System.out.println(itemId + "-----------");
 		
-		System.out.println(mode + "---------");
-		// delete item from cart
-		if(mode!=null && !mode.isEmpty()){
-		 
-			if(mode.equals("delete")) {
-				
-				int itemId = Integer.parseInt(request.getParameter("itemId"));
-				System.out.println(itemId + "-----------");
-				try {
-					cartDao.delRow(itemId, customer.getCustomerId());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		// search Cart
 		try {
-			cartList = cartDao.listCart(customer.getCustomerId());
-		
-	        request.setAttribute("cartList", cartList);
-					
+			cartDao.delRow(itemId, customer.getCustomerId());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
+			
+
 		// Dispatcher - forward to result page
-		getServletContext().getRequestDispatcher("/MyCart.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/MyCartController").forward(request, response);
 		 
 	}
 
