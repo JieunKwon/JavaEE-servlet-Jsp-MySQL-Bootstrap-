@@ -55,7 +55,7 @@ body { padding-top: 70px; }
   {
 	  
 	  document.cartForm.itemId.value = itemId;
-	//  document.cartForm.submit(); 
+	  document.cartForm.submit(); 
 	 
   }
   
@@ -112,7 +112,12 @@ body { padding-top: 70px; }
 	  			<td>  </td><td colspan="2" class="itemTitle"><h3>${shoes.itemName}</h3></td>
 	  			<td align="right" width="100px">
 	  			<span class="badge">$${shoes.price}</span>
-	  			  <a href="javascript:addCart('${shoes.itemId}','${shoes.itemName}');"><img src="images/cart.png" width="30px"></a> 
+	  			<!-- show cart image when quantity is bigger than 0   -->
+	  			<c:if test="${shoes.quantity > 0}">		 
+						<a href="javascript:addCart('${shoes.itemId}','${shoes.itemName}');"><img src="images/cart.png" width="30px"></a> 
+						
+				</c:if>
+	 
 	  			</td>
 	  		</tr>
 	  		<tr>
@@ -140,21 +145,19 @@ body { padding-top: 70px; }
  
  
  <!-- the modal to add cart item --> 
+ <!-- form for cart -->
+ <form action="cartController" method="post" name="cartForm">
+ 	<input type="hidden" name="category" value="${category}">
+ 	<input type="hidden" value="" name="itemId">
+ 	<input type="hidden" value="${sessionScope.customer.customerId}" name="customerId">
+ </form>
+ 
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">
-          
-          </h4>
-          <div id="modal_item_title" class="modal-title"></div>
-          <form action="cartController" method="post" name="cartForm">
-          	<input type="hidden" value="" name="itemId">
-          	<input type="text" value="${sessionScope.customer.customerId}" name="customerId">
-          	 
-          </form>
-          
+          <button type="button" class="close" data-dismiss="modal">&times;</button> 
+          <div id="modal_item_title" class="modal-title"></div> 
         </div>
         <div class="modal-body">
           <p>Do you want to add this item?</p>
@@ -165,7 +168,7 @@ body { padding-top: 70px; }
       </div>
     </div>
   </div>
-  
+ <!-- END : the modal to add cart item -->   
   
 </div> 
 </body>

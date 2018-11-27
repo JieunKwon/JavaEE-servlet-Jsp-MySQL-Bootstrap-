@@ -190,4 +190,63 @@ public class ShoesDAO {
 		// return 
 		return shoesList;
 	}
+	
+	// ---------------------------------------------------------
+	// 		METHOD listShoes()
+	// ---------------------------------------------------------
+	
+	public Shoes searchShoes(String itemId) throws Exception{
+		
+		// make a query
+		String selectQuery = "select itemId, itemName, shoesize, price from Shoes where itemId=" + itemId;
+	
+		// shoe for return value
+		Shoes shoe = new Shoes();
+		
+		// db connection
+		try{
+           
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(selectQuery);
+		    
+			try {
+				rs = pst.executeQuery();
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+				System.out.println(pst.toString());
+				e.printStackTrace();
+			}
+		
+			try {
+				  
+		         while(rs.next())
+		  		 {
+		        	   
+		        	 	// store information	
+		        		shoe.setItemId(rs.getInt(1));
+		        		shoe.setItemName(rs.getString(2));
+		        		shoe.setShoesize(rs.getString(3));
+		        		shoe.setPrice(rs.getDouble(4));
+		        		  	   		 
+		  		 }
+		         
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+			}
+			
+			  
+        }catch(Exception e){
+                e.printStackTrace();
+        }finally{
+              
+        	DBConnector.closeConnectionAll(con,pst,rs);
+        }
+		
+		// return 
+		return shoe;
+	}
+	
 }
