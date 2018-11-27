@@ -54,13 +54,42 @@ public class MyCartController extends HttpServlet {
 		HttpSession sessionCustomer = request.getSession();
 		Customer customer = (Customer)sessionCustomer.getAttribute("customer"); 
 		
+		if(customer==null ){
+			// Dispatcher - forward to result page
+			getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+		}
+		
+	
+	//	if(editType != null && !editType.isEmpty()){
+		    //processing here
+	//	}
+		
+		
 		String customerId = customer.getCustomerId();
+		String mode = request.getParameter("mode");
 		
 		// obj
 		CartDAO cartDao = new CartDAO();
 		
 		// result
 		ArrayList<Cart> cartList = new ArrayList<Cart>();
+		
+		System.out.println(mode + "---------");
+		// delete item from cart
+		if(mode!=null && !mode.isEmpty()){
+		 
+			if(mode.equals("delete")) {
+				System.out.println("2-----------");
+				int itemId = Integer.parseInt(request.getParameter("itemId"));
+				
+				try {
+					cartDao.delRow(itemId, customerId);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
 		// search Cart
 		try {

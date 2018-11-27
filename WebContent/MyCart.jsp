@@ -35,14 +35,19 @@ body { padding-top: 70px; }
   
   function delCart(itemId)
   {
-		
- 
+		 
 	  document.cartForm.itemId.value = itemId;
 	  document.cartForm.submit(); 
  
 		  
   }
  
+  funtion checkOut()
+  {
+	   
+	  document.cartForm.submit();  
+	  
+  }
   </script>
   
 </head>
@@ -90,7 +95,7 @@ body { padding-top: 70px; }
 	  			<td width="400px" class="itemTitle"><h3>${cart.itemName}</h3></td> 
 	  			<td align="right" width="50px"> * ${cart.quantity}</td>
 	  			<td align="right" width="100px"> <b>$${cart.price}</b></td>
-	  			<td align="right" width="50px"><a href="javascript:delCart('${shoes.itemId}');"><img src="images/delete.jpg" width="30px"></a></td>
+	  			<td align="right" width="50px"><a href="javascript:delCart('${cart.itemId}');"><img src="images/delete.jpg" width="30px"></a></td>
 	  		</tr>
 	  	</table>
 	  	  
@@ -105,14 +110,16 @@ body { padding-top: 70px; }
 <!-- /////////////   End  : forEach  /////////////// -->	
  </ul> 
 
-<button type="submit" class="btn btn-primary active" onclick="javascript:MsgLoginValid();">Check out</button>
-
+	<div>
+	 
+	<button type="submit" class="btn btn-primary active" onclick="javascript:checkOut();">Check out</button>
+	</div>
    </div> 
  </div>
  
  
          <!-- form for cart --> 
-		<form action="cartController" method="post" name="cartForm"> 
+		<form action="MyCartController" method="post" name="cartForm"> 
 		 	<input type="hidden" value="" name="itemId">
 		 	<input type="hidden" value="delete" name="mode">
 		 	<input type="hidden" value="${sessionScope.customer.customerId}" name="customerId">
