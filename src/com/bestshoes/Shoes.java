@@ -26,6 +26,7 @@ public class Shoes {
 	private String shoesize; 
 	private int quantity;
 	private double price;
+	private String content;
 	
 	public int getItemId() {
 		return itemId;
@@ -62,6 +63,12 @@ public class Shoes {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	

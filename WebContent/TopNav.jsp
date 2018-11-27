@@ -23,9 +23,9 @@
 	    </div>
  		<ul class="nav navbar-nav">
 	       
-	      <li><a href="ShoeListController">Women</a></li>
-	      <li><a href="ShoeList.jsp">Men</a></li>
-	      <li><a href="ShoeList.jsp">Kids</a></li>
+	      <li><a href="ShoeListController?category=Women">Women</a></li>
+	      <li><a href="ShoeListController?category=Men">Men</a></li>
+	      <li><a href="ShoeListController?category=Kids">Kids</a></li>
 	    </ul>
 		<ul class="nav navbar-nav navbar-right">
 	      <li><a href="MyPage.jsp"><span class="glyphicon glyphicon-user"></span> My Page</a></li> 

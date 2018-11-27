@@ -108,8 +108,9 @@ public class CsrShoeListController extends HttpServlet {
 		        		private double price;
 		        	*/	
 		        		
-		        	 Shoes shoe = new Shoes();
-			 	        // store information	
+		        	 	Shoes shoe = new Shoes();
+			 	        
+		        	 	// store information	
 		        		shoe.setItemId(rs.getInt(1));
 		        		shoe.setItemName(rs.getString(2));
 		        		shoe.setCategory(rs.getString(3));
