@@ -23,7 +23,7 @@ body { padding-top: 70px; }
  <jsp:include page="/TopNav.jsp" />
  
  <div class="container">
- <div class="jumbotron"  style="background-color: #BDBDBD;">
+ <div class="jumbotron"  style="background-color: #D5D5D5;">
 	 <%
 	 //Session  
 	 HttpSession sessionCustomer = request.getSession();
@@ -37,10 +37,7 @@ body { padding-top: 70px; }
     		 
     		<h2>Welcome,  <%=customer.getFirstName() %>!</h2>
     		
-		      <button type="button" class="btn btn-default" onClick="location.href='ShoeList.jsp';">Go to shop</button>
-		      <button type="button" class="btn btn-default" onClick="location.href='MyPage.jsp';">Go to My Page</button> 
-		   
-	   
+		
 	  
 	 <%
 	 	
@@ -49,7 +46,7 @@ body { padding-top: 70px; }
 	 {
 	%>
 		
-		The username or password you entered is incorrect.
+		<jsp:forward page="Login.jsp" />
 		
 	<%	 
 	 }

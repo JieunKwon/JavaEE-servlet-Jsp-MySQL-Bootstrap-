@@ -15,30 +15,13 @@
  * modified Date : Nov 25, 2018
  * --------------------------------------------- 
   
- * Task	: index page  
+ * Task	: index page  - forward page
  *
  *
  */ 
 
  --%>
-
-<!DOCTYPE html>
-<html>
-<head>
-  <title> BEST SHOES </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-body { padding-top: 70px; }
-</style>  
-</head>
-<body>
-
- <div class="container-fluid">
-
- <!--  INCLUDE : TOP MENU NAVIGATION  -->
+  
   
 	 <%
 	 //Session check
@@ -49,25 +32,25 @@ body { padding-top: 70px; }
          String userType = (String)session2.getAttribute("userType");
          
          if (userType == null) {
-        	 System.out.print("null");
+        	// System.out.print("null");
      %>
 
-     		<jsp:include page="TopNavLogin.jsp" />
+     		<jsp:forward page="Login.jsp" />
      <%	
          } else {
         	 
         	 
-        	 System.out.print(userType);
+        	 //System.out.print(userType);
         	 
         	 if(userType.equals("csr")){
         		  
         		 %>
-        		 		 <jsp:include page="TopNavCSR.jsp" />
+        		 		 <jsp:forward page="LoginCSRRst.jsp" />
         		 <%		 
         	 }else if(userType.equals("customer")){
        		  
        		 %>
-       		 		 <jsp:include page="TopNav.jsp" />
+       		 		 <jsp:forward page="LoginRst.jsp" />
        		 <%		 
        	 	} 	 
             
@@ -76,25 +59,6 @@ body { padding-top: 70px; }
       }
 	  
 	 %>
-	   	 
-		 <div class = "container">
-		 <div class="jumbotron">  		 
-		    		 
-		    		
-    		
-		      <button type="button" class="btn btn-default" onClick="location.href='ShoeList.jsp';">Go to shop</button>
-		      <button type="button" class="btn btn-default" onClick="location.href='MyPage.jsp';">Go to My Page</button> 
-		   
-	   
-	  
-	 
-
-	   </div> 
-	   </div>
-	 
-</div> 
  
-</body>
-</html>
 
  

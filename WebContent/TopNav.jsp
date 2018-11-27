@@ -28,6 +28,7 @@
 	      <li><a href="ShoeListController?category=Kids">Kids</a></li>
 	    </ul>
 		<ul class="nav navbar-nav navbar-right">
+		  <li><a href="MyCartController"><span class="glyphicon glyphicon-cart"></span> My Cart</a></li>
 	      <li><a href="MyPage.jsp"><span class="glyphicon glyphicon-user"></span> My Page</a></li> 
 	      <li><a href="Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 	    </ul>

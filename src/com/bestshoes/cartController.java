@@ -33,19 +33,39 @@ public class cartController extends HttpServlet {
 		String category = request.getParameter("category");
 		String customerId = request.getParameter("customerId");
 		String itemId = request.getParameter("itemId");
+	 
 		
 		// search items
 		ShoesDAO shoesDao = new ShoesDAO();
 		Shoes shoe = new Shoes();
 		try {
 			shoe = shoesDao.searchShoes(itemId);
+			 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		
 		// add to cart
 		
+		CartDAO cartDao = new CartDAO();
+		try {
+			cartDao.addRow(shoe.getItemId(), customerId, 1, shoe.getPrice());
+			 
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		// set attribute
+		request.setAttribute("category", category);
+      
+	 
+		// Dispatcher - forward to result page
+		getServletContext().getRequestDispatcher("/ShoeListController?category="+category).forward(request, response);
+								
+				
 	}
 
 	/**

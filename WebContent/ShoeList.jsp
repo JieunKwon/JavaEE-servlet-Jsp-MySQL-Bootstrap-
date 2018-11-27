@@ -54,7 +54,7 @@ body { padding-top: 70px; }
   function submitCart()
   {
 	  
-	  document.cartForm.itemId.value = itemId;
+	  $('#myModal').modal('toggle'); 
 	  document.cartForm.submit(); 
 	 
   }
@@ -78,10 +78,9 @@ body { padding-top: 70px; }
  
 <!--  Menu title  -->
 <c:if test="${!empty category }">		 
-		<h1> <span class="label label-default">${category} </span></h1><br>
+		<h1> <span class="label label-default">${category}</span></h1><br>
 </c:if>
  
-
  <ul class="list-group">
 
 <!--  No List -->
@@ -145,13 +144,6 @@ body { padding-top: 70px; }
  
  
  <!-- the modal to add cart item --> 
- <!-- form for cart -->
- <form action="cartController" method="post" name="cartForm">
- 	<input type="hidden" name="category" value="${category}">
- 	<input type="hidden" value="" name="itemId">
- 	<input type="hidden" value="${sessionScope.customer.customerId}" name="customerId">
- </form>
- 
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
@@ -162,8 +154,15 @@ body { padding-top: 70px; }
         <div class="modal-body">
           <p>Do you want to add this item?</p>
         </div>
+         <!-- form for cart --> 
+		<form action="cartController" method="post" name="cartForm">
+		 	<input type="hidden" name="category" value="${category}">
+		 	<input type="hidden" value="" name="itemId">
+		 	<input type="hidden" value="${sessionScope.customer.customerId}" name="customerId">
+		 </form> 
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" onClick="javascript:submitCart();">Add to Cart </button>
+        <!-- data-dismiss="modal"  -->
+          <button type="button" class="btn btn-default" onClick="javascript:submitCart();">Add to Cart </button>
         </div>
       </div>
     </div>

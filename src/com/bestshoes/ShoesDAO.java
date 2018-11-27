@@ -192,7 +192,7 @@ public class ShoesDAO {
 	}
 	
 	// ---------------------------------------------------------
-	// 		METHOD listShoes()
+	// 		METHOD searchShoes()
 	// ---------------------------------------------------------
 	
 	public Shoes searchShoes(String itemId) throws Exception{
