@@ -19,6 +19,7 @@ public class Cart {
 
 	private int CartNo;
 	private int itemId;
+	private String itemName;
 	private String customerId;
 	private int quantity;
 	private double price;
@@ -36,6 +37,12 @@ public class Cart {
 		this.itemId = itemId;
 	}
  
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 	public String getCustomerId() {
 		return customerId;
 	}

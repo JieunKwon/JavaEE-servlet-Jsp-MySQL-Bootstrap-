@@ -27,7 +27,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+<style>
+body { padding-top: 70px; }
+.itemTitle{ color:#4C4C4C; size:14px }
+</style>  
   <script>
   
 	  function MsgLoginValid()
@@ -129,12 +132,12 @@
    <br> 
    <div class="form-group">
       <label for="focusedInput">City : </label><br>
-      <input class="form-control" type="text" id="city" size="50" placeholder="Enter city you live" name="city">
+      <input class="form-control" type="text" id="city" size="50" placeholder="City" name="city">
    </div>
    <br> 
    <div class="form-group">
       <label for="focusedInput">Postal Code : </label><br>
-      <input class="form-control" type="text" id="postalCode" size="10" placeholder="Enter Postal code" name="postalCode">
+      <input class="form-control" type="text" id="postalCode" size="10" placeholder="Postal code" name="postalCode">
    </div>
    <br> 
    

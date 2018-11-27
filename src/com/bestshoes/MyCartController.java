@@ -1,14 +1,17 @@
 package com.bestshoes;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class cartController
+ * Servlet implementation class MyCartController
  */
 /**
  * --------------------------------------------- 
@@ -17,23 +20,26 @@ import javax.servlet.http.HttpServletResponse;
  * TASK : Assignment 3 
  * MVC Modeling - Shoe Product Ordering System
  * 
- * created Date : Nov 25, 2018 
- * modified Date : Nov 25, 2018
+ * created Date : Nov 27, 2018 
+ * modified Date : Nov 27, 2018
  * --------------------------------------------- 
  *
- * Page Task	: Add to Cart from customers
- *				   
- *
+ * Page Task	: Show cart list to place order
+ *				  select data from cart 
+ *				-> set attribute for cart Arraylist 
+ *				-> forward to MyCart.jsp
+ *   
  *
  */ 
-@WebServlet("/cartController")
-public class cartController extends HttpServlet {
+
+@WebServlet("/MyCartController")
+public class MyCartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public cartController() {
+    public MyCartController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,43 +50,32 @@ public class cartController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		 
-		// param vars 
-		String category = request.getParameter("category");
-		String customerId = request.getParameter("customerId");
-		String itemId = request.getParameter("itemId");
-	 
 		
-		// search items
-		ShoesDAO shoesDao = new ShoesDAO();
-		Shoes shoe = new Shoes();
-		try {
-			shoe = shoesDao.searchShoes(itemId);
-			 
-		} catch (Exception e) {
+		HttpSession sessionCustomer = request.getSession();
+		Customer customer = (Customer)sessionCustomer.getAttribute("customer"); 
 		
-			e.printStackTrace();
-		}
+		String customerId = customer.getCustomerId();
 		
-		// add to cart
+		// obj
 		CartDAO cartDao = new CartDAO();
+		
+		// result
+		ArrayList<Cart> cartList = new ArrayList<Cart>();
+		
+		// search Cart
 		try {
-			cartDao.addRow(shoe.getItemId(), shoe.getItemName(), customerId, 1, shoe.getPrice());
-			 
+			cartList = cartDao.listCart(customerId);
+		
+	        request.setAttribute("cartList", cartList);
+					
 		} catch (Exception e) {
-			
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		// set attribute
-		request.setAttribute("category", category);
-      
-	 
+		 
 		// Dispatcher - forward to result page
-		getServletContext().getRequestDispatcher("/ShoeListController?category="+category).forward(request, response);
-								
-				
+		getServletContext().getRequestDispatcher("/MyCart.jsp").forward(request, response);
+		 
 	}
 
 	/**
