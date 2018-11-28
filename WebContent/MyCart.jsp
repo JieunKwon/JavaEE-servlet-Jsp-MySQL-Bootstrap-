@@ -116,28 +116,22 @@ body { padding-top: 70px; }
 			<!-- /////////////   End  : forEach  /////////////// -->
 			
 	</c:when>
+		
 		<c:otherwise>
 			<h3>  No Items </h3><br>
 		</c:otherwise>
 	</c:choose>
 	
-		
  </ul> 
 
-	<div>
-	 
-	
-	</div>
    </div> 
  </div>
- 
- 
+  
          <!-- form for cart --> 
 		<form action="DelCartController" method="post" name="cartForm"> 
 		 	<input type="hidden" value="" name="itemId">
 		 </form> 
-        
-  
+         
 </div> 
 </body>
 </html>

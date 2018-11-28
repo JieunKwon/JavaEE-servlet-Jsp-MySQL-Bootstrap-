@@ -1,7 +1,6 @@
 package com.bestshoes;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MyPageController
+ * Servlet implementation class RegisterModiController
  */
-@WebServlet("/MyPageController")
-public class MyPageController extends HttpServlet {
+@WebServlet("/RegisterModiController")
+public class RegisterModiController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageController() {
+    public RegisterModiController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,59 +30,27 @@ public class MyPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
- 
+		
 		HttpSession sessionCustomer = request.getSession();
 		Customer customer = (Customer)sessionCustomer.getAttribute("customer"); 
 		
-		// OrdersDAO obj
-		OrdersDAO order= new OrdersDAO();	
-		 
 		if(customer==null ){
 			// Dispatcher - forward to result page
 			getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
 		}
 		
-		// params 
-		String mode = request.getParameter("mode");
-		 
-		// delete item or add quantity
-		if(mode != null && !mode.isEmpty()) {
-			 
-			//String orderId = request.getParameter(orderId);
-			int orderId = Integer.parseInt(request.getParameter("orderId"));
-			
-			
-			// delete ordered item
-			if(mode.equals("del")) { 
-				 
-				try {
-					order.delRow(orderId);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			// update quantity
-			}else if(mode.equals("add")) {
-			 
-				int quantity = Integer.parseInt(request.getParameter("quantity"));
-				
-				try {
-					order.addQty(orderId, quantity);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-
-		}
-		//////////////////////////
-		// make orders Arraylist information 
+		//params
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String postalCode = request.getParameter("postalCode");
 		
-		 ArrayList<Orders> ordersList = new  ArrayList<Orders>();
-		 
+		//////////////////////////
+		// update information 
+		
+		 CustomersDAO customers= new CustomersDAO();	//obj
+		  
 		try {
-			ordersList = order.listOrders(customer.getCustomerId());
+			customers.updateRow(customer.getCustomerId(), address, city, postalCode); 
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -92,13 +59,19 @@ public class MyPageController extends HttpServlet {
 		
 		
 		//////////////////////////
-		// set attribute  
-        request.setAttribute("ordersList", ordersList);
+		// update session  
+ 	   
+	    customer.setAddress(address);
+	    customer.setCity(city);
+	    customer.setPostalCode(postalCode);
+	    
+	    sessionCustomer.setAttribute("customer", customer);
+	    sessionCustomer.setMaxInactiveInterval(120*60); // for customer give 120 minutes 
 		
 		
 		//////////////////////////
 		// Dispatcher - forward to result page
-		getServletContext().getRequestDispatcher("/MyPage.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/MyPageController").forward(request, response);
 		
 	}
 

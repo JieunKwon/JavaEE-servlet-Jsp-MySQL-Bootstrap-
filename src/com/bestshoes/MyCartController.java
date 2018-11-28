@@ -74,7 +74,7 @@ public class MyCartController extends HttpServlet {
 		// result
 		ArrayList<Cart> cartList = new ArrayList<Cart>();
 		
-		System.out.println(mode + "---------");
+	/*	 
 		// delete item from cart
 		if(mode!=null && !mode.isEmpty()){
 		 
@@ -90,7 +90,7 @@ public class MyCartController extends HttpServlet {
 				}
 			}
 		}
-		
+	*/	
 		// search Cart
 		try {
 			cartList = cartDao.listCart(customer.getCustomerId());

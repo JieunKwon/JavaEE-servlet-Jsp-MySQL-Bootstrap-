@@ -50,6 +50,21 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class RegisterController
  */
+/**
+ * --------------------------------------------- 
+ * @author JIEUN KWON (991447941)
+ *	
+ * TASK : Assignment 3 
+ * MVC Modeling - Shoe Product Ordering System
+ * 
+ * created Date : Nov 20, 2018 
+ * modified Date : Nov 22, 2018
+ * --------------------------------------------- 
+ *
+ * Page Task	: Register for customer using CustomerDAO
+ * 
+ *
+ */ 
 @WebServlet("/RegisterController")
 public class RegisterController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

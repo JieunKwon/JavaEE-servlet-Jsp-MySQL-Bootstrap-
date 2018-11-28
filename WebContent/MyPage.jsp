@@ -34,21 +34,30 @@ body { padding-top: 70px; }
    
   <script>
   
-  function delCart(itemId)
+  function modifyOrder(orderId, quantity)
   {
  
-	  document.cartForm.itemId.value = itemId; 
-	  document.cartForm.submit(); 
+	  var form = document.cartForm;
+	  
+	  form.orderId.value = orderId; 
+	  form.quantity.value= quantity;
+	  form.mode.value = "add";
+	  form.submit(); 
  
 		  
   }
- 
-  function checkOut()
+
+  function delOrder(orderId)
   {
-	   
-	  document.cartForm.submit();  
-	  
+ 
+	  var form = document.cartForm;
+	  form.orderId.value = orderId;
+	  form.mode.value = "del";
+	  form.submit(); 
+ 
+		  
   }
+  
   </script>
   
 </head>
@@ -79,54 +88,57 @@ body { padding-top: 70px; }
 			<c:set var="total" value="${0}"/>
 			
 			<c:forEach var="orders" items="${requestScope.ordersList}" begin="0" step="1" varStatus="status">
+				
 				<!-- total price for all items -->
 				<c:set var="total" value="${total + orders.price}" />
 			  
-			  <li class="list-group-item">
-			  	 
-			  	<c:if test = "${status.end == 0}">
-			  	No List
-			  	</c:if>
+				  <li class="list-group-item">
+				  	 
+				  	<c:if test = "${status.end == 0}">
+				  	No List
+				  	</c:if>
+				 
+				 	<table border=0>
+				  		<tr>
+				  			<td width="100px">${status.count} &nbsp;
+				  				<img src="images/shoe${orders.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre">&nbsp;&nbsp;
+				  		 
+				  			</td> 
+				  			<td width="500px" class="itemTitle"><h3>${orders.itemName}</h3></td>
+				  			<td align="right" width="100px"> <b>$${orders.price}</b></td>
+				  			<td align="right" width="100px"> * ${orders.quantity} 
+				  				<c:if test="${orders.orderStatus=='Order Placed' }"> 
+				  				<button type="button" class="btn btn-warning" onClick="javascript:modifyOrder('${orders.orderId}',  ${orders.quantity+1});"> +1 </button>
+				  				</c:if>
+				  			</td>
+				  			
+				  			<td align="right" width="200px"> <font color="red"> ${orders.orderStatus}</font> 
+				  				<c:if test="${orders.orderStatus=='Order Placed' }"> 
+				  				<button type="button" class="btn btn-danger" onClick="javascript:delOrder('${orders.orderId}');">cancel</button>
+				  				</c:if>
+				  			</td>
+				  		</tr>
+				  	</table>
 			 
-			 	<table border=0>
-			  		<tr>
-			  			<td width="100px">${status.count} &nbsp;
-			  				<img src="images/shoe${orders.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre">&nbsp;&nbsp;
-			  		 
-			  			</td> 
-			  			<td width="500px" class="itemTitle"><h3>${orders.itemName}</h3></td>
-			  			<td align="right" width="150px"> <b>$${orders.price}</b></td>
-			  			<td align="right" width="100px"> * ${orders.quantity} 
-			  				<button type="button" class="btn btn-warning" onClick="javascript:modifyOrder('${orders.itemId}');">update</button>
-			  			</td>
-			  			
-			  			<td align="right" width="200px"> <font color="red"> ${orders.orderStatus}</font> 
-			  				<button type="button" class="btn btn-danger" onClick="javascript:delOrder('${orders.itemId}');">cancel</button>
-			  			</td>
-			  		</tr>
-			  	</table>
-		 
-			  </li> 
+				  </li> 
 				 
 			</c:forEach>
+			<!-- /////////////   End  : forEach  /////////////// -->	
 			
+			<!--  total amount -->
 			<li class="list-group-item">
 				<table border=0>
-			  		<tr>
-			  			 
+			  		<tr> 
 			  			<td align="right" width="800px" align="right">  <h3> Total Items : $${total}</h3> </td> 
 			  			<td align="right" width="200px">
-			  			
-			  			
-			  			
+			  			 
 			  			</td>
 			  		</tr>
-			  	</table>
-			    
-			</li>
-		<!-- /////////////   End  : forEach  /////////////// -->	 
+			  	</table> 
+			</li> 
 			
 	</c:when>
+		 
 		<c:otherwise>
 			<h3>  No Items </h3><br>
 		</c:otherwise>
@@ -160,21 +172,17 @@ body { padding-top: 70px; }
 	  		 
 	</li>
 </ul> 
-	
-	<div>
-	 
-	
-	</div>
+
    </div> 
  </div>
  
  
          <!-- form for cart --> 
-		<form action="DelCartController" method="post" name="cartForm"> 
-		 	<input type="hidden" value="" name="itemId">
-		 	<input type="hidden" value="delete" name="mode">
-		 	<input type="hidden" value="${sessionScope.customer.customerId}" name="customerId">
-		 </form> 
+		<form action="MyPageController" method="post" name="cartForm"> 
+		 	<input type="hidden" value="" name="orderId">
+		 	<input type="hidden" value="" name="mode">
+		 	<input type="hidden" value="" name="quantity"> 
+		</form> 
         
   
 </div> 

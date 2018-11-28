@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+ 
 
 /**
  * --------------------------------------------- 
@@ -86,4 +87,37 @@ public class CustomersDAO {
 		// return 
 		return customer;
 	}
+
+	////////////////////////////////////////////////////////////////////////////
+	// updateRow
+	//	
+	// UPDATE : update address, city, postalcode info
+	public void updateRow(String customerId, String address, String city, String postalCode) throws Exception{
+		
+		// make a query
+		String updateQuery = "Update customers "
+							+ "set address =?, city =?, postalCode =? "
+							+ "where customerId = ?";
+        
+		// db connection
+		try{
+           
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(updateQuery);
+		       
+		    // set
+		    pst.setString(1,customerId); 
+			pst.setString(2,address);  
+			pst.setString(3,city);
+			pst.setString(4,postalCode);
+			
+			// execute
+            pst.executeUpdate();
+            
+        }catch(Exception e){
+                e.printStackTrace();
+        }finally{
+                DBConnector.closeConnectionAll(con,pst,null);
+        }
+    }
 }

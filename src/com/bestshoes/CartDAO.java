@@ -174,31 +174,31 @@ public class CartDAO {
         }
     }
 	
-		// ---------------------------------------------------------
-		// 		METHOD delAllRows()
-		// ---------------------------------------------------------
+	// ---------------------------------------------------------
+	// 		METHOD delAllRows()
+	// ---------------------------------------------------------
+	
+	public void delAllRows(String customerId)throws Exception {
+ 
 		
-		public void delAllRows(String customerId)throws Exception {
-	 
-			
-			// make a query
-	        String sQuery = "delete from cart where customerId='"+ customerId +"'";
-	         
-	        // db connect
-	        try{
-	        	
-	        	// get connection
-			    con = DBConnector.getConnection();
-			    pst = con.prepareStatement(sQuery);
-			  
-				// execute
-	            pst.executeUpdate();
+		// make a query
+        String sQuery = "delete from cart where customerId='"+ customerId +"'";
+         
+        // db connect
+        try{
+        	
+        	// get connection
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(sQuery);
+		  
+			// execute
+            pst.executeUpdate();
 
-	            
-	        }catch(Exception e){
-	            e.printStackTrace();
-	        }finally{
-	        	DBConnector.closeConnectionAll(con,pst,null);
-	        }
-	    }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+        	DBConnector.closeConnectionAll(con,pst,null);
+        }
+    }
 }

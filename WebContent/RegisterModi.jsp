@@ -31,30 +31,7 @@
 body { padding-top: 70px; }
 .itemTitle{ color:#4C4C4C; size:14px }
 </style>  
-  <script>
-  
-	  function MsgLoginValid()
-	  {
-			var form = document.RegistForm;
-			
-		  	// validate null value 
-			if(document.getElementById("email").value == "" || document.getElementById("pwd").value == "" || document.getElementById("firstName").value == "" || document.getElementById("lastName").value == "")
-			{
-				$('#myModal').modal('show'); 
-				return;
-			}
-			else
-			{
-				 
-				form.action = "RegisterController";
-				 
-				form.submit();
-			}
-			  
-	  }
-
-	
-  </script>
+ 
 </head>
 <body>
 
@@ -79,7 +56,7 @@ body { padding-top: 70px; }
  
 		<br> 
     
-	  <form class="form-inline"  method="post" name="RegistForm" action="" onSubmit="return false;">
+	  <form class="form-inline"  method="post" name="RegistForm" action="RegisterModiController" >
 	    <div class="form-group">
 	      <label for="focusedInput">Your Email Account : ${sessionScope.customer.customerId} </label><br><br>
  
@@ -102,7 +79,7 @@ body { padding-top: 70px; }
 	   <br> 
 	   
 	   <br><br>
-	    <button type="submit" class="btn btn-primary active" onclick="javascript:MsgLoginValid();">Submit</button>
+	    <button type="submit" class="btn btn-primary active" >Submit</button>
 	  </form>
 	 </div> 
  
