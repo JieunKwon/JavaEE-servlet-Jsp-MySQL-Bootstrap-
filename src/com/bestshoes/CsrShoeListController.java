@@ -70,19 +70,20 @@ public class CsrShoeListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		System.out.print("shoe list page");
-		
+	
 		// variables 
 		 String connectionUrl = "jdbc:mysql://localhost:3306/MVCDB";
 		 String connectionUser = "root";
 		 String connectionPassword = "mydb1234";
 		
+		 String category = request.getParameter("category");
+		 
 		 // select shoe list	
 		 try {
 				
 				// create sql  
-				String sql = "select itemId, itemName, category, shoesize, quantity, price  from Shoes order by itemId desc ";
+				String sql = "select itemId, itemName, category, shoesize, quantity, price,content  from Shoes "
+						+ " where category = '" + category + "' order by itemId desc ";
 		     
 		        // DB connection
 		        Class.forName("com.mysql.jdbc.Driver").newInstance();     
@@ -98,15 +99,7 @@ public class CsrShoeListController extends HttpServlet {
         		
 		         while(rs.next())
 		  		 {
-		        	 
-		        	 /*
-		        	    private int itemId;
-		        		private String itemName;
-		        		private String category;
-		        		private String shoesize; 
-		        		private int quantity;
-		        		private double price;
-		        	*/	
+		        
 		        		
 		        	 	Shoes shoe = new Shoes();
 			 	        
@@ -117,13 +110,15 @@ public class CsrShoeListController extends HttpServlet {
 		        		shoe.setShoesize(rs.getString(4));
 		        		shoe.setQuantity(rs.getInt(5));
 		        		shoe.setPrice(rs.getDouble(6));
+		        		shoe.setContent(rs.getString(7));
 		        		 
-		        		System.out.println(shoe.getItemName());
+		        		
 		        		shoesList.add(shoe); 
 		 	   		 
 		  		 }
 		  		 
 		         // set attribute
+		         request.setAttribute("category", category);
 		         request.setAttribute("shoesList", shoesList);
 		         
 				

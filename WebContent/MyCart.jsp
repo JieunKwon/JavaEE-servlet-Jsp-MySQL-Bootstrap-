@@ -63,7 +63,7 @@ body { padding-top: 70px; }
  
 <!--  Menu title  -->
  	 
-<h1> <span class="label label-default">My Cart</span></h1><br>
+<h1> <span class="label label-default">My Bag</span></h1><br>
  
  <ul class="list-group">
 

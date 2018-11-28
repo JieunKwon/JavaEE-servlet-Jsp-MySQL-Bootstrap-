@@ -22,6 +22,7 @@ body { padding-top: 70px; }
  
  <div class="container">
  <div class="jumbotron">
+ 
 	 <%
 	 //Session  
 	 HttpSession sessionCsr = request.getSession();
@@ -31,12 +32,12 @@ body { padding-top: 70px; }
 	 	CSR csr = (CSR)sessionCsr.getAttribute("csr"); 
 	 %>
 	   	
-	  		  
-    		<h2>Welcome,  <%=csr.getFirstName() %>!</h2>
-    		  <button type="button" class="btn btn-default" onClick="location.href='CsrShoeList.jsp';">Go to Product Management</button>
-    		  <button type="button" class="btn btn-default" onClick="location.href='CsrOrderList.jsp';">Go to Order Management</button>
-		      <button type="button" class="btn btn-default" onClick="location.href='CsrCustList.jsp';">Go to Customer Management</button> 
-		    
+	  		 
+    		<h2>Welcome,  <%=csr.getFirstName()%>!</h2>
+    		 
+			<br>
+			This page is for Customer Service Representatives to manage product, customer, and orders.
+
 	 <%
 	 	
 	 }

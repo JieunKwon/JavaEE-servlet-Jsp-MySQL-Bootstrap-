@@ -119,6 +119,7 @@ public class LoginCSRController extends HttpServlet {
 		 	        	csr.setEmployeeId(rs.getString("employeeId"));
 		 	        	csr.setFirstName(rs.getString("firstName"));
 		 	        	csr.setLastName(rs.getString("lastName")); 
+		 	        	csr.setUserName(rs.getString("userName"));
 			  		    
 			  		    // set session 
 						HttpSession session = request.getSession();	

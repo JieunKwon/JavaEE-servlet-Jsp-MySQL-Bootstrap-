@@ -18,12 +18,12 @@
 	 <nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      <a class="navbar-brand" href="Login.jsp">BEST SHOES</a>
+	      <a class="navbar-brand" href="index.jsp">BEST SHOES</a>
 	    </div>
  		<ul class="nav navbar-nav">
 	       
 	      <li><a href="CsrNewShoe.jsp">New Product</a></li>
-	      <li><a href="CsrShoeListController">Product List</a></li>
+	      <li><a href="CsrShoeListController?category=Women">Product List</a></li>
 	      <li><a href="CsrOrderList.jsp">Order List</a></li>
 	      <li><a href="CsrCustList.jsp">Customers</a></li>
 	    </ul>

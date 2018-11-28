@@ -47,7 +47,15 @@ function moveEditPage(itemId){
  <jsp:include page="/TopNavCSR.jsp" />
  
  <div class="container">
+ 
+   <ul class="pagination">
+    <li><a href="CsrShoeListController?category=Women">Women</a></li>
+    <li><a href="CsrShoeListController?category=Men">Men</a></li>
+    <li><a href="CsrShoeListController?category=Kids">Kids</a></li>
+  </ul>
+  
  <div class="jumbotron">
+<h3>${requestScope.category}</h3>
 
  <ul class="list-group">
 
@@ -75,14 +83,12 @@ function moveEditPage(itemId){
 	  		</tr>
 	  		<tr>
 	  			<td> </td><td width="120px"><img src="images/shoe${shoes.itemId}.jpg" width="100px" class="img-thumbnail" alt="Cinque Terre"></td>
-	  			<td> 
+	  			<td colspan="2"> 
 	  			    - <b>$${shoes.price}</b><br>
 	  			    - category: ${shoes.category} <br>
 	  				- size: ${shoes.shoesize} <br>
 	  				- qty: ${shoes.quantity} <br>
-	  			</td>
-	  			<td align="right"> 
-	  				
+	  				- ${shoes.content}
 	  			</td>
 	  		</tr>
 	  	</table>
