@@ -154,6 +154,9 @@ public class RegisterController extends HttpServlet {
 		         	customer.setCustomerId(email);
 		  		    customer.setFirstName(firstName);
 		  		    customer.setLastName(lastName); 
+		  		    customer.setAddress(rs.getString("address"));
+		  		    customer.setCity(rs.getString("city"));
+		  		    customer.setPostalCode(rs.getString("postalCode"));
 		  		    
 		  		    // session 
 	        	 	HttpSession session = request.getSession();	

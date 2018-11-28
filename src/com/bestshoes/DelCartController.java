@@ -1,7 +1,6 @@
 package com.bestshoes;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,10 +23,9 @@ import javax.servlet.http.HttpSession;
  * modified Date : Nov 27, 2018
  * --------------------------------------------- 
  *
- * Page Task	: Show cart list to place order
- *				  select data from cart 
- *				-> set attribute for cart Arraylist 
- *				-> forward to MyCart.jsp
+ * Page Task	: Show cart list to place order ->
+ *				  delete one item data from cart 
+ *				 
  *   
  *
  */ 
@@ -63,9 +61,10 @@ public class DelCartController extends HttpServlet {
 		// objcustomerId
 		CartDAO cartDao = new CartDAO();
 		
+		// itemId 
 		int itemId = Integer.parseInt(request.getParameter("itemId"));
-		System.out.println(itemId + "-----------");
 		
+		// call method to delete item from cart
 		try {
 			cartDao.delRow(itemId, customer.getCustomerId());
 		} catch (Exception e) {

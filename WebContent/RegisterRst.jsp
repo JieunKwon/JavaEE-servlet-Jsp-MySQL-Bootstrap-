@@ -35,10 +35,9 @@ body { padding-top: 70px; }
     		 
     		<h2>Welcome,  <%=customer.getFirstName() %>!</h2>
     		
-    		Thanks for signing up to BEST SHOES. 
+    		<br>
+    		<h4>Thanks for signing up to BEST SHOES. </h4>
 		      
-		      <button type="button" class="btn btn-default" onClick="location.href='ShoeList.jsp';">Go shopping</button>
-		      <button type="button" class="btn btn-default" onClick="location.href='MyPage.jsp';">Go to My Page</button> 
 		   
 	   
 	  

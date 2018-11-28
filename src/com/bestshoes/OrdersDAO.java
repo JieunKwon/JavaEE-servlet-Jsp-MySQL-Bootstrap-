@@ -47,7 +47,7 @@ public class OrdersDAO {
 		// 		METHOD oderAllItems()
 		// ---------------------------------------------------------
 		
-		public void oderAllItems(String customerId)throws Exception {
+		public void orderAllItems(String customerId)throws Exception {
 	 
 			
 			// make a query

@@ -67,6 +67,10 @@ body { padding-top: 70px; }
  <jsp:include page="/TopNavLogin.jsp" />
  
  <div class="container"> 
+
+<c:if test="${!empty sessionScope.customer.customerId}">
+	<h1>${sessionScope.customer.userName}</h1> <br>
+</c:if> 
  
 <!--  Login Form  --> 
   <h2>Sign up </h2>

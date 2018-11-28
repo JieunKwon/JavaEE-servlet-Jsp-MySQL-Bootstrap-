@@ -122,7 +122,7 @@ body { padding-top: 70px; }
 	  		<tr>
 	  			<td> </td><td width="180px"><img src="images/shoe${shoes.itemId}.jpg" width="150px" class="img-thumbnail" alt="Cinque Terre"></td>
 	  			<td width="">  
-	  				  <h4>size: <b> ${shoes.shoesize}</b></h4> <br><br>
+	  				  <h4>size: <b> ${shoes.shoesize}</b></h4> <br>
 	  				  
 	  				  <i>${shoes.content} </i>  
 	  			</td>

@@ -149,7 +149,7 @@ public class CartDAO {
  
 		
 		// make a query
-        String insertQuery = "delete cart where itemId=? and customerId=?";
+        String insertQuery = "delete from cart where itemId=? and customerId=?";
         
         
         // db connect
@@ -182,14 +182,14 @@ public class CartDAO {
 	 
 			
 			// make a query
-	        String insertQuery = "delete cart where customerId='"+ customerId +"'";
+	        String sQuery = "delete from cart where customerId='"+ customerId +"'";
 	         
 	        // db connect
 	        try{
 	        	
 	        	// get connection
 			    con = DBConnector.getConnection();
-			    pst = con.prepareStatement(insertQuery);
+			    pst = con.prepareStatement(sQuery);
 			  
 				// execute
 	            pst.executeUpdate();
