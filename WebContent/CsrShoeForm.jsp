@@ -8,13 +8,13 @@
  * TASK : Assignment 3 
  * MVC Modeling - Shoe Product Ordering System
  * 
- * created Date : Nov 25, 2018 
- * modified Date : Nov 25, 2018
+ * created Date : Nov 27, 2018 
+ * modified Date : Nov 28, 2018
  * --------------------------------------------- 
  *
- * Page Task :  Customer Register Form  
+ * Page Task :  CSR - Shoe information Form  
  * 
- * Reference :  TABLE Customers  
+ * Reference :  TABLE Shoes  
  * 
  *
  --%>
@@ -64,80 +64,50 @@ body { padding-top: 70px; }
 <div class="container-fluid">
  
  <!--  INCLUDE : TOP MENU NAVIGATION  -->
- <jsp:include page="/TopNavLogin.jsp" />
+ <jsp:include page="/TopNavCSR.jsp" />
  
  <div class="container"> 
  
 <!--  Login Form  --> 
-  <h2>Sign up </h2>
- 
-<%
-// Msg from Controller : Fail to Register
- try{
-	 String getMsg = (String)request.getAttribute("Msg");
-	 
-	 if(getMsg.equals("email"))
-	 {
-%>
-		<div class='col-sm-3 col-md-6 col-lg-4' style='color:red;'>
-		  The email address you entered is already exist.<br>
-          Please enter a different email.<br>
-		</div>
- 
-<%
-	 }else if(getMsg.equals("fail"))
-	 {
-%>		 
-		<div class='col-sm-3 col-md-6 col-lg-4' style='color:red;'>
-		  Sorry, your registration was failed.<br>
-          Please try again.<br>
-		</div>
-<%	 
-	 }
- }
- catch(Exception e){
-	  
- }
- %>   
-<br> 
+  <h2>Shoes </h2>
     
   <form class="form-inline"  method="post" name="RegistForm" action="" onSubmit="return false;">
-    <div class="form-group">
-      <label for="focusedInput">Email : </label><br>
-      <input class="form-control" type="email" id="email" size="50" placeholder="Enter email" name="email" maxlength="50">
-      <i><font color="red">* it is your account</font></i>
-   </div>
-   <br>
+ 
+
+    <div class="checkbox">
+      <label><input type="radio" name="category" id="category" value="Women" checked> Women </label>
+      <label><input type="radio" name="category" id="category" value="Men"> Men </label>
+      <label><input type="radio" name="category" id="category" value="Kids"> Kids </label>
+    </div>
+     <br><br>
    <div class="form-group">
-      <label for="pwd">Password:</label><br>
-      <input type="password" class="form-control" id="pwd" size="50" placeholder="Enter password" name="pwd" maxlength="30">
-       <i><font color="red">* at least 8 characters</font></i>
-   </div>  
-   <br>
-   <div class="form-group">
-      <label for="focusedInput">First Name : </label><br>
-      <input class="form-control" type="text" id="firstName" size="50" placeholder="Enter your first name" name="firstName" maxlength="30">
+      <label for="focusedInput">Shoe Name : </label><br>
+      <input class="form-control" type="text" id="itemName" size="50" placeholder="Enter shoe name (50 characters)" name="itemName" maxlength="50"> 
+       <i><font color="red">V</font></i>
    </div>
    <br>
  	<div class="form-group">
-      <label for="focusedInput">Last Name : </label><br>
-      <input class="form-control" type="text" id="lastName" size="50" placeholder="Enter your last name" name="lastName" maxlength="30">
+      <label for="focusedInput">Size : </label><br>
+      <input class="form-control" type="text" id="Size" size="10" value="10" name="Size">
+      <i><font color="red">V</font></i>
    </div>
    <br>  
     
  	<div class="form-group">
-      <label for="focusedInput">Address : </label><br>
-      <input class="form-control" type="text" id="address" size="100" placeholder="Enter your address" name="address" maxlength="90">
+      <label for="focusedInput">Quantity : </label><br>
+      <input class="form-control" type="text" id="Quantity" size="10" placeholder="100" name="Quantity">
+      <i><font color="red">V</font></i>
    </div>
    <br> 
    <div class="form-group">
-      <label for="focusedInput">City : </label><br>
-      <input class="form-control" type="text" id="city" size="50" placeholder="City" name="city">
+      <label for="focusedInput">Price : </label><br>
+      <input class="form-control" type="text" id="Price" size="10" placeholder="000.00" name="Price">
+      <i><font color="red">V</font></i>
    </div>
    <br> 
    <div class="form-group">
-      <label for="focusedInput">Postal Code : </label><br>
-      <input class="form-control" type="text" id="postalCode" size="10" placeholder="Postal code" name="postalCode" maxlength="6">
+      <label for="focusedInput">Description : </label><br>
+      <textarea class="form-control" id="content" size="100"  name="content" rows="5" cols="100"></textarea>
    </div>
    <br> 
    

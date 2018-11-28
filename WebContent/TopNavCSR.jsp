@@ -22,7 +22,7 @@
 	    </div>
  		<ul class="nav navbar-nav">
 	       
-	      <li><a href="CsrNewShoe.jsp">New Product</a></li>
+	      <li><a href="CsrShoeForm.jsp">New Product</a></li>
 	      <li><a href="CsrShoeListController?category=Women">Product List</a></li>
 	      <li><a href="CsrOrderList.jsp">Order List</a></li>
 	      <li><a href="CsrCustList.jsp">Customers</a></li>
