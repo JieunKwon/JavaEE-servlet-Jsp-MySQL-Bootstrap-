@@ -338,4 +338,37 @@ public class OrdersDAO {
 	        	DBConnector.closeConnectionAll(con,pst,null);
 	        }
 	    }
+
+		// ---------------------------------------------------------
+		// 		METHOD updateStatus()
+		// ---------------------------------------------------------
+		
+		public void updateStatus (int orderId, String orderStatus)throws Exception {
+	 
+			
+			// make a query
+	        String insertQuery = "update Orders set orderStatus = ?  where orderId=?";
+	        
+	        
+	        // db connect
+	        try{
+	        	
+	        	// get connection
+			    con = DBConnector.getConnection();
+			    pst = con.prepareStatement(insertQuery);
+			      
+				// set
+			    pst.setString(1,orderStatus);
+				pst.setInt(2,orderId);  
+			 
+				// execute
+	            pst.executeUpdate();
+
+	            
+	        }catch(Exception e){
+	            e.printStackTrace();
+	        }finally{
+	        	DBConnector.closeConnectionAll(con,pst,null);
+	        }
+	    }
 }

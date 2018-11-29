@@ -29,6 +29,36 @@
 body { padding-top: 70px; }
 .itemTitle{ color:#4C4C4C; size:14px }
 </style>  
+  <script>
+  
+  // move form to add quantity
+  function modifyOrder(orderId, orderStatus)
+  {
+ 
+	  var form = document.cartForm;
+	  
+	  form.orderId.value = orderId; 
+	  form.orderStatus.value= orderStatus;
+	  form.mode.value = "status";
+	  form.submit(); 
+ 
+		  
+  }
+
+  // move form to delete order
+  function delOrder(orderId)
+  {
+ 
+	  var form = document.cartForm;
+	  form.orderId.value = orderId;
+	  form.mode.value = "del";
+	  form.submit(); 
+ 
+		  
+  }
+  
+  </script>
+  
 </head>
 <body>
  <div class="container-fluid">
@@ -39,30 +69,7 @@ body { padding-top: 70px; }
  <div class="container">
  
   <h1>Orders</h1> <br>
-  
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Default</td>
-        <td>Defaultson</td>
-        <td>def@somemail.com</td>
-      </tr>    
-      <tr class="active">
-        <td>Active</td>
-        <td>Activeson</td>
-        <td>act@example.com</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
+ 
   <!--  Order List Check-->
 
 	<c:choose>
@@ -71,56 +78,50 @@ body { padding-top: 70px; }
 		<!-- /////////////    Order List Start  : forEach  /////////////// -->
 		 
 			<c:set var="total" value="${0}"/>
-			
+		
+			<table class="table">
+			    <thead>
+			      <tr class="active">
+			        <th>No</th>
+			        <th>Item Name</th>
+			        <th>Customer</th>
+			        <th>Qty</th>
+			        <th>Price</th>
+			        <th>Status</th>
+			        <th>Management</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+
+  	
 			<c:forEach var="orders" items="${requestScope.ordersList}" begin="0" step="1" varStatus="status">
 				
 				<!-- total price for all items -->
 				<c:set var="total" value="${total + orders.price}" />
-			  
-				  <li class="list-group-item">
-				  	 
+			   
 				  	<c:if test = "${status.end == 0}">
 				  	No List
 				  	</c:if>
 				 
-				 	<table border=0>
-				  		<tr>
-				  			<td width="100px">${status.count} &nbsp;
-				  				<img src="images/shoe${orders.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre">&nbsp;&nbsp;
-				  		 
-				  			</td> 
-				  			<td width="500px" class="itemTitle"><h3>${orders.itemName}</h3></td>
-				  			<td align="right" width="100px"> <b>$${orders.price}</b></td>
-				  			<td align="right" width="100px"> * ${orders.quantity} 
-				  				<c:if test="${orders.orderStatus=='Order Placed' }"> 
-				  				<button type="button" class="btn btn-warning" onClick="javascript:modifyOrder('${orders.orderId}',  ${orders.quantity+1});"> +1 </button>
-				  				</c:if>
-				  			</td>
-				  			
-				  			<td align="right" width="200px"> <font color="red"> ${orders.orderStatus}</font> 
-				  				<c:if test="${orders.orderStatus=='Order Placed' }"> 
-				  				<button type="button" class="btn btn-danger" onClick="javascript:delOrder('${orders.orderId}');">cancel</button>
-				  				</c:if>
-				  			</td>
-				  		</tr>
-				  	</table>
-			 
-				  </li> 
+				 	  <tr>
+				        <td>${status.count} &nbsp;</td>
+				        <td>${orders.itemName}</td>
+				        <td>${orders.customerId}</td>
+				        <td>${orders.quantity}</td>
+				        <td>$${orders.price}</td>
+				        <td>${orders.orderStatus}</td>
+				        <td class="active"> 
+					        <button type="button" class="btn btn-info btn-sm" onClick="javascript:modifyOrder('${orders.orderId}', 'In-Process');">In-Process</button>
+					  		<button type="button" class="btn btn-warning btn-sm" onClick="javascript:modifyOrder('${orders.orderId}', 'Delivered');">Delivered</button>
+					  		<button type="button" class="btn btn-danger btn-sm" onClick="javascript:delOrder('${orders.orderId}');">delete</button>
+					    </td>
+				      </tr>    
+				       
 				 
 			</c:forEach>
 			<!-- /////////////   End  : forEach  /////////////// -->	
-			
-			<!--  total amount -->
-			<li class="list-group-item">
-				<table border=0>
-			  		<tr> 
-			  			<td align="right" width="800px" align="right">  <h3> Total Items : $${total}</h3> </td> 
-			  			<td align="right" width="200px">
-			  			 
-			  			</td>
-			  		</tr>
-			  	</table> 
-			</li> 
+			 </tbody>
+		</table>
 			
 	</c:when>
 		 
@@ -132,6 +133,16 @@ body { padding-top: 70px; }
  </ul> 
   
   </div>
+  
+           <!-- form to edit and delete --> 
+		<form action="CsrOrderListController" method="post" name="cartForm"> 
+		 	<input type="hidden" value="" name="orderId">
+		 	<input type="hidden" value="" name="mode">
+		 	<input type="hidden" value="" name="quantity"> 
+		 	<input type="hidden" value="" name="orderStatus"> 
+		</form> 
+		
+		
 </div>
 </body>
 </html>

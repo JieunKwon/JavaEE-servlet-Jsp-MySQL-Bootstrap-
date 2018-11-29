@@ -83,6 +83,17 @@ public class CsrOrderListController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}else if(mode.equals("status")) {
+				
+				String orderStatus = request.getParameter("orderStatus");
+				
+				try {
+					order.updateStatus(orderId, orderStatus);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 
 
