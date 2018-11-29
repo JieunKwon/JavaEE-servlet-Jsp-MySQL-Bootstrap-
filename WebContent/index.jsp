@@ -3,7 +3,6 @@
     pageEncoding="ISO-8859-1"%>
 
 <%--
-
 /**
  * --------------------------------------------- 
  * @author JIEUN KWON (991447941)
@@ -19,10 +18,8 @@
  *
  *
  */ 
-
  --%>
-  
-  
+
 	 <%
 	 //Session check
 	 HttpSession session2 = request.getSession();
@@ -31,8 +28,9 @@
    	  
          String userType = (String)session2.getAttribute("userType");
          
-         if (userType == null) {
-        	// System.out.print("null");
+         
+         if (session.getAttribute("customer") == null && session.getAttribute("csr") == null) {
+        
      %>
 
      		<jsp:forward page="Login.jsp" />
@@ -50,7 +48,7 @@
         	 }else if(userType.equals("customer")){
        		  
        		 %>
-       		 		 <jsp:forward page="LoginRst.jsp" />
+       		 		 	<jsp:forward page="LoginRst.jsp" />
        		 <%		 
        	 	} 	 
             

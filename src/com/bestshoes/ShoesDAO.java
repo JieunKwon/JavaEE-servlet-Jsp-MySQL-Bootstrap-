@@ -190,6 +190,68 @@ public class ShoesDAO {
 		// return 
 		return shoesList;
 	}
+
+	// ---------------------------------------------------------
+	// 		METHOD searchShoes()
+	// ---------------------------------------------------------
+	
+	public Shoes searchShoes(int itemId) throws Exception{
+		
+		// make a query
+		String selectQuery = "select itemId, itemName, category, shoesize, quantity, price, content from Shoes where itemId=" + itemId;
+	
+		// shoe for return value
+		Shoes shoe = new Shoes();
+		
+		// db connection
+		try{
+           
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(selectQuery);
+		    
+			try {
+				rs = pst.executeQuery();
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+				System.out.println(pst.toString());
+				e.printStackTrace();
+			}
+		
+			try {
+				  
+		         while(rs.next())
+		  		 {
+		        	   
+		        	 	// store information	
+		        		shoe.setItemId(rs.getInt(1));
+		        		shoe.setItemName(rs.getString(2));
+		        		shoe.setCategory(rs.getString(3));
+		        		shoe.setShoesize(rs.getString(4));
+		        		shoe.setQuantity(rs.getInt(5));
+		        		shoe.setPrice(rs.getDouble(6));
+		        		shoe.setContent(rs.getString(7));
+		        		  	   		 
+		  		 }
+		         
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+			}
+			
+			  
+        }catch(Exception e){
+                e.printStackTrace();
+        }finally{
+              
+        	DBConnector.closeConnectionAll(con,pst,rs);
+        }
+		
+		// return 
+		return shoe;
+	}
+	
 	
 	// ---------------------------------------------------------
 	// 		METHOD searchShoes()
@@ -249,4 +311,110 @@ public class ShoesDAO {
 		return shoe;
 	}
 	
+	 
+	// ---------------------------------------------------------
+	// 		METHOD addRow()
+	// ---------------------------------------------------------
+	
+	public void addRow( String itemName, String category, String shoesize, int quantity, double price, String content) throws Exception {
+ 
+		
+		// make a query
+        String insertQuery = "insert into Shoes (itemName, category, shoesize, quantity, price, content ) "
+        		+ "values (?,?,?,?,?,?)";
+        
+        // db connect
+        try{
+        	
+        	// get connection
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(insertQuery);
+		      
+			// set
+			pst.setString(1,itemName);
+			pst.setString(2,category);
+			pst.setString(3,shoesize);
+			pst.setInt(4,quantity);
+			pst.setDouble(5,price);
+			pst.setString(6,content);
+			
+			// execute
+            pst.executeUpdate();
+ 
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+        	DBConnector.closeConnectionAll(con,pst,null);
+        }
+    }
+
+	// ---------------------------------------------------------
+	// 		METHOD updateRow()
+	// ---------------------------------------------------------
+	
+	public void updateRow( int itemId, String itemName, String category, String shoesize, int quantity, double price, String content) throws Exception {
+ 
+		
+		// make a query
+        String insertQuery = "update Shoes set itemName=?, category=?, shoesize=?, quantity=?, price=?, content=? "
+        		+ " where itemId=?";
+        
+        // db connect
+        try{
+        	
+        	// get connection
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(insertQuery);
+		      
+			// set
+			pst.setString(1,itemName);
+			pst.setString(2,category);
+			pst.setString(3,shoesize);
+			pst.setInt(4,quantity);
+			pst.setDouble(5,price);
+			pst.setString(6,content);
+			pst.setInt(7,itemId);
+			
+			// execute
+            pst.executeUpdate();
+ 
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+        	DBConnector.closeConnectionAll(con,pst,null);
+        }
+    }
+
+	// ---------------------------------------------------------
+	// 		METHOD delRow()
+	// ---------------------------------------------------------
+	
+	public void delRow( int itemId) throws Exception {
+ 
+		
+		// make a query
+        String insertQuery = "delete from Shoes whre itemId=?";
+        
+        // db connect
+        try{
+        	
+        	// get connection
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(insertQuery);
+		      
+			// set 
+			pst.setInt(1,itemId);
+			
+			// execute
+            pst.executeUpdate();
+ 
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+        	DBConnector.closeConnectionAll(con,pst,null);
+        }
+    }
 }

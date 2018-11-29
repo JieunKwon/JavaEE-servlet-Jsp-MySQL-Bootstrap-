@@ -33,20 +33,24 @@ body { padding-top: 70px; }
 </style>  
   <script>
   
-	  function MsgLoginValid()
+	  function FormValid()
 	  {
 			var form = document.RegistForm;
 			
 		  	// validate null value 
-			if(document.getElementById("email").value == "" || document.getElementById("pwd").value == "" || document.getElementById("firstName").value == "" || document.getElementById("lastName").value == "")
+			if(document.getElementById("itemName").value == "" || document.getElementById("price").value == "" || document.getElementById("shoesize").value == "" || document.getElementById("quantity").value == "")
+			{
+				$('#myModal').modal('show'); 
+				return;
+			}
+			else if(form.category[0].checked == false && form.category[1].checked == false && form.category[2].checked == false )
 			{
 				$('#myModal').modal('show'); 
 				return;
 			}
 			else
-			{
-				 
-				form.action = "RegisterController";
+			{ 
+				form.action = "CsrShoeController";
 				 
 				form.submit();
 			}
@@ -69,50 +73,59 @@ body { padding-top: 70px; }
  <div class="container"> 
  
 <!--  Login Form  --> 
-  <h2>Shoes </h2>
-    
+  <h2>Shoes Information</h2>
+  <br>  
   <form class="form-inline"  method="post" name="RegistForm" action="" onSubmit="return false;">
- 
-
+  <!-- new data or existed data to edit -->
+  <c:choose>
+		<c:when test="${mode == 'edit'}">
+  			<input type="hidden" name="mode" value="edit">
+  			<input type="hidden" name="itemId" value="${requestScope.shoes.itemId }">
+  		</c:when>
+  		<c:otherwise >
+  			<input type="hidden" name="mode" value="new">
+  		</c:otherwise>
+  </c:choose>
+   
     <div class="checkbox">
-      <label><input type="radio" name="category" id="category" value="Women" checked> Women </label>
-      <label><input type="radio" name="category" id="category" value="Men"> Men </label>
-      <label><input type="radio" name="category" id="category" value="Kids"> Kids </label>
+      <label><input type="radio" name="category" id="category" value="Women" <c:if test="${requestScope.shoes.category=='Women'}"> checked </c:if> > Women </label>
+      <label><input type="radio" name="category" id="category" value="Men" <c:if test="${requestScope.shoes.category=='Men'}"> checked </c:if> > Men </label>
+      <label><input type="radio" name="category" id="category" value="Kids" <c:if test="${requestScope.shoes.category=='Kids'}"> checked </c:if> > Kids </label>
+    	<i><font color="red">V</font></i>
     </div>
      <br><br>
    <div class="form-group">
       <label for="focusedInput">Shoe Name : </label><br>
-      <input class="form-control" type="text" id="itemName" size="50" placeholder="Enter shoe name (50 characters)" name="itemName" maxlength="50"> 
+      <input class="form-control" type="text" id="itemName" size="50" placeholder="Enter shoe name (50 characters)" name="itemName" value="${requestScope.shoes.itemName}" maxlength="50"> 
        <i><font color="red">V</font></i>
    </div>
    <br>
  	<div class="form-group">
       <label for="focusedInput">Size : </label><br>
-      <input class="form-control" type="text" id="Size" size="10" value="10" name="Size">
+      <input class="form-control" type="text" id="shoesize" size="10" placeholder="10" name="shoesize" value="${requestScope.shoes.shoesize}">
       <i><font color="red">V</font></i>
    </div>
    <br>  
-    
  	<div class="form-group">
       <label for="focusedInput">Quantity : </label><br>
-      <input class="form-control" type="text" id="Quantity" size="10" placeholder="100" name="Quantity">
+      <input class="form-control" type="text" id="quantity" size="10" placeholder="100" name="quantity" value="${requestScope.shoes.quantity}">
       <i><font color="red">V</font></i>
    </div>
    <br> 
    <div class="form-group">
       <label for="focusedInput">Price : </label><br>
-      <input class="form-control" type="text" id="Price" size="10" placeholder="000.00" name="Price">
+      <input class="form-control" type="text" id="price" size="10" placeholder="000.00" name="price" value="${requestScope.shoes.price}">
       <i><font color="red">V</font></i>
    </div>
    <br> 
    <div class="form-group">
       <label for="focusedInput">Description : </label><br>
-      <textarea class="form-control" id="content" size="100"  name="content" rows="5" cols="100"></textarea>
+      <textarea class="form-control" id="content" size="100"  name="content" rows="5" cols="100" >${requestScope.shoes.content}</textarea>
    </div>
    <br> 
    
    <br><br>
-    <button type="submit" class="btn btn-primary active" onclick="javascript:MsgLoginValid();">Submit</button>
+    <button type="submit" class="btn btn-primary active" onclick="javascript:FormValid();">Submit</button>
   </form>
  </div> 
  
@@ -122,10 +135,11 @@ body { padding-top: 70px; }
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Sign up</h4>
+          <h4 class="modal-title">New Product</h4>
         </div>
         <div class="modal-body">
-          <p>Please enter your email, password, and your name.</p>
+          <p>Please select the category and <br>
+          enter shoes name, size, price, and its quantity.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

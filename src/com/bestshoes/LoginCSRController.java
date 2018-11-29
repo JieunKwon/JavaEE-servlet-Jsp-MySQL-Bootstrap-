@@ -49,9 +49,7 @@ public class LoginCSRController extends HttpServlet {
 	Connection con;
 	PreparedStatement pst; 
 	ResultSet rs;
-	
-	
-	
+
     public LoginCSRController() {
         super();
         // TODO Auto-generated constructor stub
@@ -63,7 +61,6 @@ public class LoginCSRController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
-
 		
 		// variables 
 		 String connectionUrl = "jdbc:mysql://localhost:3306/MVCDB";
@@ -77,7 +74,6 @@ public class LoginCSRController extends HttpServlet {
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
 		 
-		
 		try {
 			
 			// create sql according to login type ( customer or CRS )
@@ -95,7 +91,7 @@ public class LoginCSRController extends HttpServlet {
 			rs = pst.executeQuery();
 			
 			// move to last row to count rows	          
-	         rs.last();
+	        rs.last();
 	         
 			if(rs.getRow() == 0) {
 	        	
@@ -122,14 +118,13 @@ public class LoginCSRController extends HttpServlet {
 		 	        	csr.setUserName(rs.getString("userName"));
 			  		    
 			  		    // set session 
-						HttpSession session = request.getSession();	
+					    HttpSession session = request.getSession();	
 						session.setAttribute("userType", "csr"); 
 						session.setAttribute("csr", csr);
 						session.setMaxInactiveInterval(600*60); // for customer give 600 minutes 
 						    
 						nextPage = "/LoginCSRRst.jsp";
 						 
-				  
 		  		 }
 	  		 
 	         }

@@ -35,6 +35,12 @@ body { padding-top: 70px; }
 function moveEditPage(itemId){
 	alert(itemId);
 	
+	var form = document.listForm;
+	
+	form.mode.value = "search";
+	form.itemId.value = itemId;
+	form.action = "CsrShoeController";
+	form.submit();
 }
 
 </script>  
@@ -78,7 +84,7 @@ function moveEditPage(itemId){
 	  			<td> <h4>${status.count}.</h4></td><td colspan="2"><h4>${shoes.itemName}</h4></td>
 	  			<td align="right">
 	  				<button type="button" class="btn btn-primary btn-sm" onClick="javascript:moveEditPage(${shoes.itemId})">Edit</button> 
-	  				<button class="btn btn-danger btn-sm">Delete</button>
+	  				<button class="btn btn-danger btn-sm" onClick="javascript:moveDelPage(${shoes.itemId})">Delete</button>
 	  			</td>
 	  		</tr>
 	  		<tr>
@@ -103,7 +109,11 @@ function moveEditPage(itemId){
 
    </div> 
  </div>
- 
+          <!-- form for edit or del --> 
+		 <form action="CsrShoeController" method="post" name="listForm"> 
+		 	<input type="hidden" value="" name="mode">
+		 	<input type="hidden" value="" name="itemId">
+		 </form> 
 </div> 
 </body>
 </html>

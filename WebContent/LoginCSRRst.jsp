@@ -27,9 +27,14 @@ body { padding-top: 70px; }
 	 //Session  
 	 HttpSession sessionCsr = request.getSession();
 	 
+	 
+	 
 	 try{
 		 
 	 	CSR csr = (CSR)sessionCsr.getAttribute("csr"); 
+	 	
+	 		
+	 	
 	 %>
 	   	
 	  		 
@@ -40,6 +45,7 @@ body { padding-top: 70px; }
 
 	 <%
 	 	
+	 
 	 }
 	 catch(Exception e)
 	 {
