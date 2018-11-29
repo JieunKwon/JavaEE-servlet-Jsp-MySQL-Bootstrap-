@@ -13,10 +13,8 @@
  * modified Date : Nov 27, 2018
  * --------------------------------------------- 
  *
- * Page Task :   My page for customer   
- *  			1. show personal information to edit
- 				2. show ordered status
- * 
+ * Page Task :  CSR - Order management
+ * 				1. show orders list  
  *
  --%>
 <!DOCTYPE html>
@@ -31,56 +29,41 @@
 body { padding-top: 70px; }
 .itemTitle{ color:#4C4C4C; size:14px }
 </style>  
-   
-  <script>
-  
-  // move form to add quantity
-  function modifyOrder(orderId, quantity)
-  {
- 
-	  var form = document.cartForm;
-	  
-	  form.orderId.value = orderId; 
-	  form.quantity.value= quantity;
-	  form.mode.value = "add";
-	  form.submit(); 
- 
-		  
-  }
-
-  // move form to delete order
-  function delOrder(orderId)
-  {
- 
-	  var form = document.cartForm;
-	  form.orderId.value = orderId;
-	  form.mode.value = "del";
-	  form.submit(); 
- 
-		  
-  }
-  
-  </script>
-  
 </head>
 <body>
-
  <div class="container-fluid">
-
- <!--  INCLUDE : TOP MENU NAVIGATION  -->
- <jsp:include page="/TopNav.jsp" />
+ 
+  <!--  INCLUDE : TOP MENU NAVIGATION  -->
+ <jsp:include page="/TopNavCSR.jsp" />
  
  <div class="container">
- <div class="jumbotron">
  
-<!--  Menu title  -->
- <h1>${sessionScope.customer.userName}</h1> <br>
-<h2> <span class="label label-default">My Order</span></h2><br>
- 
- 
- <ul class="list-group">
+  <h1>Orders</h1> <br>
   
- <!--  Order List Check-->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Default</td>
+        <td>Defaultson</td>
+        <td>def@somemail.com</td>
+      </tr>    
+      <tr class="active">
+        <td>Active</td>
+        <td>Activeson</td>
+        <td>act@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <!--  Order List Check-->
 
 	<c:choose>
 		<c:when test="${!empty ordersList }"> 
@@ -147,46 +130,8 @@ body { padding-top: 70px; }
 	</c:choose>
 	
  </ul> 
-
-
-<!-- Customer's delivery address information  -->
-
-<h2> <span class="label label-default">My Address</span></h2><br>
- 
- <ul class="list-group">
-	<li class="list-group-item">
-		 
-	  	<b>Shipping Address :</b>  
-	  	
-	  	${sessionScope.customer.address}	 
-	  	
-	  	<br> 
-		<b>City :</b>  
-
-		 ${sessionScope.customer.city}	<br>
-		 
-		 <b>Postal Code :</b>  
-		 
-	  	 ${sessionScope.customer.postalCode} <br><br>
-	  	 	 
-	  	 <button type="button" class="btn btn-default" onclick="javascript:location.href='RegisterModi.jsp'">Modify Information</button>
-	  	  
-	  		 
-	</li>
-</ul> 
-
-   </div> 
- </div>
- 
- 
-         <!-- form for cart --> 
-		<form action="MyPageController" method="post" name="cartForm"> 
-		 	<input type="hidden" value="" name="orderId">
-		 	<input type="hidden" value="" name="mode">
-		 	<input type="hidden" value="" name="quantity"> 
-		</form> 
-        
   
-</div> 
+  </div>
+</div>
 </body>
 </html>

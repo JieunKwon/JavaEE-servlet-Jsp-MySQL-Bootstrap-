@@ -8,10 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MyPageController
+ * Servlet implementation class CsrOrderListController
  */
 /*
 * --------------------------------------------- 
@@ -20,27 +19,26 @@ import javax.servlet.http.HttpSession;
 * TASK : Assignment 3 
 * MVC Modeling - Shoe Product Ordering System
 * 
-* created Date : Nov 25, 2018 
-* modified Date : Nov 25, 2018
+* created Date : Nov 28, 2018 
+* modified Date : Nov 28, 2018
 * --------------------------------------------- 
 *
-* Page Task :  Customer - My Page
+* Page Task :  CSR - Order management
 * 				1. show orders list 
-* 				2. add quantity
+* 				2. update orderStatus
 * 				3. cancel order  
 * 				
 * Reference DB :  Shoes 
 * 
 */
-
-@WebServlet("/MyPageController")
-public class MyPageController extends HttpServlet {
+@WebServlet("/CsrOrderListController")
+public class CsrOrderListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageController() {
+    public CsrOrderListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,18 +49,10 @@ public class MyPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
- 
-		HttpSession sessionCustomer = request.getSession();
-		Customer customer = (Customer)sessionCustomer.getAttribute("customer"); 
-		
+	
 		// OrdersDAO obj
 		OrdersDAO order= new OrdersDAO();	
 		 
-		if(customer==null ){
-			// Dispatcher - forward to result page
-			getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-		}
-		
 		// params 
 		String mode = request.getParameter("mode");
 		 
@@ -103,7 +93,7 @@ public class MyPageController extends HttpServlet {
 		 ArrayList<Orders> ordersList = new  ArrayList<Orders>();
 		 
 		try {
-			ordersList = order.listOrders(customer.getCustomerId());
+			ordersList = order.listAllOrders();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -118,8 +108,8 @@ public class MyPageController extends HttpServlet {
 		
 		//////////////////////////
 		// Dispatcher - forward to result page
-		getServletContext().getRequestDispatcher("/MyPage.jsp").forward(request, response);
-		
+		getServletContext().getRequestDispatcher("/CsrOrderList.jsp").forward(request, response);
+			
 	}
 
 	/**

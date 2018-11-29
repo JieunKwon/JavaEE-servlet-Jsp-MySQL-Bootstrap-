@@ -47,7 +47,8 @@ public class OrdersDAO {
 		// 		METHOD oderAllItems()
 		// ---------------------------------------------------------
 		
-		public void orderAllItems(String customerId)throws Exception {
+		// move all items from cart to order
+		public void orderAllItems(String customerId) throws Exception {
 	 
 			
 			// make a query
@@ -124,6 +125,80 @@ public class OrdersDAO {
 	      
 	    }
 		
+		// ---------------------------------------------------------
+		// 		METHOD listOrders()
+		// ---------------------------------------------------------
+		
+		// return arraylist for all orders 
+		public ArrayList<Orders> listAllOrders() throws Exception{
+			
+			// make a query
+			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
+					+ " from Orders o, Shoes s "
+					+ " where o.itemId = s.itemId "
+					+ " order by o.orderId asc";
+	        
+			// result
+			ArrayList<Orders> ordersList = new ArrayList<Orders>();
+			
+			// db connection
+			try{
+	           
+			    con = DBConnector.getConnection();
+			    pst = con.prepareStatement(selectQuery);
+			    
+				try {
+					rs = pst.executeQuery();
+					
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+					System.out.println(pst.toString());
+					e.printStackTrace();
+				}
+				
+				// save all list to ArrayList
+				try {
+					  
+			         while(rs.next())
+			  		 {
+			        	 
+			        	 Orders order = new Orders();
+				 	       
+			        	 // store information	
+			        	 order.setOrderId(rs.getInt(1));
+			        	 order.setItemId(rs.getInt(2)); 
+			        	 order.setCustomerId(rs.getString(3));
+			        	 order.setQuantity(rs.getInt(4));
+			        	 order.setPrice(rs.getDouble(5));
+			        	 order.setOrderStatus(rs.getString(6));
+			        	 //order.setOrderDate();
+			        	 order.setItemName(rs.getString(8));
+			        	 
+			        		 
+		        		// add to arraylist 
+			        	 ordersList.add(order); 
+			 	   		 
+			  		 }
+			         
+					
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+				}
+				
+				 
+			  
+	        }catch(Exception e){
+	                e.printStackTrace();
+	        }finally{
+	              
+	        	DBConnector.closeConnectionAll(con,pst,rs);
+	        }
+			
+			// return 
+			return ordersList;
+		}
+
 		
 		// ---------------------------------------------------------
 		// 		METHOD listOrders()
