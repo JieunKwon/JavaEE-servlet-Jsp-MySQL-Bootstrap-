@@ -75,11 +75,11 @@ public class CsrShoeController extends HttpServlet {
 				category = request.getParameter("category");
 				
 				// call method to delete data
-				shoesDao.delRow( itemId);
+				shoesDao.delRow(itemId);
 				
 				// forward page to shoes list
 				request.setAttribute(category, "category");
-				getServletContext().getRequestDispatcher("/ShoeListController.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/CsrShoeListController").forward(request, response);
 			
 			// update data
 			}else if(mode.equals("edit")) {

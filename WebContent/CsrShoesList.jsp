@@ -32,14 +32,13 @@ body { padding-top: 70px; }
 </style>  
 <script>
 
-function moveEditPage(itemId){
-	alert(itemId);
-	
+// set to move form
+function moveEditPage(itemId,mode){
+		
 	var form = document.listForm;
 	
-	form.mode.value = "search";
+	form.mode.value = mode;
 	form.itemId.value = itemId;
-	form.action = "CsrShoeController";
 	form.submit();
 }
 
@@ -70,21 +69,22 @@ function moveEditPage(itemId){
 	<c:forEach var="shoes" items="${requestScope.shoesList}" begin="0" step="1" varStatus="status">
 	
 	  <li class="list-group-item">
-	  	<!--         		
+	  	<!--    /shoes info/     		
 		${shoes.itemId} 
 		${shoes.itemName} 
 		${shoes.category} 
 		${shoes.shoesize} 
 		${shoes.quantity} 
 		${shoes.price} 
+		${shoes.content}
 	 	-->
 	  	
 	  	<table border="0" width="100%">
 	  		<tr>
 	  			<td> <h4>${status.count}.</h4></td><td colspan="2"><h4>${shoes.itemName}</h4></td>
 	  			<td align="right">
-	  				<button type="button" class="btn btn-primary btn-sm" onClick="javascript:moveEditPage(${shoes.itemId})">Edit</button> 
-	  				<button class="btn btn-danger btn-sm" onClick="javascript:moveDelPage(${shoes.itemId})">Delete</button>
+	  				<button type="button" class="btn btn-primary btn-sm" onClick="javascript:moveEditPage('${shoes.itemId}','search')">Edit</button> 
+	  				<button class="btn btn-danger btn-sm" onClick="javascript:moveEditPage('${shoes.itemId}','del')">Delete</button>
 	  			</td>
 	  		</tr>
 	  		<tr>
@@ -113,6 +113,7 @@ function moveEditPage(itemId){
 		 <form action="CsrShoeController" method="post" name="listForm"> 
 		 	<input type="hidden" value="" name="mode">
 		 	<input type="hidden" value="" name="itemId">
+		 	<input type="hidden" value="${requestScope.category}" name="category">
 		 </form> 
 </div> 
 </body>

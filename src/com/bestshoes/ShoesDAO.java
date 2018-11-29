@@ -395,7 +395,7 @@ public class ShoesDAO {
  
 		
 		// make a query
-        String insertQuery = "delete from Shoes whre itemId=?";
+        String insertQuery = "delete from Shoes where itemId=?";
         
         // db connect
         try{
