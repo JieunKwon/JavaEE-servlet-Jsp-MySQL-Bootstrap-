@@ -41,7 +41,7 @@ public class CsrCustListController extends HttpServlet {
 		if(mode != null && !mode.isEmpty()) {
 			 
 			// customer id 
-			String customerId = request.getParameter("orderId");
+			String customerId = request.getParameter("customerId");
 			 
 			// delete customer
 			if(mode.equals("del")) { 
@@ -58,8 +58,10 @@ public class CsrCustListController extends HttpServlet {
 				 
 				try {
 					
+					
 					Customer customer = custDao.searchCustomer(customerId);
 					
+					System.out.println(customerId);
 					//////////////////////////
 					// set attribute  
 			        request.setAttribute("customer", customer);
@@ -79,11 +81,20 @@ public class CsrCustListController extends HttpServlet {
 			// change order status	
 			}else if(mode.equals("edit")) {
 				
-				//String orderStatus = request.getParameter("orderStatus");
+				// get params
+			
+				String pwd = request.getParameter("pwd");
+				String firstName = request.getParameter("firstName");
+				String lastName = request.getParameter("lastName");
+				String address = request.getParameter("address");
+				String city = request.getParameter("city");
+				String postalCode = request.getParameter("postalCode");
 				
+				System.out.println(customerId+pwd+ firstName+lastName+address+city+postalCode);
+				 
 				try {
 					
-					//custDao.updateStatus(orderId, orderStatus);
+					custDao.updateRow(customerId, pwd, firstName, lastName, address, city, postalCode);
 					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

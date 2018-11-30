@@ -48,12 +48,28 @@ body { padding-top: 70px; }
 		<br> 
     
 	  <form class="form-inline"  method="post" name="RegistForm" action="CsrCustListController" >
-	  	<input type="hidden" id="mode" name="mode" value="">
-	  	
-	    <div class="form-group">
-	      <label for="focusedInput">Your Email Account : ${requestScope.customer.customerId} </label><br><br>
+	  	<input type="hidden" id="mode" name="mode" value="edit">
+	  	<input type="hidden" id="customerId" name="customerId" value="${requestScope.customer.customerId}">
+	  	<div class="form-group">
+	      <label for="focusedInput"> Email Account : ${requestScope.customer.customerId} </label><br><br>
  
 	   </div>  
+	   <br>
+	   <div class="form-group">
+	      <label for="pwd">Password:</label><br>
+	      <input type="password" class="form-control" id="pwd" size="50"  value="${requestScope.customer.userPwd }" name="pwd" maxlength="30">
+	        
+	   </div>  
+	   <br>
+	   <div class="form-group">
+	      <label for="focusedInput">First Name : </label><br>
+	      <input class="form-control" type="text" id="firstName" size="50"  value="${requestScope.customer.firstName }" name="firstName" maxlength="30">
+	   </div>
+	   <br>
+	 	<div class="form-group">
+	      <label for="focusedInput">Last Name : </label><br>
+	      <input class="form-control" type="text" id="lastName" size="50"  value="${requestScope.customer.lastName }" name="lastName" maxlength="30">
+	   </div> 
 	   <br> 
 	 	<div class="form-group">
 	      <label for="focusedInput">Address : </label><br>

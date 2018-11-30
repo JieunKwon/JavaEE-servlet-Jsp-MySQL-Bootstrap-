@@ -105,7 +105,7 @@ public class CustomersDAO {
 	public Customer searchCustomer(String customerId) throws Exception{
 		
 		// make a query
-		String selectQuery = "select address, city, postalcode from Customers where customerId='" + customerId  + "'";
+		String selectQuery = "select userName, userPwd, firstname, lastname, address, city, postalcode from Customers where customerId='" + customerId  + "'";
 	
 		// shoe for return value
 		Customer customer = new Customer();
@@ -131,9 +131,20 @@ public class CustomersDAO {
 		  		 {
 		        	   
 		        	 // store information	
-		        	 customer.setAddress(rs.getString(1));
+		        	 /*
+		        	  *  customer.setAddress(rs.getString(1));
 		        	 customer.setCity(rs.getString(2));
 		        	 customer.setPostalCode(rs.getString(3)); 
+		        	 
+		        	  */
+		        	 customer.setCustomerId(customerId);
+		        	 customer.setUserName(rs.getString(1));
+		        	 customer.setUserPwd(rs.getString(2));
+		        	 customer.setFirstName(rs.getString(3));
+		        	 customer.setLastName(rs.getString(4));
+		        	 customer.setAddress(rs.getString(5));
+		        	 customer.setCity(rs.getString(6));
+		        	 customer.setPostalCode(rs.getString(7)); 
 		  		 }
 		         
 				
@@ -176,6 +187,42 @@ public class CustomersDAO {
 			pst.setString(2,address);  
 			pst.setString(3,city);
 			pst.setString(4,postalCode);
+			
+			// execute
+            pst.executeUpdate();
+            
+        }catch(Exception e){
+                e.printStackTrace();
+        }finally{
+                DBConnector.closeConnectionAll(con,pst,null);
+        }
+    }
+
+	////////////////////////////////////////////////////////////////////////////
+	// updateRow
+	//	
+	// UPDATE : update address, city, postalcode info
+	public void updateRow(String customerId, String customerPwd, String firstName, String lastName, String address, String city, String postalCode) throws Exception{
+		
+		// make a query
+		String updateQuery = "Update customers "
+							+ "set userPwd=?, firstName=?, lastName=?, address =?, city =?, postalCode =? "
+							+ "where customerId = ?";
+        
+		// db connection
+		try{
+           
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(updateQuery);
+		       
+		    // set
+		    pst.setString(1,customerPwd); 
+		    pst.setString(2,firstName); 
+		    pst.setString(3,lastName); 
+			pst.setString(4,address);  
+			pst.setString(5,city);
+			pst.setString(6,postalCode);
+			pst.setString(7,customerId);
 			
 			// execute
             pst.executeUpdate();
