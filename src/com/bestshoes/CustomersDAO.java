@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
  
 
 /**
@@ -30,7 +31,72 @@ public class CustomersDAO {
 	Connection con = null;
 	PreparedStatement pst;  
 	ResultSet rs = null;
+
+	// ---------------------------------------------------------
+	// 		METHOD searchAllCustomer()
+	// ---------------------------------------------------------
 	
+	public ArrayList<Customer> searchAllCustomer() throws Exception{
+ 
+		// make a query
+		String selectQuery = "select customerId, userName, userPwd, firstName, lastName, address, city, postalcode from Customers order by customerId asc";
+	
+		//return value
+		ArrayList<Customer> custList = new ArrayList<Customer>();
+		 
+		// db connection
+		try{
+           
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(selectQuery);
+		    
+			try {
+				rs = pst.executeQuery();
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+				System.out.println(pst.toString());
+				e.printStackTrace();
+			}
+		
+			try {
+				  
+		         while(rs.next())
+		  		 {
+		        	   
+		        	 // store information	
+		        	 Customer customer = new Customer();
+		        	 
+		        	 customer.setCustomerId(rs.getString(1));
+		        	 customer.setUserName(rs.getString(2));
+		        	 customer.setUserPwd(rs.getString(3));
+		        	 customer.setFirstName(rs.getString(4));
+		        	 customer.setLastName(rs.getString(5));		        	 
+		        	 customer.setAddress(rs.getString(6));
+		        	 customer.setCity(rs.getString(7));
+		        	 customer.setPostalCode(rs.getString(8)); 
+		        	 
+		        	 // add list
+		        	 custList.add(customer);
+		  		 }
+		         
+				
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+			}
+			
+			  
+        }catch(Exception e){
+                e.printStackTrace();
+        }finally{
+              
+        	DBConnector.closeConnectionAll(con,pst,rs);
+        }
+		
+		// return 
+		return custList;
+	}
 	
 	// ---------------------------------------------------------
 	// 		METHOD searchCustomer()

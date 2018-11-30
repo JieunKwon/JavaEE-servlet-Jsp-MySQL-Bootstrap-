@@ -25,7 +25,7 @@
 	      <li><a href="CsrShoeForm.jsp">New Product</a></li>
 	      <li><a href="CsrShoeListController?category=Women">Product List</a></li>
 	      <li><a href="CsrOrderListController">Order List</a></li>
-	      <li><a href="CsrCustListController.jsp">Customers</a></li>
+	      <li><a href="CsrCustListController">Customers</a></li>
 	    </ul>
 		<ul class="nav navbar-nav navbar-right"> 
 	      <li><a href="Logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

@@ -8,39 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MyPageController
+ * Servlet implementation class CsrCustListController
  */
-/*
-* --------------------------------------------- 
-* @author JIEUN KWON (991447941)
-*	
-* TASK : Assignment 3 
-* MVC Modeling - Shoe Product Ordering System
-* 
-* created Date : Nov 25, 2018 
-* modified Date : Nov 25, 2018
-* --------------------------------------------- 
-*
-* Page Task :  Customer - My Page
-* 				1. show orders list 
-* 				2. add quantity
-* 				3. cancel order  
-* 				
-* Reference DB :  Shoes 
-* 
-*/
-
-@WebServlet("/MyPageController")
-public class MyPageController extends HttpServlet {
+@WebServlet("/CsrCustListController")
+public class CsrCustListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageController() {
+    public CsrCustListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,60 +30,53 @@ public class MyPageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
- 
-		HttpSession sessionCustomer = request.getSession();
-		Customer customer = (Customer)sessionCustomer.getAttribute("customer"); 
-		
-		// OrdersDAO obj
-		OrdersDAO order= new OrdersDAO();	
+
+		// CustomersDAO obj
+		CustomersDAO custDao= new CustomersDAO();	
 		 
-		if(customer==null ){
-			// Dispatcher - forward to result page
-			getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
-		}
-		
 		// params 
 		String mode = request.getParameter("mode");
 		 
 		// delete item or add quantity
-		if(mode != null && !mode.isEmpty()) {
+/*		if(mode != null && !mode.isEmpty()) {
 			 
-			//String orderId = request.getParameter(orderId);
-			int orderId = Integer.parseInt(request.getParameter("orderId"));
-			
-			
-			// delete ordered item
+			// customer id 
+			String customerId = request.getParameter("orderId");
+			 
+			// delete customer
 			if(mode.equals("del")) { 
 				 
 				try {
-					order.delRow(orderId);
+					custDao.delRow(customerId);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			// update quantity
-			}else if(mode.equals("add")) {
-			 
-				int quantity = Integer.parseInt(request.getParameter("quantity"));
+		 
+			// change order status	
+			}else if(mode.equals("status")) {
+				
+				String orderStatus = request.getParameter("orderStatus");
 				
 				try {
-					order.addQty(orderId, quantity);
+					custDao.updateStatus(orderId, orderStatus);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 			}
 
 
 		}
-		
+	*/	
 		//////////////////////////
 		// make orders Arraylist information 
 		
-		 ArrayList<Orders> ordersList = new  ArrayList<Orders>();
+		 ArrayList<Customer> customerList = new ArrayList<Customer>();
 		 
 		try {
-			ordersList = order.listOrders(customer.getCustomerId());
+			customerList = custDao.searchAllCustomer();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -114,13 +86,13 @@ public class MyPageController extends HttpServlet {
 		
 		//////////////////////////
 		// set attribute  
-        request.setAttribute("ordersList", ordersList);
+        request.setAttribute("customerList", customerList);
 		
 		
 		//////////////////////////
 		// Dispatcher - forward to result page
-		getServletContext().getRequestDispatcher("/MyPage.jsp").forward(request, response);
-		
+		getServletContext().getRequestDispatcher("/CsrCustList.jsp").forward(request, response);
+			
 	}
 
 	/**
