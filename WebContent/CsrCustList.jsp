@@ -31,34 +31,20 @@ body { padding-top: 70px; }
 </style>  
   <script>
   
-  // move form to change order status
-  function modifyOrder(orderId, orderStatus)
+  // move form to change info
+  function modifyInfo(customerId, mode)
   {
- 
+ alert(customerId);
 	  var form = document.cartForm;
-	  
-	  form.orderId.value = orderId; 
-	  form.orderStatus.value= orderStatus;
-	  form.mode.value = "status";
-	  form.submit(); 
- 
-		  
-  }
-
-  // move form with mode; add quantity / cancel order 
-  function changeOrder(orderId, quantity, mode)
-  {
- 
-	  var form = document.cartForm;
-	  
-	  form.orderId.value = orderId; 
-	  form.quantity.value= quantity;
+	   
+	  form.customerId.value= customerId;
 	  form.mode.value = mode;
 	  form.submit(); 
  
 		  
   }
-  
+
+ 
   // move form to delete order
   function delOrder(orderId)
   {
@@ -84,7 +70,7 @@ body { padding-top: 70px; }
  
   <h1>Customers</h1> <br>
  
-  <!--  Order List Check-->
+  <!--  List Check-->
 
 	<c:choose>
 		<c:when test="${!empty customerList }"> 
@@ -102,10 +88,10 @@ body { padding-top: 70px; }
 			        <th>Address</th>
 			        <th>City</th>
 			        <th>Postal Code</th> 
+			        <th>Management</th> 
 			      </tr>
 			    </thead>
 			    <tbody>
-
   	
 			<c:forEach var="customerList" items="${requestScope.customerList}" begin="0" step="1" varStatus="status">
 			 
@@ -116,20 +102,13 @@ body { padding-top: 70px; }
 				 	  <tr>
 				        <td>${status.count} &nbsp;</td>
 				        <td>${customerList.userName}</td>
-				        <td>${customerList.customerId}</td>
-				    <!--   <td></td>  -->  
-				        <td> 
-				        	<button type="button" class="btn btn-primary btn-xs" onClick="javascript:changeOrder('${customerList.customerId}','down');"> - </button>
-					  	    
-					  	    <button type="button" class="btn btn-primary btn-xs" onClick="javascript:changeOrder('${customerList.customerId}','add');"> + </button>
-					  	</td>
+				        <td>${customerList.customerId}</td>  
 				        <td>${customerList.address}</td>
 				        <td>${customerList.city}</td>
 				        <td>${customerList.postalCode}</td>
 				        <td class="active"> 
-					        <button type="button" class="btn btn-info btn-sm" onClick="javascript:modifyOrder('${customerList.customerId}', 'In-Process');">In-Process</button>
-					  		<button type="button" class="btn btn-warning btn-sm" onClick="javascript:modifyOrder('${customerList.customerId}', 'Delivered');">Delivered</button>
-					  		<button type="button" class="btn btn-danger btn-sm" onClick="javascript:delOrder('${customerList.customerId}');">delete</button>
+					        <button type="button" class="btn btn-warning btn-sm" onClick="javascript:modifyInfo('${customerList.customerId}', 'search');">Edit</button>
+					  		<button type="button" class="btn btn-danger btn-sm" onClick="javascript:modifyInfo('${customerList.customerId}', 'del');">delete</button>
 					    </td>
 				      </tr>    
 				       
@@ -145,21 +124,16 @@ body { padding-top: 70px; }
 			<h3>  No Items </h3><br>
 		</c:otherwise>
 	</c:choose>
-	
- </ul> 
-  
+	 
   </div>
   
-           <!-- form to edit and delete --> 
-		<form action="CsrOrderListController" method="post" name="cartForm"> 
-		 	<input type="hidden" value="" name="orderId">
-		 	<input type="hidden" value="" name="mode">
-		 	<input type="hidden" value="" name="quantity"> 
-		 	<input type="hidden" value="" name="orderStatus"> 
+        <!-- form to edit and delete --> 
+		<form action="CsrCustListController" method="post" name="cartForm"> 
+		 	<input type="hidden" value="" name="customerId">
+		 	<input type="hidden" value="" name="mode"> 
 		</form> 
-		
-		
-</div>
+		 
+</div> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 

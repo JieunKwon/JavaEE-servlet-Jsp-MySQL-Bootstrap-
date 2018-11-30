@@ -37,8 +37,8 @@ public class CsrCustListController extends HttpServlet {
 		// params 
 		String mode = request.getParameter("mode");
 		 
-		// delete item or add quantity
-/*		if(mode != null && !mode.isEmpty()) {
+		// delete or edit info
+		if(mode != null && !mode.isEmpty()) {
 			 
 			// customer id 
 			String customerId = request.getParameter("orderId");
@@ -53,13 +53,38 @@ public class CsrCustListController extends HttpServlet {
 					e.printStackTrace();
 				}
 		 
-			// change order status	
-			}else if(mode.equals("status")) {
+			// search customer's info 	
+			}else if(mode.equals("search")) {
+				 
+				try {
+					
+					Customer customer = custDao.searchCustomer(customerId);
+					
+					//////////////////////////
+					// set attribute  
+			        request.setAttribute("customer", customer);
+					
+					//////////////////////////
+					// Dispatcher - forward to modification page
+					getServletContext().getRequestDispatcher("/CsrCustModi.jsp").forward(request, response);
+						 
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
-				String orderStatus = request.getParameter("orderStatus");
+			
+				
+			// change order status	
+			}else if(mode.equals("edit")) {
+				
+				//String orderStatus = request.getParameter("orderStatus");
 				
 				try {
-					custDao.updateStatus(orderId, orderStatus);
+					
+					//custDao.updateStatus(orderId, orderStatus);
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -69,7 +94,7 @@ public class CsrCustListController extends HttpServlet {
 
 
 		}
-	*/	
+		
 		//////////////////////////
 		// make orders Arraylist information 
 		
@@ -90,7 +115,7 @@ public class CsrCustListController extends HttpServlet {
 		
 		
 		//////////////////////////
-		// Dispatcher - forward to result page
+		// Dispatcher - forward to list page
 		getServletContext().getRequestDispatcher("/CsrCustList.jsp").forward(request, response);
 			
 	}

@@ -186,4 +186,36 @@ public class CustomersDAO {
                 DBConnector.closeConnectionAll(con,pst,null);
         }
     }
+	
+	// ---------------------------------------------------------
+	// 		METHOD delRow()
+	// ---------------------------------------------------------
+	
+	public void delRow(String customerId) throws Exception {
+ 
+		
+		// make a query
+        String insertQuery = "delete from customers where customerId=?";
+         
+        
+        // db connect
+        try{
+        	
+        	// get connection
+		    con = DBConnector.getConnection();
+		    pst = con.prepareStatement(insertQuery);
+		      
+			// set
+			pst.setString(1,customerId);  
+		 
+			// execute
+            pst.executeUpdate();
+
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+        	DBConnector.closeConnectionAll(con,pst,null);
+        }
+    }
 }
