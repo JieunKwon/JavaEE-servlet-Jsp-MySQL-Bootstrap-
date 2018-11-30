@@ -72,6 +72,7 @@ public class CsrOrderListController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 			// update quantity
 			}else if(mode.equals("add")) {
 			 
@@ -83,6 +84,20 @@ public class CsrOrderListController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			
+			// decrease quantity
+			}else if(mode.equals("down")) {
+			 
+				int quantity = Integer.parseInt(request.getParameter("quantity"));
+				
+				try {
+					order.downQty(orderId, quantity);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			// change order status	
 			}else if(mode.equals("status")) {
 				
 				String orderStatus = request.getParameter("orderStatus");
@@ -98,6 +113,7 @@ public class CsrOrderListController extends HttpServlet {
 
 
 		}
+		
 		//////////////////////////
 		// make orders Arraylist information 
 		

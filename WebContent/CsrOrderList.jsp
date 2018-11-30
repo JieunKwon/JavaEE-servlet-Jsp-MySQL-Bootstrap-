@@ -23,15 +23,13 @@
   <title> BEST SHOES </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 body { padding-top: 70px; }
 .itemTitle{ color:#4C4C4C; size:14px }
 </style>  
   <script>
   
-  // move form to add quantity
+  // move form to change order status
   function modifyOrder(orderId, orderStatus)
   {
  
@@ -45,6 +43,20 @@ body { padding-top: 70px; }
 		  
   }
 
+  // move form with mode; add quantity / cancel order 
+  function changeOrder(orderId, quantity, mode)
+  {
+ 
+	  var form = document.cartForm;
+	  
+	  form.orderId.value = orderId; 
+	  form.quantity.value= quantity;
+	  form.mode.value = mode;
+	  form.submit(); 
+ 
+		  
+  }
+  
   // move form to delete order
   function delOrder(orderId)
   {
@@ -85,6 +97,7 @@ body { padding-top: 70px; }
 			        <th>No</th>
 			        <th>Item Name</th>
 			        <th>Customer</th>
+			     <!--    <th>Size</th> -->
 			        <th>Qty</th>
 			        <th>Price</th>
 			        <th>Status</th>
@@ -107,7 +120,13 @@ body { padding-top: 70px; }
 				        <td>${status.count} &nbsp;</td>
 				        <td>${orders.itemName}</td>
 				        <td>${orders.customerId}</td>
-				        <td>${orders.quantity}</td>
+				    <!--   <td></td>  -->  
+				        <td>${orders.quantity} 
+				        	<c:if test="${orders.quantity > 1}">
+				        	<button type="button" class="btn btn-primary btn-xs" onClick="javascript:changeOrder('${orders.orderId}','${orders.quantity-1}', 'down');"> - </button>
+					  	    </c:if>
+					  	    <button type="button" class="btn btn-primary btn-xs" onClick="javascript:changeOrder('${orders.orderId}','${orders.quantity+1}', 'add');"> + </button>
+					  	</td>
 				        <td>$${orders.price}</td>
 				        <td>${orders.orderStatus}</td>
 				        <td class="active"> 
@@ -144,5 +163,8 @@ body { padding-top: 70px; }
 		
 		
 </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

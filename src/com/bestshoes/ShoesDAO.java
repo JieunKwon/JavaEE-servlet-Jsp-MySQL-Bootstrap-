@@ -260,7 +260,7 @@ public class ShoesDAO {
 	public Shoes searchShoes(String itemId) throws Exception{
 		
 		// make a query
-		String selectQuery = "select itemId, itemName, shoesize, price from Shoes where itemId=" + itemId;
+		String selectQuery = "select itemId, itemName, shoesize, price, content from Shoes where itemId=" + itemId;
 	
 		// shoe for return value
 		Shoes shoe = new Shoes();
@@ -290,6 +290,7 @@ public class ShoesDAO {
 		        		shoe.setItemName(rs.getString(2));
 		        		shoe.setShoesize(rs.getString(3));
 		        		shoe.setPrice(rs.getDouble(4));
+		        		shoe.setContent(rs.getString(5));
 		        		  	   		 
 		  		 }
 		         

@@ -340,6 +340,39 @@ public class OrdersDAO {
 	    }
 
 		// ---------------------------------------------------------
+		// 		METHOD addQty()
+		// ---------------------------------------------------------
+		
+		public void downQty (int orderId, int quantity)throws Exception {
+	 
+			
+			// make a query
+	        String insertQuery = "update Orders set quantity=" + quantity + ", "
+	        		+ "price = (price / (" + (quantity + 1) + ")) * " + quantity + " where orderId=?";
+	        
+	        
+	        // db connect
+	        try{
+	        	
+	        	// get connection
+			    con = DBConnector.getConnection();
+			    pst = con.prepareStatement(insertQuery);
+			      
+				// set
+				pst.setInt(1,orderId);  
+			 
+				// execute
+	            pst.executeUpdate();
+
+	            
+	        }catch(Exception e){
+	            e.printStackTrace();
+	        }finally{
+	        	DBConnector.closeConnectionAll(con,pst,null);
+	        }
+	    }
+		
+		// ---------------------------------------------------------
 		// 		METHOD updateStatus()
 		// ---------------------------------------------------------
 		
