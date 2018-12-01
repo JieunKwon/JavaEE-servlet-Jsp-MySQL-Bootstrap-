@@ -65,7 +65,7 @@ public class cartController extends HttpServlet {
 		// add to cart
 		CartDAO cartDao = new CartDAO();
 		try {
-			cartDao.addRow(shoe.getItemId(), shoe.getItemName(), customerId, 1, shoe.getPrice());
+			cartDao.addRow(shoe.getItemId(), shoe.getItemName(), customerId, shoe.getShoesize(), 1, shoe.getPrice());
 			 
 		} catch (Exception e) {
 			

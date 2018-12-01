@@ -21,6 +21,7 @@ public class Cart {
 	private int itemId;
 	private String itemName;
 	private String customerId;
+	private String shoesize;
 	private int quantity;
 	private double price;
 	
@@ -37,6 +38,12 @@ public class Cart {
 		this.itemId = itemId;
 	}
  
+	public String getShoesize() {
+		return shoesize;
+	}
+	public void setShoesize(String shoesize) {
+		this.shoesize = shoesize;
+	}
 	public String getItemName() {
 		return itemName;
 	}

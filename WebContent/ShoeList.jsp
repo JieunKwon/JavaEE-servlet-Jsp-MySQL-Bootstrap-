@@ -106,7 +106,7 @@ body { padding-top: 70px; }
 	  	No list
 	  	</c:if>
 	 
-	  	<table border="0" >
+	  	<table>
 	  		<tr>
 	  			<td>  </td><td colspan="2" class="itemTitle"><h3>${shoes.itemName}</h3></td>
 	  			<td align="right" width="100px">

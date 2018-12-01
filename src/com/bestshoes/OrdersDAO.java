@@ -25,6 +25,7 @@ import java.util.ArrayList;
 		orderId int NOT NULL auto_increment primary key,
 	    itemId int NOT NULL,
 	    customerNo	int NOT NULL,
+	    shoesize	varchar,
 		quantity int NOT NULL,
 	    price	decimal(7,2) NOT NULL,
 	    orderStatus varchar(10) null,
@@ -52,7 +53,7 @@ public class OrdersDAO {
 	 
 			
 			// make a query
-			String selectQuery = "select itemId, quantity, price from Cart where customerId ='" + customerId + "' order by cartNo asc";
+			String selectQuery = "select itemId, shoesize, quantity, price from Cart where customerId ='" + customerId + "' order by cartNo asc";
 	        
 			// db connection
 			try{
@@ -73,10 +74,9 @@ public class OrdersDAO {
 			         while(rs.next())
 			  		 {
 			       
-			        	 System.out.println("ok - insert start" + customerId);
 			        	 
 			        	 // insert order 
-			        	  String insertQuery = "Insert into Orders (itemId,customerId,quantity,price,orderStatus,Orderdate) "
+			        	  String insertQuery = "Insert into Orders (itemId,customerId,shoesize, quantity,price,orderStatus,Orderdate) "
 			  	        		+ "values (?,'"+ customerId +"',?,?,'Order Placed',date(now()))";
 			  	         
 			  	        
@@ -89,8 +89,9 @@ public class OrdersDAO {
 			  			      
 			  				// set
 			  				pst.setInt(1,rs.getInt(1));
-			  				pst.setInt(2,rs.getInt(2));
-			  				pst.setDouble(3,rs.getDouble(3));
+			  				pst.setString(2,rs.getString(2));
+			  				pst.setInt(3,rs.getInt(3)); 
+			  				pst.setDouble(4,rs.getDouble(4));
 			  				
 			  				// execute
 			  	            pst.executeUpdate();
@@ -133,7 +134,7 @@ public class OrdersDAO {
 		public ArrayList<Orders> listAllOrders() throws Exception{
 			
 			// make a query
-			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
+			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.shoesize, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
 					+ " from Orders o, Shoes s "
 					+ " where o.itemId = s.itemId "
 					+ " order by o.orderId asc";
@@ -168,11 +169,12 @@ public class OrdersDAO {
 			        	 order.setOrderId(rs.getInt(1));
 			        	 order.setItemId(rs.getInt(2)); 
 			        	 order.setCustomerId(rs.getString(3));
-			        	 order.setQuantity(rs.getInt(4));
-			        	 order.setPrice(rs.getDouble(5));
-			        	 order.setOrderStatus(rs.getString(6));
+			        	 order.setShoesize(rs.getString(4));
+			        	 order.setQuantity(rs.getInt(5));
+			        	 order.setPrice(rs.getDouble(6));
+			        	 order.setOrderStatus(rs.getString(7));
 			        	 //order.setOrderDate();
-			        	 order.setItemName(rs.getString(8));
+			        	 order.setItemName(rs.getString(9));
 			        	 
 			        		 
 		        		// add to arraylist 
@@ -208,7 +210,7 @@ public class OrdersDAO {
 		public ArrayList<Orders> listOrders(String customerId) throws Exception{
 			
 			// make a query
-			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
+			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.shoesize, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
 					+ " from Orders o, Shoes s "
 					+ " where o.customerId ='" + customerId + "' and o.itemId = s.itemId "
 					+ " order by o.orderId asc";
@@ -243,13 +245,13 @@ public class OrdersDAO {
 			        	 order.setOrderId(rs.getInt(1));
 			        	 order.setItemId(rs.getInt(2)); 
 			        	 order.setCustomerId(rs.getString(3));
-			        	 order.setQuantity(rs.getInt(4));
-			        	 order.setPrice(rs.getDouble(5));
-			        	 order.setOrderStatus(rs.getString(6));
+			        	 order.setShoesize(rs.getString(4));
+			        	 order.setQuantity(rs.getInt(5));
+			        	 order.setPrice(rs.getDouble(6));
+			        	 order.setOrderStatus(rs.getString(7));
 			        	 //order.setOrderDate();
-			        	 order.setItemName(rs.getString(8));
-			        	 
-			        		 
+			        	 order.setItemName(rs.getString(9));
+			        	  
 		        		// add to arraylist 
 			        	 ordersList.add(order); 
 			 	   		 
@@ -283,7 +285,7 @@ public class OrdersDAO {
 		public ArrayList<Orders> listOrdersPlaced(String customerId) throws Exception{
 			
 			// make a query
-			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
+			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.shoesize, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
 					+ " from Orders o, Shoes s "
 					+ " where o.customerId ='" + customerId + "' and o.orderStatus = 'Order Placed' and o.itemId = s.itemId "
 					+ " order by o.orderId asc";
@@ -318,11 +320,12 @@ public class OrdersDAO {
 			        	 order.setOrderId(rs.getInt(1));
 			        	 order.setItemId(rs.getInt(2)); 
 			        	 order.setCustomerId(rs.getString(3));
-			        	 order.setQuantity(rs.getInt(4));
-			        	 order.setPrice(rs.getDouble(5));
-			        	 order.setOrderStatus(rs.getString(6));
+			        	 order.setShoesize(rs.getString(4));
+			        	 order.setQuantity(rs.getInt(5));
+			        	 order.setPrice(rs.getDouble(6));
+			        	 order.setOrderStatus(rs.getString(7));
 			        	 //order.setOrderDate();
-			        	 order.setItemName(rs.getString(8));
+			        	 order.setItemName(rs.getString(9));
 			        	 
 			        		 
 		        		// add to arraylist 

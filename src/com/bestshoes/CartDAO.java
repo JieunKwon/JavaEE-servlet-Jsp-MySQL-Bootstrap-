@@ -38,11 +38,11 @@ public class CartDAO {
 	// 		METHOD addRow()
 	// ---------------------------------------------------------
 	
-	public void addRow( int itemId, String itemName, String customerId, int quantity, double price)throws Exception {
+	public void addRow( int itemId, String itemName, String customerId, String shoesize, int quantity, double price)throws Exception {
  
 		
 		// make a query
-        String insertQuery = "Insert into cart (itemId,itemName,customerId,quantity,price) "
+        String insertQuery = "Insert into cart (itemId,itemName,customerId,shoesize,quantity,price) "
         		+ "values (?,?,?,?,?)";
         
         
@@ -57,8 +57,9 @@ public class CartDAO {
 			pst.setInt(1,itemId);
 			pst.setString(2,itemName);
 			pst.setString(3,customerId);
-			pst.setInt(4,quantity);
-			pst.setDouble(5,price);
+			pst.setString(4, shoesize);
+			pst.setInt(5,quantity);
+			pst.setDouble(6,price);
 			
 			// execute
             pst.executeUpdate();
@@ -79,7 +80,7 @@ public class CartDAO {
 	public ArrayList<Cart> listCart(String customerId) throws Exception{
 		
 		// make a query
-		String selectQuery = "select cartNo, itemId, itemName, quantity, price from Cart where customerId ='" + customerId + "' ";
+		String selectQuery = "select cartNo, itemId, itemName, shoesize, quantity, price from Cart where customerId ='" + customerId + "' ";
 		selectQuery = selectQuery + "order by cartNo asc";
         
 		// result
@@ -112,8 +113,9 @@ public class CartDAO {
 		        	 cart.setCartNo(rs.getInt(1));
 		        	 cart.setItemId(rs.getInt(2)); 
 		        	 cart.setItemName(rs.getString(3));
-		        	 cart.setQuantity(rs.getInt(4));
-		        	 cart.setPrice(rs.getDouble(5));
+		        	 cart.setShoesize(rs.getString(4));
+		        	 cart.setQuantity(rs.getInt(5));
+		        	 cart.setPrice(rs.getDouble(6));
 		        	 
 		        		 
 	        		// add to arraylist 

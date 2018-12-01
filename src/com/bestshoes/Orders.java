@@ -21,6 +21,7 @@ public class Orders {
 	private int itemId;
 	private String itemName;
 	private String customerId; 
+	private String shoesize;
 	private int quantity; 
 	private double price;	 
 	private String orderStatus;
@@ -49,6 +50,13 @@ public class Orders {
 	}
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
+	}
+	
+	public String getShoesize() {
+		return shoesize;
+	}
+	public void setShoesize(String shoesize) {
+		this.shoesize = shoesize;
 	}
 	public int getQuantity() {
 		return quantity;

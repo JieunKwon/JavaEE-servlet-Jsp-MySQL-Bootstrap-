@@ -105,7 +105,7 @@ body { padding-top: 70px; }
 				  				<img src="images/shoe${orders.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre">&nbsp;&nbsp;
 				  		 
 				  			</td> 
-				  			<td width="500px" class="itemTitle"><h3>${orders.itemName}</h3></td>
+				  			<td width="500px" class="itemTitle"><h3>${orders.itemName}</h3> (size: ${orders.shoesize})</td>
 				  			<td align="right" width="100px"> <b><fmt:formatNumber value="${orders.price }" type="currency" /></b></td>
 				  			<td align="right" width="50px"> * ${orders.quantity} </td>
 				  			<td align="right" width="100px">
