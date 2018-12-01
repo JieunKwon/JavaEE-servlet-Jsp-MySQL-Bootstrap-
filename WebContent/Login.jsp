@@ -97,6 +97,7 @@ body { padding-top: 70px; }
     </div>
     <br><br>
     <button type="submit" class="btn btn-primary active" onclick="javascript:MsgLoginValid();">LOG IN</button>
+    <button type="submit" class="btn btn-default active" onclick="javascript:location.href='Register.jsp';">Go to Sign up</button>
   </form>
  </div> 
 <!-- the modal for Login Msg--> 

@@ -43,7 +43,7 @@ public class CartDAO {
 		
 		// make a query
         String insertQuery = "Insert into cart (itemId,itemName,customerId,shoesize,quantity,price) "
-        		+ "values (?,?,?,?,?)";
+        		+ "values (?,?,?,?,?,?)";
         
         
         // db connect

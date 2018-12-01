@@ -92,11 +92,10 @@ body { padding-top: 70px; }
 			 	<table>
 			  		<tr>
 			  			<td width="100px">${status.count} &nbsp;
-			  				<img src="images/shoe${cart.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre">&nbsp;&nbsp;
-			  		 
+			  				<img src="images/shoe${cart.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre">&nbsp;&nbsp; 
 			  			</td> 
 			  			<td width="800px" class="itemTitle"><h3>${cart.itemName}</h3></td>
-			  			<td align="right" width="50px"> size: ${cart.shoesize}</td>
+			  			<td align="right" width="100px"> size: ${cart.shoesize}</td>
 			  			<td align="right" width="50px"> * ${cart.quantity}</td>
 			  			<td align="right" width="100px"> <b><fmt:formatNumber value="${cart.price }" type="currency" /></b></td>
 			  			<td align="right" width="50px"><a href="javascript:delCart('${cart.itemId}');"><img src="images/delete.jpg" width="30px"></a></td>

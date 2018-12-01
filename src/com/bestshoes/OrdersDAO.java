@@ -77,7 +77,7 @@ public class OrdersDAO {
 			        	 
 			        	 // insert order 
 			        	  String insertQuery = "Insert into Orders (itemId,customerId,shoesize, quantity,price,orderStatus,Orderdate) "
-			  	        		+ "values (?,'"+ customerId +"',?,?,'Order Placed',date(now()))";
+			  	        		+ "values (?,'"+ customerId +"',?,?,?,'Order Placed',date(now()))";
 			  	         
 			  	        
 			  	        // db connect
