@@ -118,7 +118,7 @@ body { padding-top: 70px; }
    <br> 
    <div class="form-group">
       <label for="focusedInput">Description : </label><br>
-      <textarea class="form-control" id="content" size="100"  name="content" rows="5" cols="100" >${requestScope.shoes.content}</textarea>
+      <textarea class="form-control" id="content" name="content" rows="5" cols="100" >${requestScope.shoes.content}</textarea>
    </div>
    <br> 
    

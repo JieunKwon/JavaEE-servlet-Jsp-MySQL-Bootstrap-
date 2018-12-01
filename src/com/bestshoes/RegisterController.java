@@ -102,24 +102,30 @@ public class RegisterController extends HttpServlet {
 		 String connectionPassword = "mydb1234";
 				 
 		// get params
+        String category = request.getParameter("category");
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
-		String address = request.getParameter("address");
-		String city = request.getParameter("city");
-		String postalCode = request.getParameter("postalCode");
+
 		
 		try {
 			
 			// 1. validate email address 
-			String sql = "";			
-	  
-	        sql = "select * from Customers where customerId=?";
-	         
+			
+			
 	        // DB connection
 	        Class.forName("com.mysql.jdbc.Driver").newInstance();     
 			con = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
+			
+			String sql = "";			
+			  
+			if(category.equals("Customers"))
+			{ 
+				sql = "select * from Customers where customerId=?";
+			}else {
+				sql = "select * from CSR where employeeId=? ";
+			}
 			
 	        // resultSet
 			pst = con.prepareStatement(sql);
@@ -131,57 +137,108 @@ public class RegisterController extends HttpServlet {
 	        
 	         // 2. register
 			if(rs.getRow() == 0) {
-	        	
-				
-				// insert query
-	        	String insertQuery = "insert into customers "
- 					+ " (customerId, username, userpwd, firstname, lastname, address, city, postalCode) values (?,?,?,?,?,?,?,?)";
 	        	 
-	         
-		 		pst=con.prepareStatement(insertQuery);
-		 		
-		 		// set
-		 		pst.setString(1,email);
-		 		pst.setString(2,firstName + " " + lastName);
-		 		pst.setString(3,pwd);		 		 
-		 		pst.setString(4,firstName);
-		 		pst.setString(5,lastName);
-		 		pst.setString(6,address);
-		 		pst.setString(7,city);
-		 		pst.setString(8,postalCode);
-		 		
-		 		int chk = pst.executeUpdate();
-		 		
-		 		// print result
-		         if(chk == 0) {
-		        	 
-		        	 request.setAttribute("Msg", "fail");
-		        	 nextPage = "/Register.jsp";
-		        	 
-		         }else {				         
-		        	 
-	        	 	
-	        	 	
-	        	 	// customer
-	        		Customer customer = new Customer();
-	        			
-	        		// get information	  		   		        	  
-		         	customer.setCustomerId(email);
-		  		    customer.setFirstName(firstName);
-		  		    customer.setLastName(lastName); 
-		  		    customer.setAddress(rs.getString("address"));
-		  		    customer.setCity(rs.getString("city"));
-		  		    customer.setPostalCode(rs.getString("postalCode"));
-		  		    
-		  		    // session 
-	        	 	HttpSession session = request.getSession();	
-					session.setAttribute("userType", "customer");  
-					session.setAttribute("customer", customer);
+				if(category.equals("Customers"))
+				{
+					// extra info
+					String address = request.getParameter("address");
+					String city = request.getParameter("city");
+					String postalCode = request.getParameter("postalCode");
 					
-					// forward page
-					nextPage = "/RegisterRst.jsp";
-		         }
+					// insert query
+		        	String insertQuery = "insert into customers "
+	 					+ " (customerId, username, userpwd, firstname, lastname, address, city, postalCode) values (?,?,?,?,?,?,?,?)";
+		        	 
 		         
+			 		pst=con.prepareStatement(insertQuery);
+			 		
+			 		// set
+			 		pst.setString(1,email);
+			 		pst.setString(2,firstName + " " + lastName);
+			 		pst.setString(3,pwd);		 		 
+			 		pst.setString(4,firstName);
+			 		pst.setString(5,lastName);
+			 		pst.setString(6,address);
+			 		pst.setString(7,city);
+			 		pst.setString(8,postalCode);
+			 		
+			 		int chk = pst.executeUpdate();
+			 		
+			 		// print result
+			         if(chk == 0) {
+			        	 
+			        	 request.setAttribute("Msg", "fail");
+			        	 nextPage = "/Register.jsp";
+			        	 
+			         }else {				         
+			        	 
+		        	 	// customer
+		        		Customer customer = new Customer();
+		        			
+		        		// get information	  		   		        	  
+			         	customer.setCustomerId(email);
+			  		    customer.setFirstName(firstName);
+			  		    customer.setLastName(lastName); 
+			  		    customer.setUserName(firstName + " " + lastName);
+			  		    customer.setAddress(address);
+			  		    customer.setCity(city);
+			  		    customer.setPostalCode(postalCode);
+			  		    
+			  		    // session 
+		        	 	HttpSession session = request.getSession();	
+						session.setAttribute("userType", "customer");  
+						session.setAttribute("customer", customer);
+						
+						// forward page
+						nextPage = "/RegisterRst.jsp";
+			         }
+			    
+			         //CSR			       
+				}else {
+					
+					// insert query
+		        	String insertQuery = "insert into CSR "
+		        						+ " (employeeId, username, userpwd, firstname, lastname) values (?,?,?,?,?)";
+		        	 
+		         
+			 		pst=con.prepareStatement(insertQuery);
+			 		
+			 		// set
+			 		pst.setString(1,email);
+			 		pst.setString(2,firstName + " " + lastName);
+			 		pst.setString(3,pwd);		 		 
+			 		pst.setString(4,firstName);
+			 		pst.setString(5,lastName); 
+			 		
+			 		int chk = pst.executeUpdate();
+			 		
+			 		// print result
+			         if(chk == 0) {
+			        	 
+			        	 request.setAttribute("Msg", "fail");
+			        	 nextPage = "/Register.jsp";
+			        	 
+			         }else {	
+					 
+				 	        // CSR obj
+			 	        	CSR csr = new CSR();
+			 	   		
+				 	        // get information	  		   		        	  
+			 	        	csr.setEmployeeId(email);
+			 	        	csr.setFirstName(firstName);
+			 	        	csr.setLastName(lastName); 
+			 	        	csr.setUserName(firstName+" " + lastName);
+				  		    
+				  		    // set session 
+						    HttpSession session = request.getSession();	
+							session.setAttribute("userType", "csr"); 
+							session.setAttribute("csr", csr);
+							session.setMaxInactiveInterval(600*60); // for customer give 600 minutes 
+							    
+							nextPage = "/LoginCSRRst.jsp";
+			         }		 
+				  		 
+				} 
 		 		
 			
 			// 2.2 fail to register

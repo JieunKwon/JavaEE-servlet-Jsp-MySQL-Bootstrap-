@@ -47,9 +47,7 @@ public class CsrOrderListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
-	
+		
 		// OrdersDAO obj
 		OrdersDAO order= new OrdersDAO();	
 		 
@@ -59,6 +57,7 @@ public class CsrOrderListController extends HttpServlet {
 		// delete item or add quantity
 		if(mode != null && !mode.isEmpty()) {
 			 
+			System.out.println("mmmmmmmmmm");
 			//String orderId = request.getParameter(orderId);
 			int orderId = Integer.parseInt(request.getParameter("orderId"));
 			
@@ -101,6 +100,7 @@ public class CsrOrderListController extends HttpServlet {
 			}else if(mode.equals("status")) {
 				
 				String orderStatus = request.getParameter("orderStatus");
+				
 				
 				try {
 					order.updateStatus(orderId, orderStatus);

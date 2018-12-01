@@ -33,6 +33,11 @@ body { padding-top: 70px; }
 </style>  
   <script>
   
+  	  function openUser(option)
+  	  {
+  			document.getElementById("custInfo").style.display = option;
+  	  }
+  	  
 	  function MsgLoginValid()
 	  {
 			var form = document.RegistForm;
@@ -102,6 +107,13 @@ body { padding-top: 70px; }
 <br> 
     
   <form class="form-inline"  method="post" name="RegistForm" action="" onSubmit="return false;">
+    <div class="checkbox">
+      <label><input type="radio" name="category" id="category" value="Customers" onClick="javascript:openUser('block');" checked> User   </label> &nbsp;&nbsp;
+      <label><input type="radio" name="category" id="category" value="CSR" onClick="javascript:openUser('none');"> CSR Employee   </label>
+       
+    </div>
+     <br><br>
+     
     <div class="form-group">
       <label for="focusedInput">Email : </label><br>
       <input class="form-control" type="email" id="email" size="50" placeholder="Enter email" name="email" maxlength="50">
@@ -124,23 +136,24 @@ body { padding-top: 70px; }
       <input class="form-control" type="text" id="lastName" size="50" placeholder="Enter your last name" name="lastName" maxlength="30">
    </div>
    <br>  
-    
- 	<div class="form-group">
-      <label for="focusedInput">Address : </label><br>
-      <input class="form-control" type="text" id="address" size="100" placeholder="Enter your address" name="address" maxlength="90">
-   </div>
-   <br> 
-   <div class="form-group">
-      <label for="focusedInput">City : </label><br>
-      <input class="form-control" type="text" id="city" size="50" placeholder="City" name="city">
-   </div>
-   <br> 
-   <div class="form-group">
-      <label for="focusedInput">Postal Code : </label><br>
-      <input class="form-control" type="text" id="postalCode" size="10" placeholder="Postal code" name="postalCode" maxlength="6">
-   </div>
-   <br> 
-   
+   <!--  Customer address infomation -->
+  <div id="custInfo">
+		 	<div class="form-group">
+		      <label for="focusedInput">Address : </label><br>
+		      <input class="form-control" type="text" id="address" size="100" placeholder="Enter your address" name="address" maxlength="90">
+		   </div>
+		   <br> 
+		   <div class="form-group">
+		      <label for="focusedInput">City : </label><br>
+		      <input class="form-control" type="text" id="city" size="50" placeholder="City" name="city">
+		   </div>
+		   <br> 
+		   <div class="form-group">
+		      <label for="focusedInput">Postal Code : </label><br>
+		      <input class="form-control" type="text" id="postalCode" size="10" placeholder="Postal code" name="postalCode" maxlength="6">
+		   </div>
+		   <br> 
+ </div>    
    <br><br>
     <button type="submit" class="btn btn-primary active" onclick="javascript:MsgLoginValid();">Submit</button>
   </form>
