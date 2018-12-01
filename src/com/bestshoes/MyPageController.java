@@ -82,7 +82,8 @@ public class MyPageController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			// update quantity
+				
+			// update quantity (+ 1 )
 			}else if(mode.equals("add")) {
 			 
 				int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -93,8 +94,19 @@ public class MyPageController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			
+			// update quantity (- 1)
+			}else if(mode.equals("down")) {
+			 
+				int quantity = Integer.parseInt(request.getParameter("quantity"));
+				
+				try {
+					order.downQty(orderId, quantity);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
-
 
 		}
 		

@@ -60,12 +60,12 @@ public class DelCartController extends HttpServlet {
 		
 		// objcustomerId
 		CartDAO cartDao = new CartDAO();
-		
-		// itemId 
-		int itemId = Integer.parseInt(request.getParameter("itemId"));
-		
+		  
 		// call method to delete item from cart
 		try {
+			// itemId 
+			int itemId = Integer.parseInt(request.getParameter("itemId"));
+			
 			cartDao.delRow(itemId, customer.getCustomerId());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

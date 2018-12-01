@@ -8,7 +8,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+/*
+* --------------------------------------------- 
+* @author JIEUN KWON (991447941)
+*	
+* TASK : Assignment 3 
+* MVC Modeling - Shoe Product Ordering System
+* 
+* created Date : Nov 25, 2018 
+* modified Date : Nov 25, 2018
+* --------------------------------------------- 
+*
+* Page Task :  CSR page -  Customers List Controller 
+* 				1. show Customer list 
+* 				2. delete Customer
+* 				3. edit Customer  
+* 				
+* Reference DB :  Customers 
+* 
+*/
 /**
  * Servlet implementation class CsrCustListController
  */
@@ -90,7 +108,7 @@ public class CsrCustListController extends HttpServlet {
 				String city = request.getParameter("city");
 				String postalCode = request.getParameter("postalCode");
 				
-				System.out.println(customerId+pwd+ firstName+lastName+address+city+postalCode);
+				//System.out.println(customerId+pwd+ firstName+lastName+address+city+postalCode);
 				 
 				try {
 					

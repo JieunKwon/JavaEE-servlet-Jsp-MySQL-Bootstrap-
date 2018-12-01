@@ -13,7 +13,7 @@
  * modified Date : Nov 26, 2018
  * --------------------------------------------- 
  *
- * Page Task :   hoes List   
+ * Page Task :   shoes List   
  * 
  * Reference DB :  Shoes 
  * 
@@ -115,8 +115,7 @@ body { padding-top: 70px; }
 	  			<c:if test="${shoes.quantity > 0}">		 
 						<a href="javascript:addCart('${shoes.itemId}','${shoes.itemName}');"><img src="images/cart.png" width="30px"></a> 
 						
-				</c:if>
-	 
+				</c:if> 
 	  			</td>
 	  		</tr>
 	  		<tr>

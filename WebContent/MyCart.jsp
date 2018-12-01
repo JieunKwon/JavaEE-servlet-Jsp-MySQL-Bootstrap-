@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%--
  * --------------------------------------------- 
@@ -37,6 +38,7 @@ body { padding-top: 70px; }
   {
  
 	  document.cartForm.itemId.value = itemId; 
+	  document.cartForm.action = "DelCartController";
 	  document.cartForm.submit(); 
  
 		  
@@ -63,7 +65,7 @@ body { padding-top: 70px; }
  
 <!--  Menu title  -->
  	 
-<h1> <span class="label label-default">My Bag</span></h1><br>
+<h1> <span class="label label-default">My Cart</span></h1><br>
  
  <ul class="list-group">
 
@@ -95,7 +97,7 @@ body { padding-top: 70px; }
 			  			</td> 
 			  			<td width="800px" class="itemTitle"><h3>${cart.itemName}</h3></td>
 			  			<td align="right" width="50px"> * ${cart.quantity}</td>
-			  			<td align="right" width="100px"> <b>$${cart.price}</b></td>
+			  			<td align="right" width="100px"> <b><fmt:formatNumber value="${cart.price }" type="currency" /></b></td>
 			  			<td align="right" width="50px"><a href="javascript:delCart('${cart.itemId}');"><img src="images/delete.jpg" width="30px"></a></td>
 			  		</tr>
 			  	</table>
@@ -108,7 +110,7 @@ body { padding-top: 70px; }
 				<table border=0>
 			  		<tr>
 			  			 
-			  			<td align="right" width="800px" align="right">  <h3> Total Items : $${total}</h3> </td> 
+			  			<td align="right" width="800px" align="right">  <h3> Total Items : <fmt:formatNumber value="${total }" type="currency" /></h3> </td> 
 			  			<td align="right" width="200px"><button type="submit" class="btn btn-primary active" onclick="javascript:location.href='CheckoutController'">Check out</button></td>
 			  		</tr>
 			  	</table> 	    
@@ -130,6 +132,7 @@ body { padding-top: 70px; }
          <!-- form for cart --> 
 		<form action="DelCartController" method="post" name="cartForm"> 
 		 	<input type="hidden" value="" name="itemId">
+		 	<input type="hidden" value="${sessionScope.customer.customerId }" name="customerId">
 		 </form> 
          
 </div> 

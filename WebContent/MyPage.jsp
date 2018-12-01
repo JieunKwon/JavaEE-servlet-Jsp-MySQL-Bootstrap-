@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
  * --------------------------------------------- 
  * @author JIEUN KWON (991447941)
@@ -35,17 +35,16 @@ body { padding-top: 70px; }
   <script>
   
   // move form to add quantity
-  function modifyOrder(orderId, quantity)
+  function modifyOrder(orderId, quantity, mode)
   {
  
 	  var form = document.cartForm;
 	  
 	  form.orderId.value = orderId; 
 	  form.quantity.value= quantity;
-	  form.mode.value = "add";
+	  form.mode.value = mode;
 	  form.submit(); 
- 
-		  
+  
   }
 
   // move form to delete order
@@ -107,14 +106,19 @@ body { padding-top: 70px; }
 				  		 
 				  			</td> 
 				  			<td width="500px" class="itemTitle"><h3>${orders.itemName}</h3></td>
-				  			<td align="right" width="100px"> <b>$${orders.price}</b></td>
-				  			<td align="right" width="100px"> * ${orders.quantity} 
+				  			<td align="right" width="100px"> <b><fmt:formatNumber value="${orders.price }" type="currency" /></b></td>
+				  			<td align="right" width="50px"> * ${orders.quantity} </td>
+				  			<td align="right" width="100px">
+				  				<c:if test="${orders.quantity > 1 && orders.orderStatus=='Order Placed'}">
+					        		<button type="button" class="btn btn-warning" onClick="javascript:modifyOrder('${orders.orderId}','${orders.quantity-1}', 'down');"> -1 </button>
+						  	    </c:if>
+							  	    
 				  				<c:if test="${orders.orderStatus=='Order Placed' }"> 
-				  				<button type="button" class="btn btn-warning" onClick="javascript:modifyOrder('${orders.orderId}',  ${orders.quantity+1});"> +1 </button>
+				  					<button type="button" class="btn btn-warning" onClick="javascript:modifyOrder('${orders.orderId}', '${orders.quantity+1}', 'add');"> +1 </button>
 				  				</c:if>
-				  			</td>
-				  			
-				  			<td align="right" width="200px"> <font color="red"> ${orders.orderStatus}</font> 
+				  			</td> 
+				  			<td align="right" width="100px"> <font color="red"> ${orders.orderStatus}</font> </td>
+				  			<td align="right" width="100px">
 				  				<c:if test="${orders.orderStatus=='Order Placed' }"> 
 				  				<button type="button" class="btn btn-danger" onClick="javascript:delOrder('${orders.orderId}');">cancel</button>
 				  				</c:if>
@@ -131,7 +135,10 @@ body { padding-top: 70px; }
 			<li class="list-group-item">
 				<table border=0>
 			  		<tr> 
-			  			<td align="right" width="800px" align="right">  <h3> Total Items : $${total}</h3> </td> 
+			  			<td align="right" width="800px" align="right">   
+			  			<h3> Total Items :
+			  			<fmt:formatNumber value="${total }" type="currency" />
+			  			</h3> </td> 
 			  			<td align="right" width="200px">
 			  			 
 			  			</td>

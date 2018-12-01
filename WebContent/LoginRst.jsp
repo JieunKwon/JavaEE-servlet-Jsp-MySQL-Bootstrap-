@@ -1,6 +1,21 @@
 <%@page import="com.bestshoes.Customer"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%--
+ * --------------------------------------------- 
+ * @author JIEUN KWON (991447941)
+ *	
+ * TASK : Assignment 3 
+ * MVC Modeling - Shoe Product Ordering System
+ * 
+ * created Date : Nov 25, 2018 
+ * modified Date : Nov 26, 2018
+ * --------------------------------------------- 
+ *
+ * Page Task :   Welcome Page after login for customer  
+ * 
+ *
+ --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,10 +48,15 @@ body { padding-top: 70px; }
 	 	Customer customer = (Customer)sessionCustomer.getAttribute("customer"); 
 	 %>
 	   	
-	  		 
-    		 
-    		<h2>Welcome,  <%=customer.getFirstName() %>!</h2>
+	  		  
+    		<h2><%=customer.getFirstName() %>, <br>Welcome to BEST SHOES ! </h2>
     		
+    		 
+    		<br><br>
+    		<h3>
+    		Free shipping on orders over $100. <br>
+    		All <font color="red">Kids boots</font> on SALE !! <br>
+    		</h3>
 		
 	  
 	 <%

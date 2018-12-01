@@ -65,9 +65,8 @@ public class CheckoutController extends HttpServlet {
 		
 		OrdersDAO ordersDao = new OrdersDAO();	//obj
 		try {
-	//		ordersDao.orderAllItems(customer.getCustomerId());
-			
-			System.out.println("ok - dbo");
+			ordersDao.orderAllItems(customer.getCustomerId());
+			 
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -79,9 +78,8 @@ public class CheckoutController extends HttpServlet {
 		
 		CartDAO cartDao = new CartDAO();	//obj
 		try {
-	//		cartDao.delAllRows(customer.getCustomerId());
-			
-			System.out.println("ok - delete cart");
+			cartDao.delAllRows(customer.getCustomerId());
+		 
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -95,7 +93,7 @@ public class CheckoutController extends HttpServlet {
 		 ArrayList<Orders> ordersList = new  ArrayList<Orders>();
 		 
 		try {
-			ordersList = order.listOrders(customer.getCustomerId());
+			ordersList = order.listOrdersPlaced(customer.getCustomerId());
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

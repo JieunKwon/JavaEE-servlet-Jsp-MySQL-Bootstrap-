@@ -34,7 +34,7 @@ body { padding-top: 70px; }
   // move form to change info
   function modifyInfo(customerId, mode)
   {
- alert(customerId);
+
 	  var form = document.cartForm;
 	   
 	  form.customerId.value= customerId;
@@ -94,11 +94,7 @@ body { padding-top: 70px; }
 			    <tbody>
   	
 			<c:forEach var="customerList" items="${requestScope.customerList}" begin="0" step="1" varStatus="status">
-			 
-				  	<c:if test = "${status.end == 0}">
-				  	No List
-				  	</c:if>
-				 
+		 
 				 	  <tr>
 				        <td>${status.count} &nbsp;</td>
 				        <td>${customerList.userName}</td>
@@ -121,7 +117,7 @@ body { padding-top: 70px; }
 	</c:when>
 		 
 		<c:otherwise>
-			<h3>  No Items </h3><br>
+			<h3>  No Customers </h3><br>
 		</c:otherwise>
 	</c:choose>
 	 

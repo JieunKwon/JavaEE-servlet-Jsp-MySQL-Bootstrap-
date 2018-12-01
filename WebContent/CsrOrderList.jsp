@@ -1,6 +1,7 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%--
  * --------------------------------------------- 
@@ -127,7 +128,7 @@ body { padding-top: 70px; }
 					  	    </c:if>
 					  	    <button type="button" class="btn btn-primary btn-xs" onClick="javascript:changeOrder('${orders.orderId}','${orders.quantity+1}', 'add');"> + </button>
 					  	</td>
-				        <td>$${orders.price}</td>
+				        <td><fmt:formatNumber value="${orders.price }" type="currency" /></td>
 				        <td>${orders.orderStatus}</td>
 				        <td class="active"> 
 					        <button type="button" class="btn btn-info btn-sm" onClick="javascript:modifyOrder('${orders.orderId}', 'In-Process');">In-Process</button>

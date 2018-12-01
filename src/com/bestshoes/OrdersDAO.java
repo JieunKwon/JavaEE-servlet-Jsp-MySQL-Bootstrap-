@@ -126,10 +126,10 @@ public class OrdersDAO {
 	    }
 		
 		// ---------------------------------------------------------
-		// 		METHOD listOrders()
+		// 		METHOD listAllOrders()
 		// ---------------------------------------------------------
 		
-		// return arraylist for all orders 
+		// return arraylist for all orders with item name
 		public ArrayList<Orders> listAllOrders() throws Exception{
 			
 			// make a query
@@ -204,12 +204,88 @@ public class OrdersDAO {
 		// 		METHOD listOrders()
 		// ---------------------------------------------------------
 		
+		// return orders list for the specific customer id 
 		public ArrayList<Orders> listOrders(String customerId) throws Exception{
 			
 			// make a query
 			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
 					+ " from Orders o, Shoes s "
 					+ " where o.customerId ='" + customerId + "' and o.itemId = s.itemId "
+					+ " order by o.orderId asc";
+	        
+			// result
+			ArrayList<Orders> ordersList = new ArrayList<Orders>();
+			
+			// db connection
+			try{
+	           
+			    con = DBConnector.getConnection();
+			    pst = con.prepareStatement(selectQuery);
+			    
+				try {
+					rs = pst.executeQuery();
+					
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+					System.out.println(pst.toString());
+					e.printStackTrace();
+				}
+				
+				// save all list to ArrayList
+				try {
+					  
+			         while(rs.next())
+			  		 {
+			        	 
+			        	 Orders order = new Orders();
+				 	       
+			        	 // store information	
+			        	 order.setOrderId(rs.getInt(1));
+			        	 order.setItemId(rs.getInt(2)); 
+			        	 order.setCustomerId(rs.getString(3));
+			        	 order.setQuantity(rs.getInt(4));
+			        	 order.setPrice(rs.getDouble(5));
+			        	 order.setOrderStatus(rs.getString(6));
+			        	 //order.setOrderDate();
+			        	 order.setItemName(rs.getString(8));
+			        	 
+			        		 
+		        		// add to arraylist 
+			        	 ordersList.add(order); 
+			 	   		 
+			  		 }
+			         
+					
+				} catch (SQLException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+				}
+				
+				 
+			  
+	        }catch(Exception e){
+	                e.printStackTrace();
+	        }finally{
+	              
+	        	DBConnector.closeConnectionAll(con,pst,rs);
+	        }
+			
+			// return 
+			return ordersList;
+		}
+
+
+		// ---------------------------------------------------------
+		// 		METHOD listOrdersPlaced()
+		// ---------------------------------------------------------
+		
+		// return orders placed list for the specific customer id 
+		public ArrayList<Orders> listOrdersPlaced(String customerId) throws Exception{
+			
+			// make a query
+			String selectQuery = "select o.orderID, o.itemId, o.customerId, o.quantity, o.price, o.orderStatus, o.Orderdate, s.itemName "
+					+ " from Orders o, Shoes s "
+					+ " where o.customerId ='" + customerId + "' and o.orderStatus = 'Order Placed' and o.itemId = s.itemId "
 					+ " order by o.orderId asc";
 	        
 			// result
