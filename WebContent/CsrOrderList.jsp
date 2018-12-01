@@ -121,7 +121,7 @@ body { padding-top: 70px; }
 				        <td>${status.count} &nbsp;</td>
 				        <td>${orders.itemName}</td>
 				        <td>${orders.customerId}</td>
-				        <td>${orders.size}</td>   
+				        <td>${orders.shoesize}</td>   
 				        <td>${orders.quantity} 
 				        	<c:if test="${orders.quantity > 1}">
 				        	<button type="button" class="btn btn-primary btn-xs" onClick="javascript:changeOrder('${orders.orderId}','${orders.quantity-1}', 'down');"> - </button>

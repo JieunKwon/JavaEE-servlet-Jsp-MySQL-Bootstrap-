@@ -54,10 +54,12 @@ public class CsrOrderListController extends HttpServlet {
 		// params 
 		String mode = request.getParameter("mode");
 		 
+		System.out.println("mmmmmmmmmm");
+		
 		// delete item or add quantity
 		if(mode != null && !mode.isEmpty()) {
 			 
-			System.out.println("mmmmmmmmmm");
+			
 			//String orderId = request.getParameter(orderId);
 			int orderId = Integer.parseInt(request.getParameter("orderId"));
 			
