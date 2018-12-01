@@ -57,7 +57,7 @@ body { padding-top: 70px; }
 	   <br>
 	   <div class="form-group">
 	      <label for="pwd">Password:</label><br>
-	      <input type="password" class="form-control" id="pwd" size="50"  value="${requestScope.customer.userPwd }" name="pwd" maxlength="30">
+	      <input type="text" class="form-control" id="pwd" size="50"  value="${requestScope.customer.userPwd }" name="pwd" maxlength="30">
 	        
 	   </div>  
 	   <br>
