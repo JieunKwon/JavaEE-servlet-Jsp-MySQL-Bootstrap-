@@ -34,23 +34,19 @@ body { padding-top: 70px; }
    
   <script>
   
+  // show modal window to confirm to add shoes to their cart
   function addCart(itemId,itemName)
   {
-		
-	 // alert(itemName);
-	   
 	  document.getElementById('modal_item_title').innerHTML = itemName;
 	  
 	  document.cartForm.itemId.value = itemId;
 	  
 	  $('#myModal').modal('show'); 
 	  return;
-		 
-			 
-	 	 
-		  
+	 	  
   }
   
+  // close modal and then form submit
   function submitCart()
   {
 	  

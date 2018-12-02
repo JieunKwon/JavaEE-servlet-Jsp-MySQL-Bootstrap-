@@ -24,8 +24,6 @@
   <title> BEST SHOES </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 body { padding-top: 70px; }
 .itemTitle{ color:#4C4C4C; size:14px }
@@ -84,7 +82,7 @@ body { padding-top: 70px; }
 	  	No List
 	  	</c:if>
 	 
-	 	<table border=0>
+	 	<table>
 	  		<tr>
 	  			<td width="100px">${status.count} &nbsp;
 	  				<img src="images/shoe${orders.itemId}.jpg" width="50px" class="img-thumbnail" alt="Cinque Terre">&nbsp;&nbsp;
@@ -103,7 +101,7 @@ body { padding-top: 70px; }
 	</c:forEach>
 	
 	<li class="list-group-item">
-		<table border=0>
+		<table>
 	  		<tr> 
 	  			<td align="right" width="800px" align="right">  <h3> Total Items : $${total}</h3> </td> 
 	  		</tr>
@@ -135,14 +133,11 @@ body { padding-top: 70px; }
 	</li>
 </ul> 
 	
-	<div>
-	 
+	<div> 
 	
 	</div>
    </div> 
- </div>
- 
- 
+ </div> 
          <!-- form for cart --> 
 		<form action="DelCartController" method="post" name="cartForm"> 
 		 	<input type="hidden" value="" name="itemId">
@@ -152,5 +147,8 @@ body { padding-top: 70px; }
         
   
 </div> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

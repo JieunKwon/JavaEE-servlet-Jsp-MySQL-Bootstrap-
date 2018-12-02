@@ -12,7 +12,7 @@
  * modified Date : Nov 25, 2018
  * --------------------------------------------- 
  *
- * Page Task :  Customer Register Form  
+ * Page Task :  Customers Register Form to edit their personal info 
  * 
  * Reference :  TABLE Customers  
  * 
@@ -41,55 +41,48 @@ body { padding-top: 70px; }
  <jsp:include page="/TopNav.jsp" />
  
  <div class="container"> 
-
-
+ 
 	<c:choose>
 		<c:when test="${empty sessionScope.customer.customerId }"> 
 		
 			<jsp:forward page="Login.jsp" />
 		</c:when>
-		<c:otherwise>
-			
-		
-	<!--  Login Form  --> 
-	  <h2>${sessionScope.customer.userName} </h2>
- 
-		<br> 
-    
-	  <form class="form-inline"  method="post" name="RegistForm" action="RegisterModiController" >
-	    <div class="form-group">
-	      <label for="focusedInput">Your Email Account : ${sessionScope.customer.customerId} </label><br><br>
- 
-	   </div>  
-	   <br> 
-	 	<div class="form-group">
-	      <label for="focusedInput">Address : </label><br>
-	      <input class="form-control" type="text" id="address" size="100" value="${sessionScope.customer.address }" name="address">
-	   </div>
-	   <br> 
-	   <div class="form-group">
-	      <label for="focusedInput">City : </label><br>
-	      <input class="form-control" type="text" id="city" size="50" value="${sessionScope.customer.city }" name="city">
-	   </div>
-	   <br> 
-	   <div class="form-group">
-	      <label for="focusedInput">Postal Code : </label><br>
-	      <input class="form-control" type="text" id="postalCode" size="10" value="${sessionScope.customer.postalCode }" name="postalCode">
-	   </div>
-	   <br> 
-	   
-	   <br><br>
-	    <button type="submit" class="btn btn-primary active" >Submit</button>
-	  </form>
-	 </div> 
- 
-
-  
-</div> 
-
-</c:otherwise>
-</c:choose> 
-
+		<c:otherwise> 
+			<!--  Login Form  --> 
+			  <h2>${sessionScope.customer.userName} </h2>
+		 
+				<br> 
+		    
+			  <form class="form-inline"  method="post" name="RegistForm" action="RegisterModiController" >
+			    <div class="form-group">
+			      <label for="focusedInput">Your Email Account : ${sessionScope.customer.customerId} </label><br><br>
+		 
+			   </div>  
+			   <br> 
+			 	<div class="form-group">
+			      <label for="focusedInput">Address : </label><br>
+			      <input class="form-control" type="text" id="address" size="100" value="${sessionScope.customer.address }" name="address">
+			   </div>
+			   <br> 
+			   <div class="form-group">
+			      <label for="focusedInput">City : </label><br>
+			      <input class="form-control" type="text" id="city" size="50" value="${sessionScope.customer.city }" name="city">
+			   </div>
+			   <br> 
+			   <div class="form-group">
+			      <label for="focusedInput">Postal Code : </label><br>
+			      <input class="form-control" type="text" id="postalCode" size="10" value="${sessionScope.customer.postalCode }" name="postalCode">
+			   </div>
+			   <br> 
+			   
+			   <br><br>
+			    <button type="submit" class="btn btn-primary active" >Submit</button>
+			  </form>
+			   
+		</c:otherwise>
+	</c:choose> 
+	</div> 
+	</div> 
 </body>
 </html>
 

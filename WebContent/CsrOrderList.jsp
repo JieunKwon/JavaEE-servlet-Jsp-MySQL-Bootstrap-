@@ -149,9 +149,7 @@ body { padding-top: 70px; }
 			<h3>  No Items </h3><br>
 		</c:otherwise>
 	</c:choose>
-	
- </ul> 
-  
+	 
   </div>
   
            <!-- form to edit and delete --> 

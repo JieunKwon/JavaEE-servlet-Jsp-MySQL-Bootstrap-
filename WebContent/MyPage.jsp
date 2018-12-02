@@ -133,7 +133,7 @@ body { padding-top: 70px; }
 			
 			<!--  total amount -->
 			<li class="list-group-item">
-				<table border=0>
+				<table>
 			  		<tr> 
 			  			<td align="right" width="800px" align="right">   
 			  			<h3> Total Items :

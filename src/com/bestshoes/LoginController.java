@@ -30,18 +30,7 @@ import javax.servlet.http.HttpSession;
  * --------------------------------------------- 
  *
  * Page Task	: Login for customer 
- *
- Customers  
-	customerNo	int NOT NULL auto_increment primary key,
-	customerId	varchar(50) NOT NULL,
-    username varchar(30) NOT NULL,
-    userpwd	int NOT NULL,
-    firstname varchar(30) NOT NULL,
-    lastname varchar(30) NOT NULL,
-    address varchar(100) NULL,
-    city varchar(30) NULL,
-    postalCode varchar(10) NULL
- 
+ * 
  *
  */ 
 

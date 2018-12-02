@@ -12,7 +12,7 @@
  * modified Date : Nov 25, 2018
  * --------------------------------------------- 
  *
- * Page Task :  Customer Register Form  
+ * Page Task :  Customers Register Form  
  * 
  * Reference :  TABLE Customers  
  * 

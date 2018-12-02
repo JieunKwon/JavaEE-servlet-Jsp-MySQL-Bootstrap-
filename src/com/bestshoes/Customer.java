@@ -16,9 +16,9 @@ package com.bestshoes;
  * Reference :  TABLE Customers  
  * 
 	customerNo	int NOT NULL auto_increment primary key,
-	customerId	varchar(50) NOT NULL,
+	customerId	varchar(60) NOT NULL,
     username varchar(30) NOT NULL,
-    userpwd	int NOT NULL,
+    userpwd	varchar(30) NOT NULL,
     firstname varchar(30) NOT NULL,
     lastname varchar(30) NOT NULL,
     address varchar(100) NULL,

@@ -15,9 +15,9 @@ package com.bestshoes;
  * 
  * Reference :  CSR  
 	csrNo	int NOT NULL auto_increment primary key,
-	employeeId	varchar(50) NOT NULL,
+	employeeId	varchar(60) NOT NULL,
     username varchar(30) NOT NULL,
-    userpwd	int NOT NULL,
+    userpwd	varchar(30) NOT NULL,
     firstname varchar(30) NOT NULL,
     lastname varchar(30) NOT NULL 
 
