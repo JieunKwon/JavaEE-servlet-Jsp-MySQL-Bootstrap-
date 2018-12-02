@@ -30,7 +30,7 @@ body { padding-top: 70px; }
 </style>  
 <script>
 
-// set to move form
+// set to move form to edit info
 function moveEditPage(itemId,mode){
 		
 	var form = document.listForm;
@@ -77,7 +77,7 @@ function moveEditPage(itemId,mode){
 		${shoes.content}
 	 	-->
 	  	
-	  	<table border="0" width="100%">
+	  	<table >
 	  		<tr>
 	  			<td> <h4>${status.count}.</h4></td><td colspan="2"><h4>${shoes.itemName}</h4></td>
 	  			<td align="right">

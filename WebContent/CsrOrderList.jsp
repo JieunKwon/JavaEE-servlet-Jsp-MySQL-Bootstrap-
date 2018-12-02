@@ -16,7 +16,9 @@
  *
  * Page Task :  CSR - Order management
  * 				1. show orders list  
- *
+ *				2. edit quantity
+ *				3. edit ordered status
+ *				4. delete order
  --%>
 <!DOCTYPE html>
 <html>

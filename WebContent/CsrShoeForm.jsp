@@ -31,6 +31,7 @@ body { padding-top: 70px; }
 </style>  
   <script>
   
+  	// submit form
 	  function FormValid()
 	  {
 			var form = document.RegistForm;

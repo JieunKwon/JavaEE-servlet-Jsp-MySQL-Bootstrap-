@@ -32,6 +32,7 @@ body { padding-top: 70px; }
    
   <script>
   
+  // delete items from cart
   function delCart(itemId)
   {
  
@@ -42,6 +43,7 @@ body { padding-top: 70px; }
 		  
   }
  
+  // submit form to checkout
   function checkOut()
   {
 	   

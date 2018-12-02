@@ -77,11 +77,7 @@ body { padding-top: 70px; }
 		<c:set var="total" value="${total + orders.price}" />
 	  
 	  <li class="list-group-item">
-	  	 
-	  	<c:if test = "${status.end == 0}">
-	  	No List
-	  	</c:if>
-	 
+ 
 	 	<table>
 	  		<tr>
 	  			<td width="100px">${status.count} &nbsp;
@@ -89,10 +85,10 @@ body { padding-top: 70px; }
 	  		 
 	  			</td> 
 	  			<td width="800px" class="itemTitle"><h3>${orders.itemName}</h3></td>
+	  			<td align="right" width="50px"> Size: ${orders.showsize}</td>
 	  			<td align="right" width="50px"> * ${orders.quantity}</td>
 	  			<td align="right" width="100px"> <b>$${orders.price}</b></td>
-	  			<td align="right" width="100px"> <font color="red"> ${orders.orderStatus}</font></td>
-	  			 
+	  			
 	  		</tr>
 	  	</table>
  

@@ -1,6 +1,21 @@
 <%@page import="com.bestshoes.CSR"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%--
+ * --------------------------------------------- 
+ * @author JIEUN KWON (991447941)
+ *	
+ * TASK : Assignment 3 
+ * MVC Modeling - Shoe Product Ordering System
+ * 
+ * created Date : Nov 25, 2018 
+ * modified Date : Nov 26, 2018
+ * --------------------------------------------- 
+ *
+ * Page Task :   Welcome Page after login for CSR  
+ * 
+ *
+ --%>
 <!DOCTYPE html>
 <html>
 <head>
