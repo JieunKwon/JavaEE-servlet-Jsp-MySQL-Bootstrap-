@@ -85,7 +85,7 @@ body { padding-top: 70px; }
 	  		 
 	  			</td> 
 	  			<td width="800px" class="itemTitle"><h3>${orders.itemName}</h3></td>
-	  			<td align="right" width="50px"> Size: ${orders.showsize}</td>
+	  			<td align="right" width="70px"> Size: ${orders.shoesize}</td>
 	  			<td align="right" width="50px"> * ${orders.quantity}</td>
 	  			<td align="right" width="100px"> <b>$${orders.price}</b></td>
 	  			
