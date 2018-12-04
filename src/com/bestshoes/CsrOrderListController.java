@@ -54,7 +54,6 @@ public class CsrOrderListController extends HttpServlet {
 		// params 
 		String mode = request.getParameter("mode");
 		 
-		System.out.println("mmmmmmmmmm");
 		
 		// delete item or add quantity
 		if(mode != null && !mode.isEmpty()) {

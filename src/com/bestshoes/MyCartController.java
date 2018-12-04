@@ -58,39 +58,13 @@ public class MyCartController extends HttpServlet {
 			// Dispatcher - forward to result page
 			getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
 		}
-		
-	
-	//	if(editType != null && !editType.isEmpty()){
-		    //processing here
-	//	}
-		
-		
-		String customerId = customer.getCustomerId();
-		String mode = request.getParameter("mode");
-		
+ 
 		// objcustomerId
 		CartDAO cartDao = new CartDAO();
 		
 		// result
 		ArrayList<Cart> cartList = new ArrayList<Cart>();
-		
-	/*	 
-		// delete item from cart
-		if(mode!=null && !mode.isEmpty()){
-		 
-			if(mode.equals("delete")) {
-				
-				int itemId = Integer.parseInt(request.getParameter("itemId"));
-				System.out.println(itemId + "-----------");
-				try {
-					cartDao.delRow(itemId, customer.getCustomerId());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-	*/	
+	
 		// search Cart
 		try {
 			cartList = cartDao.listCart(customer.getCustomerId());

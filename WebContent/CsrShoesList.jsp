@@ -79,7 +79,7 @@ function moveEditPage(itemId,mode){
 	  	
 	  	<table >
 	  		<tr>
-	  			<td> <h4>${status.count}.</h4></td><td colspan="2"><h4>${shoes.itemName}</h4></td>
+	  			<td> <h4>${status.count}.</h4></td><td colspan="2"><h4><b>${shoes.itemName}</b></h4></td>
 	  			<td align="right">
 	  				<button type="button" class="btn btn-primary btn-sm" onClick="javascript:moveEditPage('${shoes.itemId}','search')">Edit</button> 
 	  				<button class="btn btn-danger btn-sm" onClick="javascript:moveEditPage('${shoes.itemId}','del')">Delete</button>

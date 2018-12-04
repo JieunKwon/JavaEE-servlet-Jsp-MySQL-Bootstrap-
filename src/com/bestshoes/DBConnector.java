@@ -27,23 +27,6 @@ public class DBConnector {
 	    private static final String user = "root";
 	    private static final String password = "mydb1234";
 
-	 /*   
-	    String connectionUrl = "jdbc:mysql://localhost:3306/MVCDB";
-		 String connectionUser = "root";
-		 String connectionPassword = "mydb1234";
-		 
-		 
-		// create sql  
-			String sql = "select itemId, itemName, category, shoesize, quantity, price  from Shoes order by itemId desc ";
-	     
-	        // DB connection
-	        Class.forName("com.mysql.jdbc.Driver").newInstance();     
-			con = DriverManager.getConnection(connectionUrl, connectionUser, connectionPassword);
-			
-	        // resultSet
-			pst = con.prepareStatement(sql);
-			rs = pst.executeQuery(); 
-		*/	
 			
 	    private DBConnector() {
 			 

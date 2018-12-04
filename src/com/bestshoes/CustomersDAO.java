@@ -206,7 +206,7 @@ public class CustomersDAO {
 		
 		// make a query
 		String updateQuery = "Update customers "
-							+ "set userPwd=?, firstName=?, lastName=?, address =?, city =?, postalCode =? "
+							+ "set userName=?, userPwd=?, firstName=?, lastName=?, address =?, city =?, postalCode =? "
 							+ "where customerId = ?";
         
 		// db connection
@@ -216,13 +216,14 @@ public class CustomersDAO {
 		    pst = con.prepareStatement(updateQuery);
 		       
 		    // set
-		    pst.setString(1,customerPwd); 
-		    pst.setString(2,firstName); 
-		    pst.setString(3,lastName); 
-			pst.setString(4,address);  
-			pst.setString(5,city);
-			pst.setString(6,postalCode);
-			pst.setString(7,customerId);
+		    pst.setString(1,firstName+" " + lastName);
+		    pst.setString(2,customerPwd); 
+		    pst.setString(3,firstName); 
+		    pst.setString(4,lastName); 
+			pst.setString(5,address);  
+			pst.setString(6,city);
+			pst.setString(7,postalCode);
+			pst.setString(8,customerId);
 			
 			// execute
             pst.executeUpdate();
