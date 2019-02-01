@@ -26,15 +26,17 @@ This Web Application is implemented user's page and administrator's side functio
 - All business logic and data processing are done in Servlets and JavaBeans.
 
     
-          Functionalities
+          Functionalities and Page Flow
 
 - User ( Customer ) 
 ---------------------------
 1. Registration for new account
 
-2. Shoes shopping (provide shoes listing and detail pages, searching for the specific item with keyword) 
+2. Shoes shopping (shopping through shoes listing and detail pages, searching for the specific item with keyword) 
 
-3. Place a order 
+3. Add some itmes to shopping bag (can edit quantity or delete items) 
+
+4. Place a order (check out items and edit delivery details)
 
 4. Management for their account information and order details
 
