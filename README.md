@@ -19,17 +19,17 @@ This Web Application is implemented user's page and administrator's side functio
 - Admin can manage the shoes items, manage user account, and manage items ordered to delivery.
 
 
-          Implementation 
+       Implementation 
 
 - GUI is displayed with the JSP pages with CSS and Bootstrap.
 
 - All business logic and data processing are done in Servlets and JavaBeans.
 
     
-          Functionalities and Page Flow
+       Functionalities and Page Flow
 
 - User ( Customer ) 
----------------------------
+ 
 1. Registration for new account
 
 2. Shoes shopping (shopping through shoes listing and detail pages, searching for the specific item with keyword) 
@@ -42,5 +42,9 @@ This Web Application is implemented user's page and administrator's side functio
 
 
 - Admin ( App manager )
-----------------------------------------
-1. 
+ 
+1. Management the shoes items ( add, edit, and delete items by category )
+
+2. Management user accounts ( edit and delete member account )
+
+3. Management items ordered ( make delivery complete, edit or delete order details )
