@@ -26,9 +26,10 @@ This Web Application is implemented user's page and administrator's side functio
 - All business logic and data processing are done in Servlets and JavaBeans.
 
     
-       Functionalities and Page Flow
+      # Functionalities and Page Flow
 
 - User ( Customer ) 
+
  
 1. Registration for new account
 
@@ -41,10 +42,14 @@ This Web Application is implemented user's page and administrator's side functio
 4. Management for their account information and order details
 
 
+
 - Admin ( App manager )
+
  
 1. Management the shoes items ( add, edit, and delete items by category )
 
 2. Management user accounts ( edit and delete member account )
 
 3. Management items ordered ( make delivery complete, edit or delete order details )
+
+
