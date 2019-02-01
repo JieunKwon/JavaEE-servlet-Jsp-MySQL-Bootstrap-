@@ -9,7 +9,7 @@
 @ MySQL
 
 
-     Objective
+          Objective
 
 - The aim of this project is to apply the knowledge of MVC architecture with MySQL database to develop a web application.
 This Web Application is implemented user's page and administrator's side functionality as well.
@@ -19,10 +19,26 @@ This Web Application is implemented user's page and administrator's side functio
 - Admin can manage the shoes items, manage user account, and manage items ordered to delivery.
 
 
-     Implementation 
+          Implementation 
 
 - GUI is displayed with the JSP pages with CSS and Bootstrap.
 
 - All business logic and data processing are done in Servlets and JavaBeans.
 
     
+          Functionalities
+
+- User ( Customer ) 
+---------------------------
+1. Registration for new account
+
+2. Shoes shopping (provide shoes listing and detail pages, searching for the specific item with keyword) 
+
+3. Place a order 
+
+4. Management for their account information and order details
+
+
+- Admin ( App manager )
+----------------------------------------
+1. 
