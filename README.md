@@ -53,7 +53,5 @@ This Web Application is implemented user's page and administrator's side functio
 3. Management items ordered ( make delivery complete, edit or delete order details )
 
 
-          Page Demonstration
-          
-1. 
+
           
