@@ -4,7 +4,7 @@
 
 @ Java Bean, Servlet, JSP
 
-@ HTML, JS, CSS, Bootstrap
+@ HTML, JS, CSS, Bootstrap3
 
 @ MySQL
 
@@ -21,7 +21,7 @@ This Web Application is implemented user's page and administrator's side functio
 
           Implementation 
 
-- GUI is displayed with the JSP pages with CSS and Bootstrap.
+- GUI is displayed with the JSP pages with CSS and Bootstrap3.
 
 - All business logic and data processing are done in Servlets and JavaBeans.
 
@@ -43,7 +43,7 @@ This Web Application is implemented user's page and administrator's side functio
 
 
 
-- Admin ( App manager )
+- Admin ( App management )
 
  
 1. Management the shoes items ( add, edit, and delete items by category )
