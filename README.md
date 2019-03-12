@@ -46,7 +46,7 @@ This Web Application is implemented user's page and administrator's side functio
 <image src='flow2.JPG'>
  
 
- Admin ( App management ) Side Functionalities and Page Features
+ Admin (App management) Side Functionalities and Page Features
 ------------------
  
 1. Management the shoes items ( add, edit, and delete items by category )
@@ -55,8 +55,8 @@ This Web Application is implemented user's page and administrator's side functio
 
 3. Management items ordered ( make delivery complete, edit or delete order details )
 
-<image src='flow4.JPG'>
+<image src='flow4.JPG' width="600px">
  
-<image src='flow3.JPG' >
+<image src='Flow3.JPG' width="600px">
  
 
