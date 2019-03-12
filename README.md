@@ -2,7 +2,7 @@
 
 @ Nov 24, 2018
 
-@ Java Bean, Servlet, JSP
+@ JavaEE, Bean, Servlet, JSP
 
 @ HTML, JS, CSS, Bootstrap3
 
