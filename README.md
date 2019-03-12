@@ -57,4 +57,7 @@ This Web Application is implemented user's page and administrator's side functio
 
 
 
-          
+Page Flow
+------------------
+
+<image src='login.JPG' with='400px'>
