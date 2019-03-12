@@ -28,7 +28,7 @@ This Web Application is implemented user's page and administrator's side functio
 - All business logic and data processing are done in Servlets and JavaBeans.
 
   
- User ( Customer )  Side Functionalities and Page Flow
+ User (Customer) Side Functionalities and Page Flow
 ------------------
  
 1. Registration for new account
@@ -43,7 +43,8 @@ This Web Application is implemented user's page and administrator's side functio
 
 <image src='flow1.JPG' >
  
-<image src='flow2.JPG' width='800px'>
+<image src='flow2.JPG'>
+ 
 
  Admin ( App management ) Side Functionalities and Page Features
 ------------------
@@ -54,5 +55,8 @@ This Web Application is implemented user's page and administrator's side functio
 
 3. Management items ordered ( make delivery complete, edit or delete order details )
 
-
+<image src='flow4.JPG'>
  
+<image src='flow3.JPG' >
+ 
+
