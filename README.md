@@ -60,4 +60,6 @@ This Web Application is implemented user's page and administrator's side functio
 Page Flow
 ------------------
 
-<image src='login.JPG' with='400px'>
+<image src='login.JPG' width='400px'>
+ 
+ <image src='login_ok.JPG' width='400px'>
