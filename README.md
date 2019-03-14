@@ -1,6 +1,8 @@
-# BestShoes (Online Shoes Shopping Web App)
+# BestShoes (Shoes Shopping Web App)
 
-@ Nov 24, 2018
+@ Nov 24, 2018 
+
+@ MVC Modeling 
 
 @ JavaEE, Bean, Servlet, JSP
 
