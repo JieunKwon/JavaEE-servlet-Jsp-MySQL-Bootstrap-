@@ -2,13 +2,13 @@
 
 @ Nov 24, 2018 
 
-@ MVC Modeling 
+@ MVC Modeling
 
-@ JavaEE, Bean, Servlet, JSP
+- JavaEE, Bean, Servlet, JSP
 
-@ HTML, JS, CSS, Bootstrap3
+- HTML, JS, CSS, Bootstrap3
 
-@ MySQL
+- MySQL
 
 
  Objective
@@ -30,7 +30,7 @@ This Web Application is implemented user's page and administrator's side functio
 - All business logic and data processing are done in Servlets and JavaBeans.
 
   
- User (Customer) Side Functionalities and Page Flow
+ User Page (Customer) Functionalities and Page Flow
 ------------------
  
 1. Registration for new account
@@ -48,7 +48,7 @@ This Web Application is implemented user's page and administrator's side functio
 <image src='flow2.JPG'>
  
 
- Admin (App management) Side Functionalities and Page Features
+ Admin Page (App management) Functionalities and Page Features
 ------------------
  
 1. Management the shoes items ( add, edit, and delete items by category )
