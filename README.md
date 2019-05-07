@@ -41,7 +41,7 @@ This Web Application is implemented user's page and administrator's side functio
 
 4. Place a order (check out items and edit delivery details)
 
-4. Management for their account information and order details
+5. Management for their account information and order details
 
 <image src='flow1.JPG' >
  
@@ -53,12 +53,13 @@ This Web Application is implemented user's page and administrator's side functio
  
 1. Management the shoes items ( add, edit, and delete items by category )
 
-2. Management user accounts ( edit and delete member account )
 
-3. Management items ordered ( make delivery complete, edit or delete order details )
+2. Management user accounts ( edit and delete member account )
 
 <image src='flow4.JPG' width="600px">
  
+3. Management items ordered ( make delivery complete, edit or delete order details )
+
 <image src='Flow3.JPG' width="600px">
  
 
