@@ -53,10 +53,9 @@ This Web Application is implemented user's page and administrator's side functio
  
 1. Management the shoes items ( add, edit, and delete items by category )
 
+<image src='flow4.JPG' width="600px"> 
 
-2. Management user accounts ( edit and delete member account )
-
-<image src='flow4.JPG' width="600px">
+2. Management user accounts ( edit and delete member account ) 
  
 3. Management items ordered ( make delivery complete, edit or delete order details )
 
