@@ -6,7 +6,7 @@
 
 - JavaEE, Bean, Servlet, JSP
 
-- HTML, JS, CSS, Bootstrap3
+- HTML, JavaScript ES5, CSS, Bootstrap3
 
 - MySQL
 
