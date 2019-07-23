@@ -35,11 +35,11 @@ This Web Application is implemented user's page and administrator's side functio
  
 1. Registration for new account
 
-2. Shoes shopping (shopping through shoes listing and detail pages, searching for the specific item with keyword) 
+2. Shoes shopping (looking through shoes listing and the detail pages, searching for the specific item with a keyword) 
 
 3. Add some itmes to shopping bag (can edit quantity or delete items) 
 
-4. Place a order (check out items and edit delivery details)
+4. Place an order (check out items and edit the delivery details)
 
 5. Management for their account information and order details
 
